@@ -22,9 +22,31 @@ set clipboard=unnamedplus   " using system clipboard
 
 filetype plugin on
 
-set cursorline              " highlight current cursorline
+set signcolumn=yes
+" set cursorline              " highlight current cursorline
 set ttyfast                 " Speed up scrolling in Vim
 
 " set spell                 " enable spell check (may need to download language package)
-" set noswapfile            " disable creating swap file
+set noswapfile            " disable creating swap file
 " set backupdir=~/.cache/vim " Directory to store backup files.
+
+call plug#begin()
+
+Plug 'nvim-treesitter/nvim-treesitter',{'do': ':PlugUpdate'}
+Plug 'airblade/vim-gitgutter'
+Plug 'drewtempelmeyer/palenight.vim'
+
+call plug#end()
+
+" Theme
+
+set background=dark
+colorscheme palenight
+
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+" vim-gitgutter config
+set updatetime=100
+let g:gitgutter_diff_args = '--histogram'
