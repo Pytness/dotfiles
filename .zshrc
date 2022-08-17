@@ -73,3 +73,22 @@ export LESS=-FRX
 export TERM=screen-256color
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.gitdotfiles/.git/ --work-tree=$HOME'
+
+
+# Custom functions
+
+
+# reset cursor style:
+# 0  ⇒  blinking block.
+# 1  ⇒  blinking block (default).
+# 2  ⇒  steady block.
+# 3  ⇒  blinking underline.
+# 4  ⇒  steady underline.
+# 5  ⇒  blinking bar, xterm.
+# 6  ⇒  steady bar, xterm.
+_reset_cursor() {
+   echo -ne '\e[5 q'
+}
+
+# execute functions before the prompt is called
+precmd_functions+=( _reset_cursor )
