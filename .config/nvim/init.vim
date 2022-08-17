@@ -32,9 +32,10 @@ set noswapfile            " disable creating swap file
 
 call plug#begin()
 
-Plug 'nvim-treesitter/nvim-treesitter',{'do': ':PlugUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter',{'do': ':TSUpdate'}
 Plug 'airblade/vim-gitgutter'
 Plug 'drewtempelmeyer/palenight.vim'
+Plug 'github/copilot.vim'
 
 call plug#end()
 
@@ -50,3 +51,13 @@ endif
 " vim-gitgutter config
 set updatetime=100
 let g:gitgutter_diff_args = '--histogram'
+
+
+
+" vim-treesitter config
+lua <<EOF
+require('nvim-treesitter.configs').setup {
+  ensure_installed = "all",
+  highlight = { enable = true },
+  indent = { enable = true }
+}
