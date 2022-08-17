@@ -72,7 +72,11 @@ export LESS=-FRX
 
 export TERM=screen-256color
 
+
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.gitdotfiles/.git/ --work-tree=$HOME'
+compdef dotfiles='git'
+
+setopt complete_aliases
 
 
 # Custom functions
