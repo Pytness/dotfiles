@@ -72,8 +72,7 @@ export LESS=-FRX
 
 export TERM=screen-256color
 
-alias nvimconf=$'vim --cmd "exe \'edit \' stdpath(\'config\').\'/init.vim\'"'
-
+alias nvimconf='vim $HOME/.config/nvim/init.vim'
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.gitdotfiles/.git/ --work-tree=$HOME'
 compdef dotfiles='git'
