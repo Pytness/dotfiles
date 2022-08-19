@@ -73,6 +73,8 @@ export LESS=-FRX
 export TERM=screen-256color
 
 alias nvimconf='vim $HOME/.config/nvim/init.vim'
+alias tmuxconf='vim $HOME/.tmux.conf'
+alias zshconf='vim $HOME/.zshrc'
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.gitdotfiles/.git/ --work-tree=$HOME'
 compdef dotfiles='git'
