@@ -101,5 +101,13 @@ _reset_cursor() {
    echo -ne '\e[5 q'
 }
 
+update_code() {
+    DOWNLOAD_DEB_LINK='https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64'
+
+    wget -O /tmp/code.deb $DOWNLOAD_DEB_LINK
+    sudo dpkg -i /tmp/code.deb
+    rm /tmp/code.deb
+}
+
 # execute functions before the prompt is called
 precmd_functions+=( _reset_cursor )
