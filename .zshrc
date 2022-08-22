@@ -28,7 +28,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -54,6 +54,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(thefuck copypath copyfile dirhistory themes aliases git gh git-extras python tmux virtualenv)
 
+ZSH_TMUX_UNICODE=true
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -78,6 +80,11 @@ alias zshconf='$EDITOR $HOME/.zshrc'
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.gitdotfiles/.git/ --work-tree=$HOME'
 compdef dotfiles='git'
+
+if [ -f ~/.zsh_aliases ]; then
+    . ~/.zsh_aliases
+fi
+
 
 # Custom functions
 
