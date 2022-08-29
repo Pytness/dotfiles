@@ -10,6 +10,13 @@ set expandtab               " converts tabs to white space
 set shiftwidth=4            " width for autoindents
 set autoindent              " indent a new line the same amount as the line just typed
 
+set nofoldenable            " don't fold automatically
+set foldlevel=99            " fix wierd folding behavior
+
+" Use nvim_treesitter method to fold
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
 set number                  " add line numbers
 
 set wildmode=longest,list   " get bash-like tab completions
@@ -30,6 +37,8 @@ set ttyfast                 " Speed up scrolling in Vim
 set noswapfile            " disable creating swap file
 " set backupdir=~/.cache/vim " Directory to store backup files.
 
+nmap s <Plug>Lightspeed_omni_s
+
 call plug#begin()
 
 Plug 'nvim-treesitter/nvim-treesitter',{'do': ':TSUpdate'}
@@ -39,6 +48,9 @@ Plug 'drewtempelmeyer/palenight.vim'
 Plug 'github/copilot.vim'
 Plug 'ggandor/lightspeed.nvim'
 Plug 'nvim-lualine/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
+Plug 'kyazdani42/nvim-tree.lua'
+Plug 'lukas-reineke/indent-blankline.nvim'
 call plug#end()
 
 " Theme
@@ -54,8 +66,10 @@ endif
 set updatetime=100
 let g:gitgutter_diff_args = '--histogram'
 
+" lightspeed config
+let g:lightspeed_no_default_keymaps = 1
 
-" vim-treesitter config
+" Lua scripts
 lua <<EOF
 require('nvim-treesitter.configs').setup {
   ensure_installed = "all",
@@ -97,3 +111,30 @@ require('lualine').setup {
   extensions = {},
 }
 
+require("nvim-tree").setup()
+
+vim.opt.termguicolors = true
+vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
+
+-- vim.opt.list = true
+-- vim.opt.listchars:append "space:⋅"
+-- vim.opt.listchars:append "eol:↴"
+
+require("indent_blankline").setup {
+    space_char_blankline = " ",
+    char_highlight_list = {
+        "IndentBlanklineIndent1",
+        "IndentBlanklineIndent2",
+        "IndentBlanklineIndent3",
+        "IndentBlanklineIndent4",
+        "IndentBlanklineIndent5",
+        "IndentBlanklineIndent6",
+    },
+}
+
+EOF
