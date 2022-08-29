@@ -9,6 +9,9 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
+if [ `tput colors` = "256" ]; then
+  POWERLEVEL9K_MODE="nerdfont-complete"
+fi
 
 # CASE_SENSITIVE="true"
 # HYPHEN_INSENSITIVE="true"
@@ -89,6 +92,54 @@ fi
 # Custom functions
 
 
+
+update_code() {
+    DOWNLOAD_DEB_LINK='https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64'
+
+    wget -O /tmp/code.deb $DOWNLOAD_DEB_LINK
+    sudo dpkg -i /tmp/code.deb
+    rm /tmp/code.deb
+}
+
+# Recursevely run a sed command
+recsed() {
+    if [ $# -eq 2 ]; then
+        target_path=$1
+        sed_command=$2
+
+        find $target_path -type f -exec sed -i "$sed_command" {} \;
+    elif [ $# -eq 3 ]; then
+        target_path=$1
+        sed_command=$3
+        name_glob=$2
+
+        find $target_path -type f -name "$name_glob" -exec sed -i "$sed_command" {} \;
+    else
+        echo "Usage: rename <target_path> <sed_command>"
+        echo "Usage: rename <target_path> <name_glob> <sed_command>"
+    fi 
+}
+
+recawk() {
+    if [ $# -eq 2 ]; then
+        target_path=$1
+        awk_command=$2
+
+        find $target_path -type f -exec awk "$awk_command" {} \;
+    elif [ $# -eq 3 ]; then
+        target_path=$1
+        awk_command=$3
+        name_glob=$2
+
+        find $target_path -type f -name "$name_glob" -exec awk "$awk_command" {} \;
+    else
+        echo "Usage: rename <target_path> <awk_command>"
+        echo "Usage: rename <target_path> <name_glob> <awk_command>"
+    fi 
+}
+
+# execute functions before the prompt is called
+
 # reset cursor style:
 # 0  ⇒  blinking block.
 # 1  ⇒  blinking block (default).
@@ -101,13 +152,4 @@ _reset_cursor() {
    echo -ne '\e[5 q'
 }
 
-update_code() {
-    DOWNLOAD_DEB_LINK='https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64'
-
-    wget -O /tmp/code.deb $DOWNLOAD_DEB_LINK
-    sudo dpkg -i /tmp/code.deb
-    rm /tmp/code.deb
-}
-
-# execute functions before the prompt is called
 precmd_functions+=( _reset_cursor )
