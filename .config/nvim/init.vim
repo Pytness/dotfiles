@@ -37,6 +37,25 @@ set ttyfast                 " Speed up scrolling in Vim
 set noswapfile            " disable creating swap file
 " set backupdir=~/.cache/vim " Directory to store backup files.
 
+" Mappings
+"
+" Use , as a leader
+let mapleader = ","
+let g:mapleader = ","
+
+
+" * delete not cut
+nnoremap x "_x
+nnoremap d "_d
+nnoremap D "_D
+vnoremap d "_d
+
+nnoremap <leader>d "+d
+nnoremap <leader>D "+D
+vnoremap <leader>d "+d
+nnoremap <leader>dd "+dd
+
+" * Use omnidirectional search
 nmap s <Plug>Lightspeed_omni_s
 
 call plug#begin()
@@ -136,5 +155,4 @@ require("indent_blankline").setup {
         "IndentBlanklineIndent6",
     },
 }
-
 EOF
