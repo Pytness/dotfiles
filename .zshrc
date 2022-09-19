@@ -76,6 +76,7 @@ export VISUAL=nvim
 export LESS=-FRX
 
 export TERM=screen-256color
+export XDG_CONFIG_HOME=$HOME/.config
 
 alias nvimconf='$EDITOR $HOME/.config/nvim/init.vim'
 alias tmuxconf='$EDITOR $HOME/.tmux.conf'
