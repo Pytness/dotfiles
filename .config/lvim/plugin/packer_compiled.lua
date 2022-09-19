@@ -93,6 +93,14 @@ _G.packer_plugins = {
     path = "/home/fvegaswp/.local/share/lunarvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["SmoothCursor.nvim"] = {
+    config = { "\27LJ\2\2Î\4\0\0\5\0\18\0\0296\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\3\0005\2\4\0005\3\5\0=\3\6\0024\3\b\0005\4\a\0>\4\1\0035\4\b\0>\4\2\0035\4\t\0>\4\3\0035\4\n\0>\4\4\0035\4\v\0>\4\5\0035\4\f\0>\4\6\0035\4\r\0>\4\a\3=\3\14\0025\3\15\0=\3\16\2=\2\17\1B\0\2\1K\0\1\0\nfancy\ttail\1\0\1\vtexthl\17SmoothCursor\tbody\1\0\2\vtexthl\23SmoothCursorPurple\vcursor\6.\1\0\2\vtexthl\21SmoothCursorBlue\vcursor\6.\1\0\2\vtexthl\21SmoothCursorAqua\vcursor\b‚Ä¢\1\0\2\vtexthl\22SmoothCursorGreen\vcursor\b‚óè\1\0\2\vtexthl\23SmoothCursorYellow\vcursor\b‚óè\1\0\2\vtexthl\23SmoothCursorOrange\vcursor\bÔòÆ\1\0\2\vtexthl\20SmoothCursorRed\vcursor\bÔòÆ\thead\1\0\2\vtexthl\17SmoothCursor\vcursor\bÔëä\1\0\1\venable\2\1\0\t\14autostart\2\rpriority\3\n\ttype\fdefault\vtexthl\17SmoothCursor\14intervals\3#\14threshold\3\3\nspeed\3\25\ftimeout\3∏\23\vcursor\bÔëä\nsetup\17smoothcursor\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/fvegaswp/.local/share/lunarvim/site/pack/packer/opt/SmoothCursor.nvim",
+    url = "https://github.com/gen740/SmoothCursor.nvim"
+  },
   ["alpha-nvim"] = {
     config = { "\27LJ\2\2=\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\20lvim.core.alpha\frequire\0" },
     loaded = true,
@@ -127,6 +135,16 @@ _G.packer_plugins = {
     path = "/home/fvegaswp/.local/share/lunarvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  colorschemes = {
+    loaded = true,
+    path = "/home/fvegaswp/.local/share/lunarvim/site/pack/packer/start/colorschemes",
+    url = "https://github.com/lunarvim/colorschemes"
+  },
+  ["copilot.vim"] = {
+    loaded = true,
+    path = "/home/fvegaswp/.local/share/lunarvim/site/pack/packer/start/copilot.vim",
+    url = "https://github.com/github/copilot.vim"
+  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/home/fvegaswp/.local/share/lunarvim/site/pack/packer/start/friendly-snippets",
@@ -139,6 +157,24 @@ _G.packer_plugins = {
     only_cond = false,
     path = "/home/fvegaswp/.local/share/lunarvim/site/pack/packer/opt/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
+  },
+  ["hologram.nvim"] = {
+    loaded = true,
+    path = "/home/fvegaswp/.local/share/lunarvim/site/pack/packer/start/hologram.nvim",
+    url = "https://github.com/edluffy/hologram.nvim"
+  },
+  ["indent-blankline.nvim"] = {
+    loaded = true,
+    path = "/home/fvegaswp/.local/share/lunarvim/site/pack/packer/start/indent-blankline.nvim",
+    url = "https://github.com/lukas-reineke/indent-blankline.nvim"
+  },
+  ["lightspeed.nvim"] = {
+    config = { "\27LJ\2\2L\0\0\2\0\4\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\3\0B\0\2\1K\0\1\0\1\0\1\16ignore_case\2\nsetup\15lightspeed\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/fvegaswp/.local/share/lunarvim/site/pack/packer/opt/lightspeed.nvim",
+    url = "https://github.com/ggandor/lightspeed.nvim"
   },
   ["lua-dev.nvim"] = {
     loaded = false,
@@ -221,16 +257,15 @@ _G.packer_plugins = {
     path = "/home/fvegaswp/.local/share/lunarvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
-  ["onedarker.nvim"] = {
-    config = { "\27LJ\2\2ö\1\0\0\2\0\t\0\0196\0\0\0\15\0\0\0X\1\15Ä6\0\0\0009\0\1\0\a\0\2\0X\0\vÄ6\0\3\0'\1\2\0B\0\2\0029\0\4\0B\0\1\0016\0\0\0009\0\5\0009\0\6\0009\0\a\0'\1\2\0=\1\b\0K\0\1\0\ntheme\foptions\flualine\fbuiltin\nsetup\frequire\14onedarker\16colorscheme\tlvim\30\1\0\2\0\2\0\0046\0\0\0003\1\1\0B\0\2\1K\0\1\0\0\npcall\0" },
-    loaded = true,
-    path = "/home/fvegaswp/.local/share/lunarvim/site/pack/packer/start/onedarker.nvim",
-    url = "https://github.com/lunarvim/onedarker.nvim"
-  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/fvegaswp/.local/share/lunarvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
+  },
+  ["palenight.vim"] = {
+    loaded = true,
+    path = "/home/fvegaswp/.local/share/lunarvim/site/pack/packer/start/palenight.vim",
+    url = "https://github.com/drewtempelmeyer/palenight.vim"
   },
   ["plenary.nvim"] = {
     loaded = true,
@@ -336,10 +371,6 @@ time([[Config for nvim-tree.lua]], false)
 time([[Config for alpha-nvim]], true)
 try_loadstring("\27LJ\2\2=\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\20lvim.core.alpha\frequire\0", "config", "alpha-nvim")
 time([[Config for alpha-nvim]], false)
--- Config for: LuaSnip
-time([[Config for LuaSnip]], true)
-try_loadstring("\27LJ\2\2Ò\3\0\0\n\0\23\00166\0\0\0'\1\1\0B\0\2\0024\1\0\0006\2\2\0009\2\3\0029\2\4\0029\2\5\0029\2\6\2\15\0\2\0X\3\fÄ\21\2\1\0\22\2\0\0029\3\a\0006\4\b\0B\4\1\2'\5\t\0'\6\n\0'\a\v\0'\b\f\0'\t\r\0B\3\a\2<\3\2\0019\2\a\0006\3\14\0B\3\1\2'\4\15\0B\2\3\0029\3\16\0\18\4\2\0B\3\2\2\15\0\3\0X\4\3Ä\21\3\1\0\22\3\0\3<\2\3\0016\3\0\0'\4\17\0B\3\2\0029\3\18\3B\3\1\0016\3\0\0'\4\19\0B\3\2\0029\3\18\0035\4\20\0=\1\21\4B\3\2\0016\3\0\0'\4\22\0B\3\2\0029\3\18\3B\3\1\1K\0\1\0\"luasnip.loaders.from_snipmate\npaths\1\0\0 luasnip.loaders.from_vscode\14lazy_load\29luasnip.loaders.from_lua\17is_directory\rsnippets\19get_config_dir\22friendly-snippets\nstart\vpacker\tpack\tsite\20get_runtime_dir\15join_paths\22friendly_snippets\fsources\fluasnip\fbuiltin\tlvim\15lvim.utils\frequire\2\0", "config", "LuaSnip")
-time([[Config for LuaSnip]], false)
 -- Config for: lualine.nvim
 time([[Config for lualine.nvim]], true)
 try_loadstring("\27LJ\2\2?\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\22lvim.core.lualine\frequire\0", "config", "lualine.nvim")
@@ -348,10 +379,10 @@ time([[Config for lualine.nvim]], false)
 time([[Config for telescope.nvim]], true)
 try_loadstring("\27LJ\2\2A\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\24lvim.core.telescope\frequire\0", "config", "telescope.nvim")
 time([[Config for telescope.nvim]], false)
--- Config for: onedarker.nvim
-time([[Config for onedarker.nvim]], true)
-try_loadstring("\27LJ\2\2ö\1\0\0\2\0\t\0\0196\0\0\0\15\0\0\0X\1\15Ä6\0\0\0009\0\1\0\a\0\2\0X\0\vÄ6\0\3\0'\1\2\0B\0\2\0029\0\4\0B\0\1\0016\0\0\0009\0\5\0009\0\6\0009\0\a\0'\1\2\0=\1\b\0K\0\1\0\ntheme\foptions\flualine\fbuiltin\nsetup\frequire\14onedarker\16colorscheme\tlvim\30\1\0\2\0\2\0\0046\0\0\0003\1\1\0B\0\2\1K\0\1\0\0\npcall\0", "config", "onedarker.nvim")
-time([[Config for onedarker.nvim]], false)
+-- Config for: LuaSnip
+time([[Config for LuaSnip]], true)
+try_loadstring("\27LJ\2\2Ò\3\0\0\n\0\23\00166\0\0\0'\1\1\0B\0\2\0024\1\0\0006\2\2\0009\2\3\0029\2\4\0029\2\5\0029\2\6\2\15\0\2\0X\3\fÄ\21\2\1\0\22\2\0\0029\3\a\0006\4\b\0B\4\1\2'\5\t\0'\6\n\0'\a\v\0'\b\f\0'\t\r\0B\3\a\2<\3\2\0019\2\a\0006\3\14\0B\3\1\2'\4\15\0B\2\3\0029\3\16\0\18\4\2\0B\3\2\2\15\0\3\0X\4\3Ä\21\3\1\0\22\3\0\3<\2\3\0016\3\0\0'\4\17\0B\3\2\0029\3\18\3B\3\1\0016\3\0\0'\4\19\0B\3\2\0029\3\18\0035\4\20\0=\1\21\4B\3\2\0016\3\0\0'\4\22\0B\3\2\0029\3\18\3B\3\1\1K\0\1\0\"luasnip.loaders.from_snipmate\npaths\1\0\0 luasnip.loaders.from_vscode\14lazy_load\29luasnip.loaders.from_lua\17is_directory\rsnippets\19get_config_dir\22friendly-snippets\nstart\vpacker\tpack\tsite\20get_runtime_dir\15join_paths\22friendly_snippets\fsources\fluasnip\fbuiltin\tlvim\15lvim.utils\frequire\2\0", "config", "LuaSnip")
+time([[Config for LuaSnip]], false)
 -- Config for: nvim-notify
 time([[Config for nvim-notify]], true)
 try_loadstring("\27LJ\2\2>\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\21lvim.core.notify\frequire\0", "config", "nvim-notify")
@@ -369,8 +400,9 @@ vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
 vim.cmd [[au BufReadPost * ++once lua require("packer.load")({'nvim-ts-context-commentstring'}, { event = "BufReadPost *" }, _G.packer_plugins)]]
+vim.cmd [[au BufRead * ++once lua require("packer.load")({'gitsigns.nvim', 'lightspeed.nvim', 'Comment.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
 vim.cmd [[au BufWinEnter * ++once lua require("packer.load")({'toggleterm.nvim', 'bufferline.nvim', 'which-key.nvim'}, { event = "BufWinEnter *" }, _G.packer_plugins)]]
-vim.cmd [[au BufRead * ++once lua require("packer.load")({'gitsigns.nvim', 'Comment.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
+vim.cmd [[au WinScrolled * ++once lua require("packer.load")({'SmoothCursor.nvim'}, { event = "WinScrolled *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 

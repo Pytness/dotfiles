@@ -12,6 +12,8 @@ an executable
 lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "palenight"
+lvim.transparent_window = false
+vim.opt.whichwrap = "b,s"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -35,7 +37,12 @@ vim.cmd("set softtabstop=4")
 vim.cmd("set expandtab")
 vim.cmd("set shiftwidth=4")
 
-
+vim.cmd("highlight Cursor guifg=white guibg=black")
+vim.cmd("highlight iCursor guifg=white guibg=steelblue")
+vim.cmd("set guicursor=n-v-c:block-Cursor")
+vim.cmd("set guicursor+=i:ver100-iCursor")
+vim.cmd("set guicursor+=n-v-c:blinkon0")
+vim.cmd("set guicursor+=i:blinkwait10")
 -- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 -- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 -- unmap a default keymapping
@@ -84,18 +91,18 @@ lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
-  "bash",
-  "c",
-  "javascript",
-  "json",
-  "lua",
-  "python",
-  "typescript",
-  "tsx",
-  "css",
-  "rust",
-  "java",
-  "yaml",
+    "bash",
+    "c",
+    "javascript",
+    "json",
+    "lua",
+    "python",
+    "typescript",
+    "tsx",
+    "css",
+    "rust",
+    "java",
+    "yaml",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -178,28 +185,127 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- Additional Plugins
 lvim.plugins = {
-  { "lunarvim/colorschemes" },
-  --    {"folke/tokyonight.nvim"},
-  --    {"folke/trouble.nvim", cmd = "TroubleToggle",},
-  --    {"nvim-treesitter/nvim-treesitter"},
-  --     {"nvim-treesitter/nvim-treesitter-context"},
-  --     {"airblade/vim-gitgutter"},
-  { "drewtempelmeyer/palenight.vim" },
-  { "github/copilot.vim" },
-  { "ggandor/lightspeed.nvim" },
-  --    {"nvim-lualine/lualine.nvim"},
-  --     {"kyazdani42/nvim-web-devicons"},
-  --     {"kyazdani42/nvim-tree.lua"},
-  { "lukas-reineke/indent-blankline.nvim" },
+    { "lunarvim/colorschemes" },
+    --    {"folke/tokyonight.nvim"},
+    --    {"folke/trouble.nvim", cmd = "TroubleToggle",},
+    --    {"nvim-treesitter/nvim-treesitter"},
+    --     {"nvim-treesitter/nvim-treesitter-context"},
+    --     {"airblade/vim-gitgutter"},
+    { "drewtempelmeyer/palenight.vim" },
+    { "github/copilot.vim" },
+    {
+        "ggandor/lightspeed.nvim",
+        event = "BufRead",
+        config = function()
+            require 'lightspeed'.setup {
+                ignore_case = true
+            }
+        end
+    },
+    --    {"nvim-lualine/lualine.nvim"},
+    --     {"kyazdani42/nvim-web-devicons"},
+    --     {"kyazdani42/nvim-tree.lua"},
+    { "lukas-reineke/indent-blankline.nvim" },
 
+    { "edluffy/hologram.nvim" },
+    { "gen740/SmoothCursor.nvim",
+        event = "WinScrolled",
+        config = function()
+            require('smoothcursor').setup {
+                autostart = true,
+                cursor = "", -- cursor shape (need nerd font)
+                intervals = 35, -- tick interval
+                linehl = nil, -- highlight sub-cursor line like 'cursorline', "CursorLine" recommended
+                type = "default", -- define cursor movement calculate function, "default" or "exp" (exponential).
+                fancy = {
+                    enable = true, -- enable fancy mode
+                    head = { cursor = "", texthl = "SmoothCursor", linehl = nil },
+                    body = {
+                        { cursor = "", texthl = "SmoothCursorRed" },
+                        { cursor = "", texthl = "SmoothCursorOrange" },
+                        { cursor = "●", texthl = "SmoothCursorYellow" },
+                        { cursor = "●", texthl = "SmoothCursorGreen" },
+                        { cursor = "•", texthl = "SmoothCursorAqua" },
+                        { cursor = ".", texthl = "SmoothCursorBlue" },
+                        { cursor = ".", texthl = "SmoothCursorPurple" },
+                    },
+                    tail = { cursor = nil, texthl = "SmoothCursor" }
+                },
+                priority = 10, -- set marker priority
+                speed = 25, -- max is 100 to stick to your current position
+                texthl = "SmoothCursor", -- highlight group, default is { bg = nil, fg = "#FFD400" }
+                threshold = 3,
+                timeout = 3000,
+            }
+        end
+    }
 }
+-- vim.diagnostic.config({ signs = false })
+-- vim.lsp.diagnostic.disable()
 
 vim.cmd("let g:lightspeed_no_default_keymaps = 1")
 vim.cmd("nmap s <Plug>Lightspeed_omni_s")
-require 'lightspeed'.setup {
-  ignore_case = true
-}
 
+require("telescope").setup {
+    defaults = {
+        preview = {
+            mime_hook = function(filepath, bufnr, opts)
+                local is_image = function(filepath)
+                    local image_extensions = { 'png', 'jpg', 'jpeg' } -- Supported image formats
+                    local split_path = vim.split(filepath:lower(), '.', { plain = true })
+                    local extension = split_path[#split_path]
+                    return vim.tbl_contains(image_extensions, extension)
+                end
+                if is_image(filepath) then
+                    local term = vim.api.nvim_open_term(bufnr, {})
+                    local function send_output(_, data, _)
+                        for _, d in ipairs(data) do
+                            vim.api.nvim_chan_send(term, d .. '\r\n')
+                        end
+                    end
+
+                    vim.fn.jobstart(
+                        {
+                            'catimg', filepath -- Terminal image viewer command
+                        },
+                        { on_stdout = send_output, stdout_buffered = true })
+                else
+                    require("telescope.previewers.utils").set_preview_message(bufnr, opts.winid,
+                        "Binary cannot be previewed")
+                end
+            end
+        },
+    }
+}
+-- require('lualine').setup {
+--     options = {
+--         theme = 'papercolor_light',
+--         component_separators = '|',
+--         section_separators = { left = '', right = '' },
+--     },
+--     sections = {
+--         lualine_a = {
+--             { 'mode', separator = { left = '' }, right_padding = 2 },
+--         },
+--         lualine_b = { 'filename', 'branch' },
+--         lualine_c = { 'fileformat' },
+--         lualine_x = {},
+--         lualine_y = { 'filetype', 'progress' },
+--         lualine_z = {
+--             { 'location', separator = { right = '' }, left_padding = 2 },
+--         },
+--     },
+--     inactive_sections = {
+--         lualine_a = { 'filename' },
+--         lualine_b = {},
+--         lualine_c = {},
+--         lualine_x = {},
+--         lualine_y = {},
+--         lualine_z = { 'location' },
+--     },
+--     tabline = {},
+--     extensions = {},
+-- }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
