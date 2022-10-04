@@ -1,3 +1,27 @@
+local alpha = require("alpha")
+local dashboard = lvim.builtin.alpha.dashboard;
+-- dashboard.section.terminal = {}
+local function get_command(command)
+    local handle = io.popen(command)
+    local output = handle:read("*a")
+    handle:close()
+
+    local result = {}
+    for line in output:gmatch '[^\n]+' do
+        table.insert(result, line)
+    end
+
+    return result
+end
+
+dashboard.section.header.val = get_command("lolcat --force -F 0.3 " ..
+    os.getenv("HOME") .. "/.config/lvim/static/logo.cat")
+dashboard.section.terminal.command = "cat | lolcat -F 0.3 " .. os.getenv("HOME") .. "/.config/lvim/static/logo.cat"
+dashboard.section.terminal.width = 69
+dashboard.section.terminal.height = 8 -- alpha.setup(dashboard.opts)
+
+-- dashboard.opts.opts.noautocmd = true
+
 --[[
 lvim is the global options object
 
@@ -13,6 +37,7 @@ lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "palenight"
 lvim.transparent_window = false
+lvim.background = 'black'
 vim.opt.whichwrap = "b,s"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
@@ -32,17 +57,23 @@ vim.cmd("nnoremap ,D \"+D")
 vim.cmd("vnoremap ,d \"+d")
 vim.cmd("nnoremap ,dd \"+dd")
 
+
+vim.cmd("set background=dark")
+vim.cmd("set termguicolors")
 vim.cmd("set tabstop=4")
 vim.cmd("set softtabstop=4")
 vim.cmd("set expandtab")
 vim.cmd("set shiftwidth=4")
+vim.cmd("set cmdheight=1")
 
+-- What is this:
 vim.cmd("highlight Cursor guifg=white guibg=black")
 vim.cmd("highlight iCursor guifg=white guibg=steelblue")
 vim.cmd("set guicursor=n-v-c:block-Cursor")
 vim.cmd("set guicursor+=i:ver100-iCursor")
 vim.cmd("set guicursor+=n-v-c:blinkon0")
 vim.cmd("set guicursor+=i:blinkwait10")
+
 -- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 -- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 -- unmap a default keymapping
@@ -82,13 +113,12 @@ vim.cmd("set guicursor+=i:blinkwait10")
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
-lvim.builtin.alpha.active = true
-lvim.builtin.alpha.mode = "dashboard"
+-- lvim.builtin.alpha.active = true
+-- lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
-
+lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
     "bash",
@@ -183,6 +213,17 @@ lvim.builtin.treesitter.highlight.enabled = true
 --   },
 -- }
 
+-- vim.g.palenight_color_overrides = {
+--     -- black = { gui = '#000000', cterm = "0", cterm16 = "0" },
+--     blue = { gui = "#8cb8ff", cterm = "39", cterm16 = "4" },
+--     purple = { gui = "#d67cde", cterm = "170", cterm16 = "5" },
+--     blue_purple = { gui = "#8a87de", cterm = "39", cterm16 = "4" },
+--     cyan = { gui = "#96e1ff", cterm = "38", cterm16 = "6" },
+--     white = { gui = "#e6efff", cterm = "145", cterm16 = "7" },
+-- }
+-- vim.g.palenight_termcolors = 16;
+vim.g.palenight_terminal_italics = 1;
+
 -- Additional Plugins
 lvim.plugins = {
     { "lunarvim/colorschemes" },
@@ -191,7 +232,7 @@ lvim.plugins = {
     --    {"nvim-treesitter/nvim-treesitter"},
     --     {"nvim-treesitter/nvim-treesitter-context"},
     --     {"airblade/vim-gitgutter"},
-    { "drewtempelmeyer/palenight.vim" },
+    { "pytness/palenight.vim" },
     { "github/copilot.vim" },
     {
         "ggandor/lightspeed.nvim",
@@ -207,7 +248,7 @@ lvim.plugins = {
     --     {"kyazdani42/nvim-tree.lua"},
     { "lukas-reineke/indent-blankline.nvim" },
 
-    { "edluffy/hologram.nvim" },
+    -- { "edluffy/hologram.nvim" },
     { "gen740/SmoothCursor.nvim",
         event = "WinScrolled",
         config = function()
@@ -238,15 +279,29 @@ lvim.plugins = {
                 timeout = 3000,
             }
         end
-    }
+    },
+    { "norcalli/nvim-colorizer.lua",
+        config = function()
+            require("colorizer").setup({ "*" }, {
+                RGB = true, -- #RGB hex codes
+                RRGGBB = true, -- #RRGGBB hex codes
+                RRGGBBAA = true, -- #RRGGBBAA hex codes
+                rgb_fn = true, -- CSS rgb() and rgba() functions
+                hsl_fn = true, -- CSS hsl() and hsla() functions
+                css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+                css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+            })
+        end
+    },
 }
 -- vim.diagnostic.config({ signs = false })
 -- vim.lsp.diagnostic.disable()
 
-vim.cmd("let g:lightspeed_no_default_keymaps = 1")
+vim.g.lightspeed_no_default_keymaps = 1
 vim.cmd("nmap s <Plug>Lightspeed_omni_s")
 
-require("telescope").setup {
+--
+require("telescope").setup({
     defaults = {
         preview = {
             mime_hook = function(filepath, bufnr, opts)
@@ -276,7 +331,9 @@ require("telescope").setup {
             end
         },
     }
-}
+})
+
+
 -- require('lualine').setup {
 --     options = {
 --         theme = 'papercolor_light',
@@ -320,3 +377,4 @@ require("telescope").setup {
 --     require("nvim-treesitter.highlight").attach(0, "bash")
 --   end,
 -- })
+-- alpha.setup(dashboard.opts)

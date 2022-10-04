@@ -68,9 +68,9 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-alias vim=nvim
-export EDITOR=nvim
-export VISUAL=nvim
+alias vim=lvim
+export EDITOR=lvim
+export VISUAL=lvim
 
 # disable less behaviour of git related output
 export LESS=-FRX

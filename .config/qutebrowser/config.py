@@ -66,6 +66,14 @@ config.set('content.cookies.accept', 'all', 'chrome-devtools://*')
 #   - never: Don't accept cookies at all.
 config.set('content.cookies.accept', 'all', 'devtools://*')
 
+# Allow websites to request geolocations.
+# Type: BoolAsk
+# Valid values:
+#   - true
+#   - false
+#   - ask
+c.content.geolocation = False
+
 # Value to send in the `Accept-Language` header. Note that the value
 # read from JavaScript is always the global value.
 # Type: String
@@ -147,6 +155,14 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 # Type: Bool
 config.set('content.plugins', True, '*://help/*')
 
+# Monitor load requests for cross-site scripting attempts. Suspicious
+# scripts will be blocked and reported in the devtools JavaScript
+# console. Note that bypasses for the XSS auditor are widely known and
+# it can be abused for cross-site info leaks in some scenarios, see:
+# https://www.chromium.org/developers/design-documents/xss-auditor
+# Type: Bool
+c.content.xss_auditing = True
+
 # Editor (and arguments) to use for the `edit-*` commands. The following
 # placeholders are defined:  * `{file}`: Filename of the file to be
 # edited. * `{line}`: Line in which the caret is found in the text. *
@@ -160,6 +176,376 @@ c.editor.command = ['gnome-terminal', '--wait', '--', 'lvim', '{}']
 # Type: Encoding
 c.editor.encoding = 'utf-8'
 
+# Text color of the completion widget. May be a single color to use for
+# all columns or a list of three colors, one for each column.
+# Type: List of QtColor, or QtColor
+c.colors.completion.fg = '#abb2bf'
+
+# Background color of the completion widget for odd rows.
+# Type: QssColor
+c.colors.completion.odd.bg = '#353b45'
+
+# Background color of the completion widget for even rows.
+# Type: QssColor
+c.colors.completion.even.bg = '#282c34'
+
+# Foreground color of completion widget category headers.
+# Type: QtColor
+c.colors.completion.category.fg = '#e5c07b'
+
+# Background color of the completion widget category headers.
+# Type: QssColor
+c.colors.completion.category.bg = '#282c34'
+
+# Top border color of the completion widget category headers.
+# Type: QssColor
+c.colors.completion.category.border.top = '#282c34'
+
+# Bottom border color of the completion widget category headers.
+# Type: QssColor
+c.colors.completion.category.border.bottom = '#282c34'
+
+# Foreground color of the selected completion item.
+# Type: QtColor
+c.colors.completion.item.selected.fg = '#abb2bf'
+
+# Background color of the selected completion item.
+# Type: QssColor
+c.colors.completion.item.selected.bg = '#3e4451'
+
+# Top border color of the selected completion item.
+# Type: QssColor
+c.colors.completion.item.selected.border.top = '#3e4451'
+
+# Bottom border color of the selected completion item.
+# Type: QssColor
+c.colors.completion.item.selected.border.bottom = '#3e4451'
+
+# Foreground color of the matched text in the selected completion item.
+# Type: QtColor
+c.colors.completion.item.selected.match.fg = '#98c379'
+
+# Foreground color of the matched text in the completion.
+# Type: QtColor
+c.colors.completion.match.fg = '#98c379'
+
+# Color of the scrollbar handle in the completion view.
+# Type: QssColor
+c.colors.completion.scrollbar.fg = '#abb2bf'
+
+# Color of the scrollbar in the completion view.
+# Type: QssColor
+c.colors.completion.scrollbar.bg = '#282c34'
+
+# Background color of the context menu. If set to null, the Qt default
+# is used.
+# Type: QssColor
+c.colors.contextmenu.menu.bg = '#282c34'
+
+# Foreground color of the context menu. If set to null, the Qt default
+# is used.
+# Type: QssColor
+c.colors.contextmenu.menu.fg = '#abb2bf'
+
+# Background color of the context menu's selected item. If set to null,
+# the Qt default is used.
+# Type: QssColor
+c.colors.contextmenu.selected.bg = '#3e4451'
+
+# Foreground color of the context menu's selected item. If set to null,
+# the Qt default is used.
+# Type: QssColor
+c.colors.contextmenu.selected.fg = '#abb2bf'
+
+# Background color of disabled items in the context menu. If set to
+# null, the Qt default is used.
+# Type: QssColor
+c.colors.contextmenu.disabled.bg = '#353b45'
+
+# Foreground color of disabled items in the context menu. If set to
+# null, the Qt default is used.
+# Type: QssColor
+c.colors.contextmenu.disabled.fg = '#565c64'
+
+# Background color for the download bar.
+# Type: QssColor
+c.colors.downloads.bar.bg = '#282c34'
+
+# Color gradient start for download text.
+# Type: QtColor
+c.colors.downloads.start.fg = '#282c34'
+
+# Color gradient start for download backgrounds.
+# Type: QtColor
+c.colors.downloads.start.bg = '#61afef'
+
+# Color gradient end for download text.
+# Type: QtColor
+c.colors.downloads.stop.fg = '#282c34'
+
+# Color gradient stop for download backgrounds.
+# Type: QtColor
+c.colors.downloads.stop.bg = '#56b6c2'
+
+# Foreground color for downloads with errors.
+# Type: QtColor
+c.colors.downloads.error.fg = '#e06c75'
+
+# Font color for hints.
+# Type: QssColor
+c.colors.hints.fg = '#282c34'
+
+# Background color for hints. Note that you can use a `rgba(...)` value
+# for transparency.
+# Type: QssColor
+c.colors.hints.bg = '#e5c07b'
+
+# Font color for the matched part of hints.
+# Type: QtColor
+c.colors.hints.match.fg = '#abb2bf'
+
+# Text color for the keyhint widget.
+# Type: QssColor
+c.colors.keyhint.fg = '#abb2bf'
+
+# Highlight color for keys to complete the current keychain.
+# Type: QssColor
+c.colors.keyhint.suffix.fg = '#abb2bf'
+
+# Background color of the keyhint widget.
+# Type: QssColor
+c.colors.keyhint.bg = '#282c34'
+
+# Foreground color of an error message.
+# Type: QssColor
+c.colors.messages.error.fg = '#282c34'
+
+# Background color of an error message.
+# Type: QssColor
+c.colors.messages.error.bg = '#e06c75'
+
+# Border color of an error message.
+# Type: QssColor
+c.colors.messages.error.border = '#e06c75'
+
+# Foreground color of a warning message.
+# Type: QssColor
+c.colors.messages.warning.fg = '#282c34'
+
+# Background color of a warning message.
+# Type: QssColor
+c.colors.messages.warning.bg = '#c678dd'
+
+# Border color of a warning message.
+# Type: QssColor
+c.colors.messages.warning.border = '#c678dd'
+
+# Foreground color of an info message.
+# Type: QssColor
+c.colors.messages.info.fg = '#abb2bf'
+
+# Background color of an info message.
+# Type: QssColor
+c.colors.messages.info.bg = '#282c34'
+
+# Border color of an info message.
+# Type: QssColor
+c.colors.messages.info.border = '#282c34'
+
+# Foreground color for prompts.
+# Type: QssColor
+c.colors.prompts.fg = '#abb2bf'
+
+# Border used around UI elements in prompts.
+# Type: String
+c.colors.prompts.border = '#282c34'
+
+# Background color for prompts.
+# Type: QssColor
+c.colors.prompts.bg = '#282c34'
+
+# Foreground color for the selected item in filename prompts.
+# Type: QssColor
+c.colors.prompts.selected.fg = '#abb2bf'
+
+# Background color for the selected item in filename prompts.
+# Type: QssColor
+c.colors.prompts.selected.bg = '#3e4451'
+
+# Foreground color of the statusbar.
+# Type: QssColor
+c.colors.statusbar.normal.fg = '#98c379'
+
+# Background color of the statusbar.
+# Type: QssColor
+c.colors.statusbar.normal.bg = '#282c34'
+
+# Foreground color of the statusbar in insert mode.
+# Type: QssColor
+c.colors.statusbar.insert.fg = '#282c34'
+
+# Background color of the statusbar in insert mode.
+# Type: QssColor
+c.colors.statusbar.insert.bg = '#61afef'
+
+# Foreground color of the statusbar in passthrough mode.
+# Type: QssColor
+c.colors.statusbar.passthrough.fg = '#282c34'
+
+# Background color of the statusbar in passthrough mode.
+# Type: QssColor
+c.colors.statusbar.passthrough.bg = '#56b6c2'
+
+# Foreground color of the statusbar in private browsing mode.
+# Type: QssColor
+c.colors.statusbar.private.fg = '#282c34'
+
+# Background color of the statusbar in private browsing mode.
+# Type: QssColor
+c.colors.statusbar.private.bg = '#353b45'
+
+# Foreground color of the statusbar in command mode.
+# Type: QssColor
+c.colors.statusbar.command.fg = '#abb2bf'
+
+# Background color of the statusbar in command mode.
+# Type: QssColor
+c.colors.statusbar.command.bg = '#282c34'
+
+# Foreground color of the statusbar in private browsing + command mode.
+# Type: QssColor
+c.colors.statusbar.command.private.fg = '#abb2bf'
+
+# Background color of the statusbar in private browsing + command mode.
+# Type: QssColor
+c.colors.statusbar.command.private.bg = '#282c34'
+
+# Foreground color of the statusbar in caret mode.
+# Type: QssColor
+c.colors.statusbar.caret.fg = '#282c34'
+
+# Background color of the statusbar in caret mode.
+# Type: QssColor
+c.colors.statusbar.caret.bg = '#c678dd'
+
+# Foreground color of the statusbar in caret mode with a selection.
+# Type: QssColor
+c.colors.statusbar.caret.selection.fg = '#282c34'
+
+# Background color of the statusbar in caret mode with a selection.
+# Type: QssColor
+c.colors.statusbar.caret.selection.bg = '#61afef'
+
+# Background color of the progress bar.
+# Type: QssColor
+c.colors.statusbar.progress.bg = '#61afef'
+
+# Default foreground color of the URL in the statusbar.
+# Type: QssColor
+c.colors.statusbar.url.fg = '#abb2bf'
+
+# Foreground color of the URL in the statusbar on error.
+# Type: QssColor
+c.colors.statusbar.url.error.fg = '#e06c75'
+
+# Foreground color of the URL in the statusbar for hovered links.
+# Type: QssColor
+c.colors.statusbar.url.hover.fg = '#abb2bf'
+
+# Foreground color of the URL in the statusbar on successful load
+# (http).
+# Type: QssColor
+c.colors.statusbar.url.success.http.fg = '#56b6c2'
+
+# Foreground color of the URL in the statusbar on successful load
+# (https).
+# Type: QssColor
+c.colors.statusbar.url.success.https.fg = '#98c379'
+
+# Foreground color of the URL in the statusbar when there's a warning.
+# Type: QssColor
+c.colors.statusbar.url.warn.fg = '#c678dd'
+
+# Background color of the tab bar.
+# Type: QssColor
+c.colors.tabs.bar.bg = '#282c34'
+
+# Color gradient start for the tab indicator.
+# Type: QtColor
+c.colors.tabs.indicator.start = '#61afef'
+
+# Color gradient end for the tab indicator.
+# Type: QtColor
+c.colors.tabs.indicator.stop = '#56b6c2'
+
+# Color for the tab indicator on errors.
+# Type: QtColor
+c.colors.tabs.indicator.error = '#e06c75'
+
+# Foreground color of unselected odd tabs.
+# Type: QtColor
+c.colors.tabs.odd.fg = '#abb2bf'
+
+# Background color of unselected odd tabs.
+# Type: QtColor
+c.colors.tabs.odd.bg = '#353b45'
+
+# Foreground color of unselected even tabs.
+# Type: QtColor
+c.colors.tabs.even.fg = '#abb2bf'
+
+# Background color of unselected even tabs.
+# Type: QtColor
+c.colors.tabs.even.bg = '#282c34'
+
+# Foreground color of selected odd tabs.
+# Type: QtColor
+c.colors.tabs.selected.odd.fg = '#abb2bf'
+
+# Background color of selected odd tabs.
+# Type: QtColor
+c.colors.tabs.selected.odd.bg = '#3e4451'
+
+# Foreground color of selected even tabs.
+# Type: QtColor
+c.colors.tabs.selected.even.fg = '#abb2bf'
+
+# Background color of selected even tabs.
+# Type: QtColor
+c.colors.tabs.selected.even.bg = '#3e4451'
+
+# Foreground color of pinned unselected odd tabs.
+# Type: QtColor
+c.colors.tabs.pinned.odd.fg = '#c8ccd4'
+
+# Background color of pinned unselected odd tabs.
+# Type: QtColor
+c.colors.tabs.pinned.odd.bg = '#98c379'
+
+# Foreground color of pinned unselected even tabs.
+# Type: QtColor
+c.colors.tabs.pinned.even.fg = '#c8ccd4'
+
+# Background color of pinned unselected even tabs.
+# Type: QtColor
+c.colors.tabs.pinned.even.bg = '#56b6c2'
+
+# Foreground color of pinned selected odd tabs.
+# Type: QtColor
+c.colors.tabs.pinned.selected.odd.fg = '#abb2bf'
+
+# Background color of pinned selected odd tabs.
+# Type: QtColor
+c.colors.tabs.pinned.selected.odd.bg = '#3e4451'
+
+# Foreground color of pinned selected even tabs.
+# Type: QtColor
+c.colors.tabs.pinned.selected.even.fg = '#abb2bf'
+
+# Background color of pinned selected even tabs.
+# Type: QtColor
+c.colors.tabs.pinned.selected.even.bg = '#3e4451'
+
 # Value to use for `prefers-color-scheme:` for websites. The "light"
 # value is only available with QtWebEngine 5.15.2+. On older versions,
 # it is the same as "auto". The "auto" value is broken on QtWebEngine
@@ -171,3 +557,42 @@ c.editor.encoding = 'utf-8'
 #   - light: Force a light theme.
 #   - dark: Force a dark theme.
 c.colors.webpage.preferred_color_scheme = 'dark'
+
+# Render all web contents using a dark theme. Example configurations
+# from Chromium's `chrome://flags`:  - "With simple HSL/CIELAB/RGB-based
+# inversion": Set   `colors.webpage.darkmode.algorithm` accordingly.  -
+# "With selective image inversion": Set
+# `colors.webpage.darkmode.policy.images` to `smart`.  - "With selective
+# inversion of non-image elements": Set
+# `colors.webpage.darkmode.threshold.text` to 150 and
+# `colors.webpage.darkmode.threshold.background` to 205.  - "With
+# selective inversion of everything": Combines the two variants   above.
+# Type: Bool
+c.colors.webpage.darkmode.enabled = True
+
+# Which images to apply dark mode to. With QtWebEngine 5.15.0, this
+# setting can cause frequent renderer process crashes due to a
+# https://codereview.qt-project.org/c/qt/qtwebengine-
+# chromium/+/304211[bug in Qt].
+# Type: String
+# Valid values:
+#   - always: Apply dark mode filter to all images.
+#   - never: Never apply dark mode filter to any images.
+#   - smart: Apply dark mode based on image content. Not available with Qt 5.15.0.
+c.colors.webpage.darkmode.policy.images = 'smart'
+
+# Map keys to other keys, so that they are equivalent in all modes. When
+# the key used as dictionary-key is pressed, the binding for the key
+# used as dictionary-value is invoked instead. This is useful for global
+# remappings of keys, for example to map <Ctrl-[> to <Escape>. NOTE:
+# This should only be used if two keys should always be equivalent, i.e.
+# for things like <Enter> (keypad) and <Return> (non-keypad). For normal
+# command bindings, qutebrowser works differently to vim: You always
+# bind keys to commands, usually via `:bind` or `config.bind()`. Instead
+# of using this setting, consider finding the command a key is bound to
+# (e.g. via `:bind gg`) and then binding the same command to the desired
+# key. Note that when a key is bound (via `bindings.default` or
+# `bindings.commands`), the mapping is ignored.
+# Type: Dict
+c.bindings.key_mappings = {'<Ctrl+6>': '<Ctrl+^>', '<Ctrl+Enter>': '<Ctrl+Return>', '<Ctrl+i>': '<Tab>', '<Ctrl+j>': '<Return>', '<Ctrl+m>': '<Return>', '<Ctrl+[>': '<Escape>', '<Enter>': '<Return>', '<Shift+Enter>': '<Return>', '<Shift+Return>': '<Return>'}
+config.source('themes/onedark.py')
