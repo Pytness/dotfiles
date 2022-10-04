@@ -1,25 +1,7 @@
-local alpha = require("alpha")
-local dashboard = lvim.builtin.alpha.dashboard;
--- dashboard.section.terminal = {}
-local function get_command(command)
-    local handle = io.popen(command)
-    local output = handle:read("*a")
-    handle:close()
+local home_dir = os.getenv("HOME")
+package.path = home_dir .. "/.config/lvim/?.lua;" .. package.path
 
-    local result = {}
-    for line in output:gmatch '[^\n]+' do
-        table.insert(result, line)
-    end
-
-    return result
-end
-
-dashboard.section.header.val = get_command("lolcat --force -F 0.3 " ..
-    os.getenv("HOME") .. "/.config/lvim/static/logo.cat")
-dashboard.section.terminal.command = "cat | lolcat -F 0.3 " .. os.getenv("HOME") .. "/.config/lvim/static/logo.cat"
-dashboard.section.terminal.width = 69
-dashboard.section.terminal.height = 8 -- alpha.setup(dashboard.opts)
-
+require "custom.dashboard"
 -- dashboard.opts.opts.noautocmd = true
 
 --[[
