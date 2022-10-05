@@ -50,7 +50,7 @@ local function get_random_ascii_image(path)
     for k, v in pairs(colored_images) do
         table.insert(images, v)
     end
-    print("images", vim.inspect(images))    
+    -- print("images", vim.inspect(images))    
     return images[math.random(1, #images)]
 end
 
@@ -73,7 +73,7 @@ local function get_ascii_image_dim(path)
         end
         height = height + 1
     end
-    print(vim.inspect({ width, height }))
+    -- print(vim.inspect({ width, height }))
     return { width, height }
 end
 
@@ -83,7 +83,7 @@ end
 
 local random_image = get_random_ascii_image(ASCII_IMAGES_FOLDER)
 local image_width, image_height = unpack(get_ascii_image_dim(random_image))
-print(random_image)
+-- print(random_image)
 image_height = 32
 
 local command = "cat "
