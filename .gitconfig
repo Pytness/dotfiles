@@ -1,0 +1,9 @@
+[commit]
+    gpgsign = true
+
+[diff]
+	algorithm = histogram
+
+[include]
+    path = .gitprofile
+    path = .gitaliases

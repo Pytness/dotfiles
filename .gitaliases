@@ -1,0 +1,4 @@
+[alias]
+        undo=reset --soft HEAD^
+        wdiff= diff -w
+

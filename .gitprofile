@@ -1,0 +1,7 @@
+[user]
+	name = Fernando Vega
+	; email = 
+	; signingkey = 
+
+; [includeIf "gitdir:~/code/pytness/"]
+;    path = .gitconfig_pytness
