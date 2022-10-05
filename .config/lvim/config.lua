@@ -48,14 +48,7 @@ vim.cmd("set expandtab")
 vim.cmd("set shiftwidth=4")
 vim.cmd("set cmdheight=1")
 
--- What is this:
-vim.cmd("highlight Cursor guifg=white guibg=black")
-vim.cmd("highlight iCursor guifg=white guibg=steelblue")
-vim.cmd("set guicursor=n-v-c:block-Cursor")
-vim.cmd("set guicursor+=i:ver100-iCursor")
-vim.cmd("set guicursor+=n-v-c:blinkon0")
-vim.cmd("set guicursor+=i:blinkwait10")
-
+vim.opt.cursorline = true
 -- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 -- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 -- unmap a default keymapping
@@ -191,6 +184,11 @@ lvim.plugins = {
             })
         end
     },
+    { "ziontee113/color-picker.nvim",
+        config = function()
+            require("color-picker")
+        end,
+    }
 }
 -- vim.diagnostic.config({ signs = false })
 -- vim.lsp.diagnostic.disable()
