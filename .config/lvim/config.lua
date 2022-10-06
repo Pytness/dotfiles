@@ -129,7 +129,7 @@ vim.g.palenight_terminal_italics = 1;
 lvim.plugins = {
     { "lunarvim/colorschemes" },
     { "pytness/palenight.vim" },
-    { "github/copilot.vim" },
+    -- { "github/copilot.vim" },
     {
         "ggandor/lightspeed.nvim",
         event = "BufRead",
@@ -188,8 +188,30 @@ lvim.plugins = {
         config = function()
             require("color-picker")
         end,
+    },
+    { "zbirenbaum/copilot.lua",
+        event = { "VimEnter" },
+        config = function()
+            vim.defer_fn(function()
+                require("copilot").setup {
+                    plugin_manager_path = get_runtime_dir() .. "/site/pack/packer",
+                    suggestion = {
+                        auto_trigger = true,
+                    },
+                }
+            end, 100)
+        end,
+    },
+}
+
+-- Disable autocompletion popup unless I press tab
+local cmp = require 'cmp'
+cmp.setup {
+    completion = {
+        autocomplete = false,
     }
 }
+
 -- vim.diagnostic.config({ signs = false })
 -- vim.lsp.diagnostic.disable()
 
