@@ -200,3 +200,56 @@ require("telescope").setup({
         },
     }
 })
+
+-- Get palenight colors
+
+local colors = {
+    red = "#ff5370",
+    light_red = "#ff869a",
+    dark_red = "#BE5046",
+    green = "#C3E88D",
+    yellow = "#ffcb6b",
+    dark_yellow = "#F78C6C",
+    blue = "#8cb8ff",
+    purple = "#d67cde",
+    blue_purple = "#8a87de",
+    cyan = "#96e1ff",
+    white = "#e6efff",
+    black = "#292D3E",
+    visual_black = "NONE",
+    comment_grey = "#697098",
+    gutter_fg_grey = "#4B5263",
+    cursor_grey = "#2C323C",
+    visual_grey = "#3E4452",
+    menu_grey = "#3E4452",
+    special_grey = "#3B4048",
+    vertsplit = "#181A1F",
+    white_mask_1 = "#333747",
+    white_mask_3 = "#474b59",
+    white_mask_11 = "#989aa2"
+}
+
+
+lvim.builtin.lualine.options.theme = {
+    normal = {
+        a = { fg = colors.white, bg = colors.white, gui = "bold" },
+        b = { fg = colors.white, bg = colors.white_mask_3, gui = "bold" },
+        c = { fg = colors.white, bg = colors.black, gui = "bold" },
+    },
+    insert = {
+        a = { fg = colors.white, bg = colors.blue, gui = "bold" },
+        b = { fg = colors.blue, bg = colors.white_mask_3, gui = "bold" },
+    },
+    visual = {
+        a = { fg = colors.white, bg = colors.purple, gui = "bold" },
+        b = { fg = colors.purple, bg = colors.white_mask_3, gui = "bold" },
+    },
+    replace = {
+        a = { fg = colors.white, bg = colors.green, gui = "bold" },
+        b = { fg = colors.green, bg = colors.white_mask_3, gui = "bold" },
+    },
+    inactive = {
+        a = { fg = colors.white_mask_3, bg = colors.black, gui = "bold" },
+        b = { fg = colors.white_mask_3, bg = colors.black, gui = "bold" },
+    },
+}
