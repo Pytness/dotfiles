@@ -18,6 +18,7 @@ an executable
 lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "palenight"
+lvim.builtin.lualine.options.theme = "auto"
 lvim.transparent_window = false
 lvim.background = 'black'
 vim.opt.whichwrap = "b,s"
@@ -28,6 +29,7 @@ vim.opt.whichwrap = "b,s"
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+lvim.keys.normal_mode["<leader>Q"] = ":q!<cr>"
 
 vim.cmd("nnoremap x \"_x")
 vim.cmd("nnoremap d \"_d")
@@ -49,6 +51,7 @@ vim.cmd("set shiftwidth=4")
 vim.cmd("set cmdheight=1")
 
 vim.opt.cursorline = true
+
 -- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 -- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 -- unmap a default keymapping
@@ -120,7 +123,6 @@ vim.g.palenight_color_overrides = {
     --     cyan = { gui = "#96e1ff", cterm = "38", cterm16 = "6" },
     --     white = { gui = "#e6efff", cterm = "145", cterm16 = "7" },
     cursor_grey = { gui = "#3E4452", cterm = 236, cterm16 = "8" },
-
 }
 -- vim.g.palenight_termcolors = 16;
 vim.g.palenight_terminal_italics = 1;
@@ -295,4 +297,3 @@ require("telescope").setup({
 --     require("nvim-treesitter.highlight").attach(0, "bash")
 --   end,
 -- })
--- alpha.setup(dashboard.opts)
