@@ -234,7 +234,7 @@ lvim.builtin.lualine.options.theme = {
     normal = {
         a = { fg = colors.white, bg = colors.white, gui = "bold" },
         b = { fg = colors.white, bg = colors.white_mask_3, gui = "bold" },
-        c = { fg = colors.white, bg = colors.black, gui = "bold" },
+        c = { fg = colors.white, bg = colors.cursor_grey, gui = "bold" },
     },
     insert = {
         a = { fg = colors.white, bg = colors.blue, gui = "bold" },
@@ -249,8 +249,8 @@ lvim.builtin.lualine.options.theme = {
         b = { fg = colors.green, bg = colors.white_mask_3, gui = "bold" },
     },
     inactive = {
-        a = { fg = colors.white_mask_3, bg = colors.black, gui = "bold" },
-        b = { fg = colors.white_mask_3, bg = colors.black, gui = "bold" },
+        a = { fg = colors.black, bg = colors.white_mask_3, gui = "bold" },
+        -- b = { fg = colors.white_mask_3, bg = colors.white_mask_3, gui = "bold" },
     },
 }
 
