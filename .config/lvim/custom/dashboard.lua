@@ -1,45 +1,31 @@
 local dashboard = lvim.builtin.alpha.dashboard;
 local alphadash = require("alpha.themes.dashboard")
 
-local function get_command(command)
-    local handle = io.popen(command)
-    local output = handle:read("*a")
-    handle:close()
-
-    local result = {}
-    for line in output:gmatch '[^\n]+' do
-        table.insert(result, line)
-    end
-
-    return result
-end
-
 local function button(sc, txt, keybind, keybind_opts)
     return alphadash.button(sc, txt, keybind, keybind_opts)
 end
 
 ASCII_IMAGES_FOLDER = os.getenv("HOME") .. "/.config/lvim/static"
 
--- Ascii images have the extension .cat, and colored ascii images have 
+-- Ascii images have the extension .cat, and colored ascii images have
 -- the extension .ccat,
 --
 -- Lolcat will only be used with the non colored ascii images
 local function list_files(path, extension)
     local files = {}
     local pfile = io.popen("ls " .. path .. "/*" .. extension)
-    local count = 0
 
     for filename in pfile:lines() do
         table.insert(files, filename)
     end
-    
+
     return files
 end
- 
+
 local function get_random_ascii_image(path)
-   
+
     math.randomseed(os.clock())
-    
+
     -- For some reason ls *.(cat|ccat) will not work under vim,
     -- so gotta ls twice and merge
 
@@ -85,16 +71,15 @@ local image_width, image_height = unpack(get_ascii_image_dim(random_image))
 -- print(random_image)
 image_height = 32
 
-local command = "cat "
+-- This avoids "process exited message"
+local command = "cat | "
 if is_colored_image(random_image) then
-    -- This avoids "process exited message"
-    command = command .. "| cat "
+    command = command .. "cat "
 else
-    command = command .. "| lolcat "
-
+    command = os.getenv("HOME") .. "/.config/lvim/static/animated_lolcat.sh "
 end
 
-local terminal = {
+ local terminal = {
     type = "terminal",
     command = command .. random_image,
     width = image_width,
@@ -115,11 +100,38 @@ alphadash.section.buttons.val = {
     button("SPC L c", "  Configuration", "<CMD>edit " .. require("lvim.config"):get_user_config_path() .. " <CR>"),
 }
 
+local text = require "lvim.interface.text"
+
+local function footer()
+    -- print(vim.inspect(vim.g.packer_plugins))
+    local custom_plugins = #vim.tbl_keys(lvim.plugins)
+    local datetime = os.date(" %d/%m/%Y   %H:%M:%S")
+    local version = vim.version()
+    local nvim_version_info = "   v" .. version.major .. "." .. version.minor .. "." .. version.patch
+
+    local text_table = text.align_center({ width = 0 }, {
+        datetime .. "   " .. custom_plugins .. " custom plugins" .. nvim_version_info,
+    }, 0.5)
+
+    table.insert(text_table, "Pyntess")
+
+    return {
+        type = "text",
+        val = text_table,
+        opts = {
+            position = "center",
+            hl = "Number",
+        },
+    }
+end
+
 local image_padding = image_height + 8
 
 dashboard.config.layout = {
     terminal,
     { type = "padding", val = image_padding },
-    alphadash.section.buttons
+    alphadash.section.buttons,
+    { type = "padding", val = 1 },
+    footer(),
 
 }
