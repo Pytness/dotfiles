@@ -32,10 +32,10 @@ local function get_random_ascii_image(path)
     local images = list_files(path, ".cat")
     local colored_images = list_files(path, ".ccat")
 
-    for k, v in pairs(colored_images) do
+    for _, v in pairs(colored_images) do
         table.insert(images, v)
     end
-    -- print("images", vim.inspect(images))    
+
     return images[math.random(1, #images)]
 end
 
@@ -58,7 +58,6 @@ local function get_ascii_image_dim(path)
         end
         height = height + 1
     end
-    -- print(vim.inspect({ width, height }))
     return { width, height }
 end
 
@@ -68,7 +67,7 @@ end
 
 local random_image = get_random_ascii_image(ASCII_IMAGES_FOLDER)
 local image_width, image_height = unpack(get_ascii_image_dim(random_image))
--- print(random_image)
+
 image_height = 32
 
 -- This avoids "process exited message"
@@ -79,7 +78,7 @@ else
     command = os.getenv("HOME") .. "/.config/lvim/static/animated_lolcat.sh "
 end
 
- local terminal = {
+local terminal = {
     type = "terminal",
     command = command .. random_image,
     width = image_width,
@@ -103,7 +102,6 @@ alphadash.section.buttons.val = {
 local text = require "lvim.interface.text"
 
 local function footer()
-    -- print(vim.inspect(vim.g.packer_plugins))
     local custom_plugins = #vim.tbl_keys(lvim.plugins)
     local datetime = os.date(" %d/%m/%Y   %H:%M:%S")
     local version = vim.version()
