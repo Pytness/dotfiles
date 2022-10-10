@@ -23,3 +23,14 @@ alias lsa='ls -A'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
+# Override some of the default git commands
+
+function git() {
+    if [ "$1" = "diff" ]; then
+        command git diff -w
+    # elif [ "$1" = "push" ]; then
+    #     command git push --force-with-lease
+    else
+        command git "$@"
+    fi
+}
