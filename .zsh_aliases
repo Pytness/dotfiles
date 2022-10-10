@@ -27,10 +27,11 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 function git() {
     if [ "$1" = "diff" ]; then
-        command git diff -w
+        shift; # remove the "diff" argument
+        command git diff -w $@
     # elif [ "$1" = "push" ]; then
     #     command git push --force-with-lease
     else
-        command git "$@"
+        command git $@
     fi
 }
