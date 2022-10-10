@@ -1,7 +1,6 @@
 local home_dir = os.getenv("HOME")
 package.path = home_dir .. "/.config/lvim/?.lua;" .. package.path
 
-require "custom.dashboard"
 
 lvim.log.level = "warn"
 lvim.format_on_save = true
@@ -24,6 +23,7 @@ vim.cmd("nnoremap d \"_d")
 vim.cmd("nnoremap D \"_D")
 vim.cmd("vnoremap d \"_d")
 
+vim.cmd("nnoremap ,x \"+x")
 vim.cmd("nnoremap ,d \"+d")
 vim.cmd("nnoremap ,D \"+D")
 vim.cmd("vnoremap ,d \"+d")
@@ -253,3 +253,5 @@ lvim.builtin.lualine.options.theme = {
         b = { fg = colors.white_mask_3, bg = colors.black, gui = "bold" },
     },
 }
+
+require "custom.dashboard"
