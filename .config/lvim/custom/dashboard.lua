@@ -97,7 +97,11 @@ alphadash.section.buttons.val = {
     button("SPC s r", "  Recently Used Files", "<CMD>Telescope oldfiles<CR>"),
     button("SPC s t", "  Find Word", "<CMD>Telescope live_grep<CR>"),
     button("SPC L c", "  Configuration", "<CMD>edit " .. require("lvim.config"):get_user_config_path() .. " <CR>"),
+    --     button("SPC C t", "-  Open tmux config", "<CMD>edit ~/.tmux.conf<CR>"),
+    --     button("SPC C z", "-  Open zshrc", "<CMD>edit ~/.zshrc<CR>"),
+    --     button("SPC C a", "-  Open zsh_aliases", "<CMD>edit ~/.zsh_aliases<CR>"),
 }
+
 
 local text = require "lvim.interface.text"
 

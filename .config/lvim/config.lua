@@ -120,7 +120,7 @@ lvim.plugins = {
                 priority = 10, -- set marker priority
                 speed = 25, -- max is 100 to stick to your current position
                 texthl = "SmoothCursor", -- highlight group, default is { bg = nil, fg = "#FFD400" }
-                threshold = 0,
+                threshold = 3,
                 timeout = 3000,
             }
         end
