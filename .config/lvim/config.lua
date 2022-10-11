@@ -156,6 +156,12 @@ lvim.plugins = {
             end, 100)
         end,
     },
+    { "chentoast/marks.nvim",
+        event = "BufReadPre",
+        config = function()
+            require("marks").setup {}
+        end,
+    }
 }
 
 -- Disable autocompletion popup unless I press tab
