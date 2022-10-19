@@ -11,6 +11,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 if [ `tput colors` = "256" ]; then
   POWERLEVEL9K_MODE="nerdfont-complete"
+  export COLORTERM=truecolor
 fi
 
 # CASE_SENSITIVE="true"
