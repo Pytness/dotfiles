@@ -29,7 +29,6 @@ vim.cmd("nnoremap ,D \"+D")
 vim.cmd("vnoremap ,d \"+d")
 vim.cmd("nnoremap ,dd \"+dd")
 
-
 vim.cmd("set background=dark")
 vim.cmd("set termguicolors")
 vim.cmd("set tabstop=4")
@@ -69,8 +68,13 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "clangd" })
 local capabilities = require("lvim.lsp").common_capabilities()
-capabilities.offsetEncoding = { "utf-8" }
-local opts = { capabilities = capabilities }
+capabilities.offsetEncoding = "utf-8"
+
+local opts = {
+    cmd = { "clangd", "--enable-config" },
+    capabilities = capabilities,
+}
+
 require("lvim.lsp.manager").setup("clangd", opts)
 
 vim.g.palenight_color_overrides = {
