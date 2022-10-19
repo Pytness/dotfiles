@@ -140,6 +140,12 @@ recawk() {
     fi 
 }
 
+reloadst() {
+    xrdb -remove
+    xrdb -merge -I$HOME ~/.Xresources
+    killall -s USR1 st
+}
+
 # execute functions before the prompt is called
 
 # reset cursor style:
