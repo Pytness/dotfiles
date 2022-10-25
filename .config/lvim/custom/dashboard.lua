@@ -1,3 +1,4 @@
+require 'alpha.term'
 local dashboard = lvim.builtin.alpha.dashboard;
 local alphadash = require("alpha.themes.dashboard")
 
