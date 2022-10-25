@@ -38,13 +38,13 @@ vim.cmd("set shiftwidth=4")
 vim.cmd("set cmdheight=1")
 
 vim.opt.cursorline = true
-
+vim.opt.timeoutlen = 150 -- time to wait for a mapped sequence to complete, fixes slow which-key
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 -- lvim.builtin.alpha.active = true
 -- lvim.builtin.alpha.mode = "dashboard"
-lvim.builtin.notify.active = true
+-- lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
@@ -103,14 +103,14 @@ lvim.plugins = {
             }
         end
     },
-    { "lukas-reineke/indent-blankline.nvim" },
+    -- { "lukas-reineke/indent-blankline.nvim" },
     { "gen740/SmoothCursor.nvim",
         event = "WinScrolled",
         config = function()
             require('smoothcursor').setup {
                 autostart = true,
                 cursor = "", -- cursor shape (need nerd font)
-                intervals = 35, -- tick interval
+                intervals = 15, -- tick interval
                 linehl = nil, -- highlight sub-cursor line like 'cursorline', "CursorLine" recommended
                 type = "exp", -- define cursor movement calculate function, "default" or "exp" (exponential).
                 fancy = {
@@ -248,7 +248,7 @@ local colors = {
 
 lvim.builtin.lualine.options.theme = {
     normal = {
-        a = { fg = colors.white, bg = colors.white, gui = "bold" },
+        a = { fg = colors.black, bg = colors.white, gui = "bold" },
         b = { fg = colors.white, bg = colors.white_mask_3, gui = "bold" },
         c = { fg = colors.white, bg = colors.cursor_grey, gui = "bold" },
     },
