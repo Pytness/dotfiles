@@ -66,6 +66,12 @@ lvim.builtin.treesitter.ensure_installed = {
 
 lvim.builtin.treesitter.highlight.enabled = true
 
+-- Disable indent for python
+lvim.builtin.treesitter.indent = {
+    enable = true,
+    disable = { "python" },
+}
+
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "clangd" })
 local capabilities = require("lvim.lsp").common_capabilities()
 capabilities.offsetEncoding = "utf-8"
