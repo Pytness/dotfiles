@@ -29,6 +29,14 @@ vim.cmd("nnoremap ,D \"+D")
 vim.cmd("vnoremap ,d \"+d")
 vim.cmd("nnoremap ,dd \"+dd")
 
+
+vim.cmd("nmap <M-H> <C-Left>")
+vim.cmd("nmap <M-J> <C-Down>")
+vim.cmd("nmap <M-K> <C-Up>")
+vim.cmd("nmap <M-L> <C-Right>")
+
+
+
 vim.cmd("set background=dark")
 vim.cmd("set termguicolors")
 vim.cmd("set tabstop=4")
