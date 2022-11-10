@@ -86,6 +86,10 @@ alias zshconf='$EDITOR $HOME/.zshrc'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.gitdotfiles/.git/ --work-tree=$HOME'
 compdef dotfiles='git'
 
+# compact dotfiles alias
+alias cdf='dotfiles'
+compdef cdf='git'
+
 if [ -f ~/.zsh_aliases ]; then
     . ~/.zsh_aliases
 fi
@@ -144,6 +148,10 @@ reloadst() {
     xrdb -remove
     xrdb -merge -I$HOME ~/.Xresources
     killall -s USR1 st
+}
+
+reloadzsh() {
+    exec zsh
 }
 
 # execute functions before the prompt is called
