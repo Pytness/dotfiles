@@ -97,7 +97,7 @@ vim.g.palenight_color_overrides = {
     --     purple = { gui = "#d67cde", cterm = "170", cterm16 = "5" },
     --     blue_purple = { gui = "#8a87de", cterm = "39", cterm16 = "4" },
     --     cyan = { gui = "#96e1ff", cterm = "38", cterm16 = "6" },
-    --     white = { gui = "#e6efff", cterm = "145", cterm16 = "7" },
+    white = { gui = "#cccce6", cterm = "145", cterm16 = "7" },
     cursor_grey = { gui = "#3E4452", cterm = 236, cterm16 = "8" },
 }
 -- vim.g.palenight_termcolors = 16;
@@ -107,7 +107,6 @@ vim.g.palenight_terminal_italics = 1;
 lvim.plugins = {
     { "lunarvim/colorschemes" },
     { "pytness/palenight.vim" },
-    -- { "github/copilot.vim" },
     {
         "ggandor/lightspeed.nvim",
         event = "BufRead",
@@ -117,7 +116,6 @@ lvim.plugins = {
             }
         end
     },
-    -- { "lukas-reineke/indent-blankline.nvim" },
     { "gen740/SmoothCursor.nvim",
         event = "WinScrolled",
         config = function()
@@ -185,10 +183,47 @@ lvim.plugins = {
         config = function()
             require("marks").setup {}
         end,
-    }
+    },
+    { 'nmac427/guess-indent.nvim',
+        config = function() require('guess-indent').setup {} end,
+    },
+    {
+        "folke/todo-comments.nvim",
+        event = "BufRead",
+        config = function()
+            require("todo-comments").setup {
+                keywords = {
+                    FIX = {
+                        icon = " ", -- icon used for the sign, and in search results
+                        color = "error", -- can be a hex color, or a named color (see below)
+                        alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
+                        -- signs = false, -- configure signs for some keywords individually
+                    },
+                    TODO = { icon = " ", color = "info" },
+                    HACK = { icon = " ", color = "warning" },
+                    WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
+                    PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+                    NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
+                    TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+
+                },
+                colors = {
+                    -- Depends on 'pytness/palenight.vim'
+                    error = { "DiagnosticError" },
+                    warning = { "DiagnosticWarning" },
+                    info = { "DiagnosticInfo" },
+                    hint = { "DiagnosticHint" },
+                    default = { "DiagnosticDefault" },
+                    test = { "DiagnosticTest" }
+                },
+            }
+        end,
+    },
+
+
 }
 
--- Disable autocompletion popup unless I press tab
+-- Disable autocompletion popup unless I press ctrl-space
 local cmp = require 'cmp'
 cmp.setup {
     completion = {
