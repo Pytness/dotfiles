@@ -2,6 +2,7 @@ local home_dir = os.getenv("HOME")
 package.path = home_dir .. "/.config/lvim/?.lua;" .. package.path
 
 
+
 lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "palenight"
@@ -219,9 +220,9 @@ lvim.plugins = {
             }
         end,
     },
-
-
 }
+
+require "custom.rust-ide"
 
 -- Disable autocompletion popup unless I press ctrl-space
 local cmp = require 'cmp'
