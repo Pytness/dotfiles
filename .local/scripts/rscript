@@ -1,0 +1,43 @@
+#!/bin/sh
+# rscript: Rust script interpreter
+# Shebang in rust.rscript: #!/usr/bin/env -S rscript 2018
+
+# Directory where compiled binaries are saved to.
+# Example: /var/tmp/rscript or /tmp
+output_dir=/var/tmp/rscript
+
+# -C panic=abort
+# abort, unwind
+panic=abort
+
+# -C opt-level=0
+# 0=no+debug, 1=basic, 2=some, 3=all, s=size, z=size+off loop vect.
+optlevel=1
+
+# --cap-lints allow
+# allow, warn, deny, forbid
+caplints=allow
+
+edition=$1
+input=$(realpath $2)
+output=$output_dir/$(basename $input)
+md5file=$output.md5
+
+mkdir -p "$output_dir"
+
+if [ -e $md5file ]
+then
+    md5sum --status --check "$md5file"
+    Result=$?
+else
+    Result=1
+fi
+
+if [ $Result -ne 0 ]
+then
+    md5sum "$input" > "$md5file"
+    rustc --edition $edition -C opt-level=$optlevel -C panic=$panic --cap-lints $caplints -o "$output" "$input"
+fi
+
+shift 2
+"$output" $@

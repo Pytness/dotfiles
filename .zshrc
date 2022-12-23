@@ -171,3 +171,4 @@ _reset_cursor() {
 precmd_functions+=( _reset_cursor )
 
 export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/scripts:$PATH
