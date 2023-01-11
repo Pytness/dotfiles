@@ -220,6 +220,17 @@ lvim.plugins = {
             }
         end,
     },
+    { 'normen/vim-pio' },
+    {
+        "sitiom/nvim-numbertoggle",
+        config = function()
+            -- require("numbertoggle").setup()
+        end
+    },
+    { 'akinsho/git-conflict.nvim', version = "*", config = function()
+        require('git-conflict').setup()
+    end }
+
 }
 
 require "custom.rust-ide"

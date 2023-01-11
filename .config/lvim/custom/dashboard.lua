@@ -59,6 +59,12 @@ local function get_ascii_image_dim(path)
         end
         height = height + 1
     end
+
+    -- For some reason, after the last update or something,
+    -- I have to add 2 to width, otherwise the image is not
+    -- displayed correctly
+    width = width + 2
+
     return { width, height }
 end
 
