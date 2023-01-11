@@ -59,6 +59,8 @@ DISABLE_AUTO_TITLE="true"
 plugins=(thefuck copypath copyfile dirhistory themes aliases git gh git-extras python tmux virtualenv)
 
 ZSH_TMUX_UNICODE=true
+# ZSH_TMUX_AUTOSTART=true
+
 
 source $ZSH/oh-my-zsh.sh
 
@@ -69,6 +71,7 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export GOBIN=$HOME/.local/bin/
+
 alias vim=lvim
 export EDITOR=lvim
 export VISUAL=lvim
@@ -82,6 +85,7 @@ export XDG_CONFIG_HOME=$HOME/.config
 alias nvimconf='$EDITOR $HOME/.config/nvim/init.vim'
 alias tmuxconf='$EDITOR $HOME/.tmux.conf'
 alias zshconf='$EDITOR $HOME/.zshrc'
+alias alaconf='$EDITOR $HOME/.config/alacritty/alacritty.yml'
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.gitdotfiles/.git/ --work-tree=$HOME'
 compdef dotfiles='git'
@@ -172,3 +176,12 @@ precmd_functions+=( _reset_cursor )
 
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.local/scripts:$PATH
+
+# Keep this export at the end cause it gets overriden somewhere and I am too lazy to find out where
+# Removes p10k indentation, which is annoying
+export ZLE_RPROMPT_INDENT=0
+
+# Launch tmux if not already running
+# if [ -z "$TMUX"  ]; then
+#     tmux new-session -A -s main 
+# fi 
