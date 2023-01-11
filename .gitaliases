@@ -1,4 +1,7 @@
 [alias]
         undo=reset --soft HEAD^
         wdiff= diff -w
+        sdiff = diff --staged -w
+       	yolo = !git commit -m \"yolo: $(curl -s https://whatthecommit.com/index.txt)\"
+
 
