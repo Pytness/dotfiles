@@ -1,0 +1,171 @@
+env:
+  TERM: screen-256color
+
+window:
+  decorations: none 
+  opacity: 1 
+  startup_mode: Fullscreen 
+
+  # padding:
+  #   x: 4
+  #   y: 4
+  # dynamic_padding: true
+
+
+font:
+  normal:
+    family: FiraCode Nerd Font 
+    style: Retina 
+
+  bold:
+    family: FiraCode Nerd Font 
+    style: Bold
+
+  italic:
+    family: FiraCode Nerd Font 
+    style: Italic
+
+
+  # Point size
+  size: 10 
+
+  # Offset is the extra space around each character. `offset.y` can be thought
+  # of as modifying the line spacing, and `offset.x` as modifying the letter
+  # spacing.
+  offset:
+    x: 0
+    y: 0
+
+  glyph_offset:
+    x: -1
+    y: 0
+
+
+  # Use built-in font for box drawing characters.
+  #
+  # If `true`, Alacritty will use a custom built-in font for box drawing
+  # characters (Unicode points 2500 - 259f).
+  #
+  builtin_box_drawing: true 
+  
+# If `true`, bold text is drawn using the bright color variants.
+#draw_bold_text_with_bright_colors: false
+
+# Colors (Tomorrow Night)
+colors:
+  # Default colors
+  primary:
+    background: '#29262f'
+    foreground: '#cfeeff'
+
+  cursor:
+   text: '#29262f' 
+   cursor: '#cfeeff' 
+
+  # Search colors
+  #
+  # Colors used for the search bar and match highlighting.
+  #search:
+    # Allowed values are CellForeground/CellBackground, which reference the
+    # affected cell, or hexadecimal colors like #ff00ff.
+    #matches:
+    #  foreground: '#000000'
+    #  background: '#ffffff'
+    #focused_match:
+    #  foreground: '#ffffff'
+    #  background: '#000000'
+
+    #bar:
+    #  background: '#c5c8c6'
+    #  foreground: '#1d1f21'
+
+  # Keyboard regex hints
+  #hints:
+    # First character in the hint label
+    #
+    # Allowed values are CellForeground/CellBackground, which reference the
+    # affected cell, or hexadecimal colors like #ff00ff.
+    #start:
+    #  foreground: '#1d1f21'
+    #  background: '#e9ff5e'
+
+    # All characters after the first one in the hint label
+    #
+    # Allowed values are CellForeground/CellBackground, which reference the
+    # affected cell, or hexadecimal colors like #ff00ff.
+    #end:
+    #  foreground: '#e9ff5e'
+    #  background: '#1d1f21'
+
+  # Line indicator
+  #
+  # Color used for the indicator displaying the position in history during
+  # search and vi mode.
+  #
+  # By default, these will use the opposing primary color.
+  #line_indicator:
+  #  foreground: None
+  #  background: None
+
+  # Selection colors
+  #
+  # Colors which should be used to draw the selection area.
+  #
+  # Allowed values are CellForeground/CellBackground, which reference the
+  # affected cell, or hexadecimal colors like #ff00ff.
+  #selection:
+  #  text: CellBackground
+  #  background: CellForeground
+
+  normal:
+    black: '#000000'
+    red: '#d86464'
+    green: '#57d36d'
+    yellow: '#d0d06a'
+    blue: '#6464ce'
+    magenta: '#d763cc'
+    cyan: '#56d2d2'
+    white: '#d9d9d9'
+
+  bright:
+    black: '#323232'
+    red: '#e8a1a2'
+    green: '#9ce4a5'
+    yellow: '#e2e3a5'
+    blue: '#a1a2e1'
+    magenta: '#e8a1e0'
+    cyan: '#9ae3e5'
+    white: '#ffffff'
+
+  transparent_background_colors: false 
+
+#selection:
+  # This string contains all characters that are used as separators for
+  # "semantic words" in Alacritty.
+  #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+
+  # When set to `true`, selected text will be copied to the primary clipboard.
+  #save_to_clipboard: false
+
+cursor:
+  style:
+    shape: Block 
+    blinking: On
+
+
+  # Cursor blinking interval in milliseconds.
+  #blink_interval: 750
+
+  # If this is `true`, the cursor will be rendered as a hollow box when the
+  # window is not focused.
+  #unfocused_hollow: true
+
+  # Thickness of the cursor relative to the cell width as floating point number
+  # from `0.0` to `1.0`.
+  #thickness: 0.15
+
+# Live config reload (changes require restart)
+live_config_reload: true
+
+key_bindings:
+- {key: F11, action: ToggleFullscreen}
