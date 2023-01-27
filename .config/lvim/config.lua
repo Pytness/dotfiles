@@ -109,6 +109,10 @@ lvim.plugins = {
     { "lunarvim/colorschemes" },
     { "pytness/palenight.vim" },
     {
+        'uloco/bluloco.nvim',
+        dependencies = { 'rktjmp/lush.nvim' }
+    },
+    {
         "ggandor/lightspeed.nvim",
         event = "BufRead",
         config = function()
@@ -227,10 +231,20 @@ lvim.plugins = {
             -- require("numbertoggle").setup()
         end
     },
-    { 'akinsho/git-conflict.nvim', version = "*", config = function()
+    { 'akinsho/git-conflict.nvim', version = "v1.0.0", config = function()
         require('git-conflict').setup()
-    end }
+    end,
+        lazy = false },
+    {
+        "iamcco/markdown-preview.nvim",
+        builds = "cd app && npm install",
+        ft = "markdown",
+        config = function()
+            vim.g.mkdp_auto_start = 1
+        end,
+    },
 
+    { 'ron-rs/ron.vim' },
 }
 
 require "custom.rust-ide"
