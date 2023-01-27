@@ -122,7 +122,7 @@ local function footer()
         datetime .. "   " .. custom_plugins .. " custom plugins" .. nvim_version_info,
     }, 0.5)
 
-    table.insert(text_table, "Pyntess")
+    table.insert(text_table, "Pytness")
 
     return {
         type = "text",
