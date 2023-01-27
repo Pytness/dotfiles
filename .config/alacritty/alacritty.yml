@@ -14,20 +14,20 @@ window:
 
 font:
   normal:
-    family: FiraCode Nerd Font 
-    style: Retina 
+    family: MesloLGS NF 
+    style: Normal 
+
 
   bold:
-    family: FiraCode Nerd Font 
+    family: MesloLGS NF 
     style: Bold
 
   italic:
-    family: FiraCode Nerd Font 
+    family: MesloLGS NF  
     style: Italic
 
-
   # Point size
-  size: 10 
+  size: 9 
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -37,15 +37,9 @@ font:
     y: 0
 
   glyph_offset:
-    x: -1
+    x: 0
     y: 0
 
-
-  # Use built-in font for box drawing characters.
-  #
-  # If `true`, Alacritty will use a custom built-in font for box drawing
-  # characters (Unicode points 2500 - 259f).
-  #
   builtin_box_drawing: true 
   
 # If `true`, bold text is drawn using the bright color variants.
