@@ -82,7 +82,8 @@ local command = "cat | "
 if is_colored_image(random_image) then
     command = command .. "cat "
 else
-    command = os.getenv("HOME") .. "/.config/lvim/static/animated_lolcat.sh "
+    command =  "animated-ascii "
+    -- command = os.getenv("HOME") .. "/.config/lvim/static/animated_lolcat.sh "
 end
 
 local terminal = {

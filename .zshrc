@@ -56,6 +56,7 @@ DISABLE_AUTO_TITLE="true"
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
+
 plugins=(thefuck copypath copyfile dirhistory themes aliases git gh git-extras python tmux virtualenv)
 
 ZSH_TMUX_UNICODE=true
@@ -98,6 +99,21 @@ if [ -f ~/.zsh_aliases ]; then
     . ~/.zsh_aliases
 fi
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+export FZF_DEFAULT_OPTS='
+--height=40% --layout=reverse --info=inline --border --margin=1 --padding=1
+--color=fg:#e6efff,bg:#292d3e,hl:#8cb8ff
+    --color=fg+:#e6efff,bg+:#3E4452,hl+:#8a87de
+    --color=info:#ffcb6b,prompt:#C3E88D,pointer:#d67cde
+    --color=marker:#d67cde,spinner:#ffcb6b,header:#8cb8ff'
+
+export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :500 {}'
+--bind 'ctrl-/:change-preview-window(down|hidden|)'"
+# Bindings
+# bindkey "^R" history-incremental-pattern-search-backward
+# bindkey "^S" history-incremental-pattern-search-forward
 
 # Custom functions
 
@@ -181,7 +197,9 @@ export PATH=$HOME/.local/scripts:$PATH
 # Removes p10k indentation, which is annoying
 export ZLE_RPROMPT_INDENT=0
 
+
 # Launch tmux if not already running
 # if [ -z "$TMUX"  ]; then
 #     tmux new-session -A -s main 
 # fi 
+

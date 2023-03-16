@@ -18,6 +18,7 @@ lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<leader>Q"] = ":q!<cr>"
+lvim.keys.normal_mode["<leader>W"] = ":SudaWrite<cr>"
 
 vim.cmd("nnoremap x \"_x")
 vim.cmd("nnoremap d \"_d")
@@ -243,9 +244,14 @@ lvim.plugins = {
             vim.g.mkdp_auto_start = 1
         end,
     },
-
     { 'ron-rs/ron.vim' },
+    { 'lambdalisue/suda.vim' },
 }
+
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+    pattern = { "*" },
+    command = [[%s/\s\+$//e]],
+})
 
 require "custom.rust-ide"
 
@@ -256,6 +262,7 @@ cmp.setup {
         autocomplete = false,
     }
 }
+
 
 vim.g.lightspeed_no_default_keymaps = 1
 vim.cmd("nmap s <Plug>Lightspeed_omni_s")
