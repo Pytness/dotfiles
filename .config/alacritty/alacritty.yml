@@ -2,9 +2,9 @@ env:
   TERM: screen-256color
 
 window:
-  decorations: none 
-  opacity: 1 
-  startup_mode: Fullscreen 
+  decorations: none
+  opacity: 1
+  startup_mode: Fullscreen
 
   # padding:
   #   x: 4
@@ -14,20 +14,20 @@ window:
 
 font:
   normal:
-    family: MesloLGS NF 
-    style: Normal 
+    family: MesloLGS Nerd Font
+    style: Normal
 
 
   bold:
-    family: MesloLGS NF 
+    family: MesloLGS Nerd Font
     style: Bold
 
   italic:
-    family: MesloLGS NF  
+    family: MesloLGS Nerd Font
     style: Italic
 
   # Point size
-  size: 9 
+  size: 10.5
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -40,8 +40,8 @@ font:
     x: 0
     y: 0
 
-  builtin_box_drawing: true 
-  
+  builtin_box_drawing: true
+
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 
@@ -53,8 +53,8 @@ colors:
     foreground: '#cfeeff'
 
   cursor:
-   text: '#29262f' 
-   cursor: '#cfeeff' 
+   text: '#29262f'
+   cursor: '#cfeeff'
 
   # Search colors
   #
@@ -131,7 +131,7 @@ colors:
     cyan: '#9ae3e5'
     white: '#ffffff'
 
-  transparent_background_colors: false 
+  transparent_background_colors: false
 
 #selection:
   # This string contains all characters that are used as separators for
@@ -143,7 +143,7 @@ colors:
 
 cursor:
   style:
-    shape: Block 
+    shape: Block
     blinking: On
 
 
