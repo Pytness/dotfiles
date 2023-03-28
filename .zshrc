@@ -66,8 +66,14 @@ ZSH_TMUX_UNICODE=true
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
 # export MANPATH="/usr/local/man:$MANPATH"
+
+HOME_PC=false
+if [ $(hostname | grep 'pop-os') ]
+then
+    HOME_PC=true
+fi
+
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -82,6 +88,7 @@ export LESS=-FRX
 
 export TERM=screen-256color
 export XDG_CONFIG_HOME=$HOME/.config
+export GPG_TTY=$(tty)
 
 alias nvimconf='$EDITOR $HOME/.config/nvim/init.vim'
 alias tmuxconf='$EDITOR $HOME/.tmux.conf'
@@ -203,3 +210,11 @@ export ZLE_RPROMPT_INDENT=0
 #     tmux new-session -A -s main 
 # fi 
 
+export PATH=/usr/lib/cuda/bin:$HOME/.local/bin:$PATH
+export XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/lib/cuda
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/share/TensorRT-7.2.3.4/lib:/usr/lib/cuda-11.1/targets/x86_64-linux/lib:/usr/lib/cuda
+export LD_LIBRARY_PATH=:$HOME/.local/lib/python3.10/site-packages/nvidia/cublas/lib$LD_LIBRARY_PATH
+
+# fnm
+export PATH="/home/pytness/.local/share/fnm:$PATH"
+eval "`fnm env`"
