@@ -24,7 +24,6 @@ local function list_files(path, extension)
 end
 
 local function get_random_ascii_image(path)
-
     math.randomseed(os.clock())
 
     -- For some reason ls *.(cat|ccat) will not work under vim,
@@ -75,15 +74,15 @@ end
 local random_image = get_random_ascii_image(ASCII_IMAGES_FOLDER)
 local image_width, image_height = unpack(get_ascii_image_dim(random_image))
 
-image_height = 32
+image_height = 24
 
 -- This avoids "process exited message"
 local command = "cat | "
 if is_colored_image(random_image) then
     command = command .. "cat "
 else
-    command =  "animated-ascii "
-    -- command = os.getenv("HOME") .. "/.config/lvim/static/animated_lolcat.sh "
+    -- command = "animated-lolcat"
+    command = os.getenv("HOME") .. "/.config/lvim/static/animated_lolcat.sh "
 end
 
 local terminal = {

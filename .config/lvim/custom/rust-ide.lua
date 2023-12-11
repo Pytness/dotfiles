@@ -7,7 +7,7 @@ formatters.setup {
 
 local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
 local codelldb_adapter = {
-    type = "server",
+    -- type = "server",
     port = "${port}",
     executable = {
         command = mason_path .. "bin/codelldb",
@@ -63,7 +63,7 @@ pcall(function()
             settings = {
                 ["rust-analyzer"] = {
                     lens = {
-                        enable = true,
+                        enable = false,
                     },
                     checkOnSave = {
                         enable = true,
@@ -136,6 +136,7 @@ vim.list_extend(lvim.plugins, {
 
     {
         "j-hui/fidget.nvim",
+        tag = 'legacy',
         config = function()
             require("fidget").setup()
         end,
