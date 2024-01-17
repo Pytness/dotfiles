@@ -38,3 +38,6 @@ function git() {
         command git $@
     fi
 }
+
+alias wezconf='vim /mnt/c/Users/ffvc/.wezterm.lua'
+
