@@ -1,0 +1,8 @@
+{
+	"pylsp.plugins.flake8.ignore": [
+		"E501"
+	],
+	"pylsp.plugins.pycodestyle.ignore": [
+		"E501"
+	]
+}

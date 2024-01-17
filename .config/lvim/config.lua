@@ -118,7 +118,7 @@ vim.g.palenight_color_overrides = {
 	--     cyan = { gui = "#96e1ff", cterm = "38", cterm16 = "6" },
 	white = { gui = "#cccce6", cterm = "145", cterm16 = "7" },
 	cursor_grey = { gui = "#3E4452", cterm = 236, cterm16 = "8" },
-	black = { gui = "#252730", cterm = "235", cterm16 = "0" },
+	black = { gui = "#1C1D24", cterm = "235", cterm16 = "0" },
 }
 -- vim.g.palenight_termcolors = 16;
 vim.g.palenight_terminal_italics = 1;
@@ -146,10 +146,6 @@ lvim.plugins = {
 		end
 	},
 	{ "pytness/palenight.vim" },
-	{
-		'uloco/bluloco.nvim',
-		dependencies = { 'rktjmp/lush.nvim' }
-	},
 	{
 		"ggandor/lightspeed.nvim",
 		event = "BufRead",
@@ -225,6 +221,7 @@ lvim.plugins = {
 			end, 100)
 		end,
 	},
+	{ 'gptlang/CopilotChat.nvim' },
 	{
 		"chentoast/marks.nvim",
 		event = "BufReadPre",
@@ -315,6 +312,11 @@ vim.cmd("highlight FloatBorder guifg=white")
 -- 	pattern = { "*" },
 -- 	command = [[%s/\s\+$//e]],
 -- })
+--
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
+lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
+	return server ~= "pylsp"
+end, lvim.lsp.automatic_configuration.skipped_servers)
 
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "clangd" })
 local capabilities = require("lvim.lsp").common_capabilities()
