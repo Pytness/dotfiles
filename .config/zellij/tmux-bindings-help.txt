@@ -1,0 +1,23 @@
+[ 	Enter Scroll Mode
+Ctrl b 	Return to Normal Mode
+s 	Split Pane Downward
+v 	Split Pane to the Right
+z 	Toggle Fullscreen for Current Pane
+c 	Create New Tab
+, 	Rename Current Tab
+p 	Go to Previous Tab
+n 	Go to Next Tab
+Left 	Move Focus to Left Pane
+Right 	Move Focus to Right Pane
+Down 	Move Focus to Downward Pane
+Up 	Move Focus to Upper Pane
+h 	Move Focus to Left Pane
+l 	Move Focus to Right Pane
+j 	Move Focus Downward
+k 	Move Focus Upward
+o 	Focus Next Pane
+d 	Detach Current Session
+Space 	Switch to Next Layout
+x 	Close Current Pane
+? 	Show Tmux Bindings Help
+

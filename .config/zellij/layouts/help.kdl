@@ -1,0 +1,6 @@
+layout {
+        pane command="bash" {
+            args "-c" "bash ~/.config/zellij/tmux-bindings-help.sh"
+            focus true
+        }
+}
