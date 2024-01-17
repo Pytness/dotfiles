@@ -1,6 +1,13 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
+# typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+
+source ~/.zplug/init.zsh
+zplug "kutsan/zsh-system-clipboard"
+# zplug "b4b4r07/zsh-vimode-visual"
+# zplug "jeffreytse/zsh-vi-mode"
+
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -14,6 +21,7 @@ if [ `tput colors` = "256" ]; then
   export COLORTERM=truecolor
 fi
 
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 # CASE_SENSITIVE="true"
 # HYPHEN_INSENSITIVE="true"
 
@@ -57,8 +65,8 @@ DISABLE_AUTO_TITLE="true"
 # HIST_STAMPS="mm/dd/yyyy"
 
 
-plugins=(thefuck copypath copyfile dirhistory themes aliases git gh git-extras python tmux virtualenv)
-
+# thefuck
+plugins=(vi-mode copypath copyfile dirhistory themes aliases git gh git-extras python tmux virtualenv autoswitch_virtualenv)
 ZSH_TMUX_UNICODE=true
 # ZSH_TMUX_AUTOSTART=true
 
@@ -81,6 +89,7 @@ export GOBIN=$HOME/.local/bin/
 
 alias vim=lvim
 export EDITOR=lvim
+export SUDO_EDITOR=lvim
 export VISUAL=lvim
 
 # disable less behaviour of git related output
@@ -111,11 +120,17 @@ fi
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 export FZF_DEFAULT_OPTS='
 --height=40% --layout=reverse --info=inline --border --margin=1 --padding=1
---color=fg:#e6efff,bg:#292d3e,hl:#8cb8ff
-    --color=fg+:#e6efff,bg+:#3E4452,hl+:#8a87de
+--color=fg:#e6efff,bg:#1C1D24,hl:#8cb8ff
+    --color=fg+:#e6efff,bg+:#1C1D24,hl+:#8a87de
     --color=info:#ffcb6b,prompt:#C3E88D,pointer:#d67cde
     --color=marker:#d67cde,spinner:#ffcb6b,header:#8cb8ff'
 
+
+# #121317
+# #1C1D24
+# #252730
+# #3E4452
+#
 export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :500 {}'
 --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 # Bindings
@@ -150,7 +165,7 @@ recsed() {
     else
         echo "Usage: rename <target_path> <sed_command>"
         echo "Usage: rename <target_path> <name_glob> <sed_command>"
-    fi 
+    fi
 }
 
 recawk() {
@@ -168,7 +183,7 @@ recawk() {
     else
         echo "Usage: rename <target_path> <awk_command>"
         echo "Usage: rename <target_path> <name_glob> <awk_command>"
-    fi 
+    fi
 }
 
 reloadst() {
@@ -181,6 +196,42 @@ reloadzsh() {
     exec zsh
 }
 
+#
+# vim mode config
+# ---------------
+
+# Activate vim mode.
+bindkey -v
+
+# Set visual hightlight color.
+zle_highlight=( region:bg=#3e4452,fg=#e6efff )
+
+# Remove mode switching delay.
+KEYTIMEOUT=1
+
+# Change cursor shape for different vi modes.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+
+zle -N zle-keymap-select
+
+zle-line-init() {
+    zle -K vicmd 
+    echo -ne '\e[1 q'
+}
+
+zle -N zle-line-init
+
 # execute functions before the prompt is called
 
 # reset cursor style:
@@ -191,8 +242,9 @@ reloadzsh() {
 # 4  ⇒  steady underline.
 # 5  ⇒  blinking bar, xterm.
 # 6  ⇒  steady bar, xterm.
+
 _reset_cursor() {
-   echo -ne '\e[5 q'
+   echo -ne '\e[1 q'
 }
 
 precmd_functions+=( _reset_cursor )
@@ -207,14 +259,19 @@ export ZLE_RPROMPT_INDENT=0
 
 # Launch tmux if not already running
 # if [ -z "$TMUX"  ]; then
-#     tmux new-session -A -s main 
-# fi 
+#     tmux new-session -A -s main
+# fi
 
 export PATH=/usr/lib/cuda/bin:$HOME/.local/bin:$PATH
-export XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/lib/cuda
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/share/TensorRT-7.2.3.4/lib:/usr/lib/cuda-11.1/targets/x86_64-linux/lib:/usr/lib/cuda
-export LD_LIBRARY_PATH=:$HOME/.local/lib/python3.10/site-packages/nvidia/cublas/lib$LD_LIBRARY_PATH
+
 
 # fnm
-export PATH="/home/pytness/.local/share/fnm:$PATH"
+export PATH="/root/.local/share/fnm:$PATH"
 eval "`fnm env`"
+
+eval `ssh-agent -s` >> /dev/null
+
+
+# ensure Ctrl-D works
+# stty eof ^D
+
