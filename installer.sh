@@ -21,7 +21,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 go install github.com/zquestz/s@latest
 cd ~
 
-cargo install tokio tokei lolcat toipe ripgrep topgrade cargo-update leetcode-tui-rs ast-grep zellij aoc-cli ttyper
+cargo install fd-find tokei lolcat toipe ripgrep topgrade cargo-update leetcode-tui-rs ast-grep zellij aoc-cli ttyper
 
 # Tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
