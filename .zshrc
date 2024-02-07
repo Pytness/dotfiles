@@ -65,8 +65,9 @@ DISABLE_AUTO_TITLE="true"
 # HIST_STAMPS="mm/dd/yyyy"
 
 
-# thefuck
-plugins=(vi-mode copypath copyfile dirhistory themes aliases git gh git-extras python tmux virtualenv autoswitch_virtualenv)
+# thefuck autoswitch_virtualenv
+plugins=(vi-mode copypath copyfile dirhistory themes aliases git gh git-extras python tmux virtualenv )
+
 ZSH_TMUX_UNICODE=true
 # ZSH_TMUX_AUTOSTART=true
 
@@ -103,6 +104,7 @@ alias nvimconf='$EDITOR $HOME/.config/nvim/init.vim'
 alias tmuxconf='$EDITOR $HOME/.tmux.conf'
 alias zshconf='$EDITOR $HOME/.zshrc'
 alias alaconf='$EDITOR $HOME/.config/alacritty/alacritty.yml'
+alias kittyconf='$EDITOR $HOME/.config/kitty/kitty.conf'
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.gitdotfiles/.git/ --work-tree=$HOME'
 compdef dotfiles='git'
@@ -250,6 +252,7 @@ _reset_cursor() {
 precmd_functions+=( _reset_cursor )
 
 export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.local/scripts:$PATH
 
 # Keep this export at the end cause it gets overriden somewhere and I am too lazy to find out where
@@ -265,13 +268,19 @@ export ZLE_RPROMPT_INDENT=0
 export PATH=/usr/lib/cuda/bin:$HOME/.local/bin:$PATH
 
 
-# fnm
-export PATH="/root/.local/share/fnm:$PATH"
-eval "`fnm env`"
+# # fnm
+# export PATH="/root/.local/share/fnm:$PATH"
+# eval "`fnm env`"
 
 eval `ssh-agent -s` >> /dev/null
 
 
+# export RUSTC_WRAPPER=sccache cargo install
+
 # ensure Ctrl-D works
 # stty eof ^D
 
+
+# fnm
+export PATH="/home/pytness/.local/share/fnm:$PATH"
+eval "`fnm env`"
