@@ -35,6 +35,16 @@ vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldlevel = 99
 
+-- lvim.lsp.diagnostics.config({
+--   virtual_text = true,
+-- })
+
+vim.diagnostic.config({
+	virtual_text = false,
+	underline = true,
+
+})
+
 vim.cmd("nnoremap x \"_x")
 vim.cmd("nnoremap d \"_d")
 vim.cmd("nnoremap D \"_D")
@@ -119,6 +129,7 @@ vim.g.palenight_color_overrides = {
 	white = { gui = "#cccce6", cterm = "145", cterm16 = "7" },
 	cursor_grey = { gui = "#3E4452", cterm = 236, cterm16 = "8" },
 	black = { gui = "#1C1D24", cterm = "235", cterm16 = "0" },
+
 }
 -- vim.g.palenight_termcolors = 16;
 vim.g.palenight_terminal_italics = 1;
@@ -146,6 +157,7 @@ lvim.plugins = {
 		end
 	},
 	{ "pytness/palenight.vim" },
+	-- {'drewtempelmeyer/palenight.vim'}
 	{
 		"ggandor/lightspeed.nvim",
 		event = "BufRead",
@@ -290,11 +302,19 @@ lvim.plugins = {
 	},
 	{ 'ron-rs/ron.vim' },
 	{ 'lambdalisue/suda.vim' },
+	{ 'lark-parser/vim-lark-syntax' },
+	{ 'pest-parser/pest.vim' },
 	-- {
 	-- 	"pmizio/typescript-tools.nvim",
 	-- 	dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 	-- 	opts = {},
 	-- },
+	{
+		'saecki/crates.nvim',
+		config = function()
+			require('crates').setup()
+		end,
+	}
 }
 
 
@@ -331,12 +351,28 @@ local opts = {
 
 require "custom.rust-ide"
 
+
+-- Remove sources from cmp
+
+local sources_to_delete = { "buffer", "luasnip" }
+
+lvim.builtin.cmp.sources = vim.tbl_filter(function(source)
+	return not vim.tbl_contains(sources_to_delete, source.name)
+end, lvim.builtin.cmp.sources)
+
+
+-- Estend sources
+
+vim.list_extend(lvim.builtin.cmp.sources, {
+	{ name = "crates" },
+})
+
 -- Disable autocompletion popup unless I press ctrl-space
 local cmp = require 'cmp'
 cmp.setup {
 	completion = {
 		autocomplete = false,
-	}
+	},
 }
 
 
