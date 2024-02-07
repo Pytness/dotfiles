@@ -11,9 +11,8 @@ lvim.transparent_window = false
 lvim.background = 'black'
 vim.opt.whichwrap = "b,s"
 
--- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
--- add your own keymapping
+
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<leader>Q"] = ":q!<cr>"
 lvim.keys.normal_mode["<leader>W"] = ":SudaWrite<cr>"
@@ -35,16 +34,13 @@ vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldlevel = 99
 
--- lvim.lsp.diagnostics.config({
---   virtual_text = true,
--- })
-
 vim.diagnostic.config({
 	virtual_text = false,
 	underline = true,
 
 })
 
+-- Remap yank and delete to not copy to clipboard
 vim.cmd("nnoremap x \"_x")
 vim.cmd("nnoremap d \"_d")
 vim.cmd("nnoremap D \"_D")
@@ -63,21 +59,6 @@ vim.cmd("nmap <M-J> <C-Down>")
 vim.cmd("nmap <M-K> <C-Up>")
 vim.cmd("nmap <M-L> <C-Right>")
 
--- vim.cmd(
--- 	"augroup CopyToClipboard \n" ..
--- 	"   autocmd TextYankPost * silent execute '!echo ' . shellescape(v:event.regcontents[0]) . ' | clip.exe'\n" ..
--- 	"augroup END"
--- )
-
--- vim.cmd(
--- 	"function! Paste(mode)\n" ..
--- 	"    let @\" = system('clippaste')\n" ..
--- 	"    return a:mode\n" ..
--- 	"endfunction"
--- )
-
--- vim.cmd("noremap <expr> p Paste('p')")
--- vim.cmd("noremap <expr> P Paste('P')")
 
 vim.cmd("set background=dark")
 vim.cmd("set termguicolors")
@@ -95,7 +76,7 @@ vim.opt.timeoutlen = 10 -- time to wait for a mapped sequence to complete, fixes
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
--- if you don't want all the parsers change this to a table of the ones you want
+
 lvim.builtin.treesitter.ensure_installed = {
 	"bash",
 	"c",
@@ -131,7 +112,7 @@ vim.g.palenight_color_overrides = {
 	black = { gui = "#1C1D24", cterm = "235", cterm16 = "0" },
 
 }
--- vim.g.palenight_termcolors = 16;
+
 vim.g.palenight_terminal_italics = 1;
 
 -- Additional Plugins
@@ -156,8 +137,9 @@ lvim.plugins = {
 			}
 		end
 	},
+	-- Using custom instead of  'drewtempelmeyer/palenight.vim'
+	-- due to additional custom colors
 	{ "pytness/palenight.vim" },
-	-- {'drewtempelmeyer/palenight.vim'}
 	{
 		"ggandor/lightspeed.nvim",
 		event = "BufRead",
@@ -191,8 +173,8 @@ lvim.plugins = {
 					},
 					tail = { cursor = nil, texthl = "SmoothCursor" }
 				},
-				priority = 10, -- set marker priority
-				speed = 25, -- max is 100 to stick to your current position
+				priority = 10,
+				speed = 25,
 				texthl = "SmoothCursor", -- highlight group, default is { bg = nil, fg = "#FFD400" }
 				threshold = 3,
 				timeout = 3000,
@@ -203,13 +185,13 @@ lvim.plugins = {
 		"norcalli/nvim-colorizer.lua",
 		config = function()
 			require("colorizer").setup({ "*" }, {
-				RGB = true, -- #RGB hex codes
-				RRGGBB = true, -- #RRGGBB hex codes
-				RRGGBBAA = true, -- #RRGGBBAA hex codes
-				rgb_fn = true, -- CSS rgb() and rgba() functions
-				hsl_fn = true, -- CSS hsl() and hsla() functions
-				css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-				css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+				RGB = true,
+				RRGGBB = true,
+				RRGGBBAA = true,
+				rgb_fn = true,
+				hsl_fn = true,
+				css = true,
+				css_fn = true,
 			})
 		end
 	},
@@ -252,10 +234,9 @@ lvim.plugins = {
 			require("todo-comments").setup {
 				keywords = {
 					FIX = {
-						icon = " ", -- icon used for the sign, and in search results
-						color = "error", -- can be a hex color, or a named color (see below)
-						alt = { "FIXME", "BUG", "FIXIT", "ISSUE", "" }, -- a set of other keywords that all map to this FIX keywords
-						-- signs = false, -- configure signs for some keywords individually
+						icon = " ",
+						color = "error",
+						alt = { "FIXME", "BUG", "FIXIT", "ISSUE", "" },
 					},
 					TODO = { icon = " ", color = "info" },
 					HACK = { icon = " ", color = "warning" },
@@ -277,13 +258,6 @@ lvim.plugins = {
 			}
 		end,
 	},
-	{ 'normen/vim-pio' },
-	{
-		"sitiom/nvim-numbertoggle",
-		config = function()
-			-- require("numbertoggle").setup()
-		end
-	},
 	{
 		'akinsho/git-conflict.nvim',
 		version = "v1.0.0",
@@ -304,11 +278,6 @@ lvim.plugins = {
 	{ 'lambdalisue/suda.vim' },
 	{ 'lark-parser/vim-lark-syntax' },
 	{ 'pest-parser/pest.vim' },
-	-- {
-	-- 	"pmizio/typescript-tools.nvim",
-	-- 	dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-	-- 	opts = {},
-	-- },
 	{
 		'saecki/crates.nvim',
 		config = function()
@@ -328,32 +297,16 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 vim.cmd("highlight FloatBorder guifg=white")
 
--- vim.api.nvim_create_autocmd({ "BufWritePre" }, {
--- 	pattern = { "*" },
--- 	command = [[%s/\s\+$//e]],
--- })
---
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
+
 lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
 	return server ~= "pylsp"
 end, lvim.lsp.automatic_configuration.skipped_servers)
 
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "clangd" })
-local capabilities = require("lvim.lsp").common_capabilities()
-capabilities.offsetEncoding = "utf-8"
-
-local opts = {
-	cmd = { "clangd", "--enable-config" },
-	capabilities = capabilities,
-}
-
--- require("lvim.lsp.manager").setup("clangd", opts)
 
 require "custom.rust-ide"
 
-
 -- Remove sources from cmp
-
 local sources_to_delete = { "buffer", "luasnip" }
 
 lvim.builtin.cmp.sources = vim.tbl_filter(function(source)
@@ -362,7 +315,6 @@ end, lvim.builtin.cmp.sources)
 
 
 -- Estend sources
-
 vim.list_extend(lvim.builtin.cmp.sources, {
 	{ name = "crates" },
 })
@@ -375,7 +327,6 @@ cmp.setup {
 	},
 }
 
-
 vim.g.lightspeed_no_default_keymaps = 1
 
 require("telescope").setup({
@@ -383,7 +334,7 @@ require("telescope").setup({
 		preview = {
 			mime_hook = function(filepath, bufnr, opts)
 				local is_image = function(filepath)
-					local image_extensions = { 'png', 'jpg', 'jpeg' } -- Supported image formats
+					local image_extensions = { 'png', 'jpg', 'jpeg' }
 					local split_path = vim.split(filepath:lower(), '.', { plain = true })
 					local extension = split_path[#split_path]
 					return vim.tbl_contains(image_extensions, extension)
@@ -398,7 +349,7 @@ require("telescope").setup({
 
 					vim.fn.jobstart(
 						{
-							'catimg', filepath -- Terminal image viewer command
+							'catimg', filepath
 						},
 						{ on_stdout = send_output, stdout_buffered = true })
 				else
@@ -413,7 +364,6 @@ require("telescope").setup({
 lvim.builtin.telescope.defaults.layout_strategy = "horizontal"
 lvim.builtin.telescope.defaults.layout_config.width = 0.75
 lvim.builtin.telescope.defaults.layout_config.height = 0.75
--- lvim.builtin.telescope.defaults.layout_config.preview_cutoff = 120
 lvim.builtin.telescope.defaults.layout_config.prompt_position = "top"
 
 local telescope_actions = require('telescope.actions')
@@ -423,8 +373,8 @@ lvim.builtin.telescope.defaults.mappings = {
 		["<C-k>"] = telescope_actions.move_selection_previous,
 	}
 }
--- Get palenight colors
 
+-- Get palenight colors
 local colors = {
 	red = "#ff5370",
 	light_red = "#ff869a",
