@@ -120,7 +120,7 @@ lvim.builtin.which_key.mappings["C"] = {
 	D = { "<cmd>lua require'crates'.show_dependencies_popup()<cr>", "[crates] show dependencies" },
 }
 
-lvim.plugins = {
+vim.list_extend(lvim.plugins, {
 	"simrat39/rust-tools.nvim",
 	{
 		"saecki/crates.nvim",
@@ -143,4 +143,4 @@ lvim.plugins = {
 			require("fidget").setup()
 		end,
 	},
-}
+})
