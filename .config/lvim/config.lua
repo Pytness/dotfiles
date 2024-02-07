@@ -278,12 +278,6 @@ lvim.plugins = {
 	{ 'lambdalisue/suda.vim' },
 	{ 'lark-parser/vim-lark-syntax' },
 	{ 'pest-parser/pest.vim' },
-	{
-		'saecki/crates.nvim',
-		config = function()
-			require('crates').setup()
-		end,
-	}
 }
 
 
