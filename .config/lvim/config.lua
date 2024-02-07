@@ -203,16 +203,14 @@ lvim.plugins = {
 	},
 	{
 		"zbirenbaum/copilot.lua",
-		event = { "VimEnter" },
+		cmd = "Copilot",
+		event = "InsertEnter",
 		config = function()
-			vim.defer_fn(function()
-				require("copilot").setup {
-					plugin_manager_path = get_runtime_dir() .. "/site/pack/packer",
-					suggestion = {
-						auto_trigger = true,
-					},
-				}
-			end, 100)
+			require("copilot").setup({
+				suggestion = {
+					auto_trigger = true,
+				},
+			})
 		end,
 	},
 	{ 'gptlang/CopilotChat.nvim' },
