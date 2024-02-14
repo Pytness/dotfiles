@@ -27,7 +27,9 @@ lvim.plugins = {
 		event = "BufRead",
 		config = function()
 			require 'lightspeed'.setup {
-				ignore_case = true
+				ignore_case = true,
+				safe_labels = { 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';' },
+				labels = { 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';' },
 			}
 		end
 	},

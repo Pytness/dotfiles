@@ -12,14 +12,7 @@ local codelldb_path = mason_path .. "bin/codelldb"
 local liblldb_path = mason_path .. "packages/codelldb/extension/lldb/lib/liblldb"
 local this_os = vim.loop.os_uname().sysname
 
--- The path in windows is different
-if this_os:find "Windows" then
-	codelldb_path = mason_path .. "packages\\codelldb\\extension\\adapter\\codelldb.exe"
-	liblldb_path = mason_path .. "packages\\codelldb\\extension\\lldb\\bin\\liblldb.dll"
-else
-	-- The liblldb extension is .so for linux and .dylib for macOS
-	liblldb_path = liblldb_path .. (this_os == "Linux" and ".so" or ".dylib")
-end
+liblldb_path = liblldb_path .. (this_os == "Linux" and ".so" or ".dylib")
 
 pcall(function()
 	require("rust-tools").setup {

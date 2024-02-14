@@ -10,6 +10,9 @@ vim.g.lightspeed_no_default_keymaps = 1
 lvim.keys.normal_mode["s"] = "<Plug>Lightspeed_omni_s"
 lvim.keys.normal_mode["f"] = "<Plug>Lightspeed_f";
 lvim.keys.normal_mode["F"] = "<Plug>Lightspeed_F";
+lvim.keys.normal_mode[";"] = "<Plug>Lightspeed_;_ft"
+lvim.keys.normal_mode[","] = "<Plug>Lightspeed_,_ft"
+
 
 -- Remap yank and delete to not copy to clipboard
 --

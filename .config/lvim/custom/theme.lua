@@ -1,7 +1,7 @@
 lvim.colorscheme = "palenight"
 lvim.builtin.lualine.options.theme = "auto"
 lvim.background = 'black'
-lvim.transparent_window = true
+lvim.transparent_window = false
 vim.opt.cursorline = true
 
 vim.g.palenight_color_overrides = {

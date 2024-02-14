@@ -20,3 +20,7 @@ lvim.builtin.treesitter.indent = {
 	enable = true,
 	disable = { "python" },
 }
+
+
+-- Fix deprecation error
+lvim.builtin.treesitter.context_commentstring = nil
