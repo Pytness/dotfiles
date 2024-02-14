@@ -8,9 +8,9 @@ zplug "kutsan/zsh-system-clipboard"
 # zplug "b4b4r07/zsh-vimode-visual"
 # zplug "jeffreytse/zsh-vi-mode"
 
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -21,7 +21,6 @@ if [ `tput colors` = "256" ]; then
   export COLORTERM=truecolor
 fi
 
-typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 # CASE_SENSITIVE="true"
 # HYPHEN_INSENSITIVE="true"
 
@@ -279,8 +278,3 @@ eval `ssh-agent -s` >> /dev/null
 
 # ensure Ctrl-D works
 # stty eof ^D
-
-
-# fnm
-export PATH="/home/pytness/.local/share/fnm:$PATH"
-eval "`fnm env`"
