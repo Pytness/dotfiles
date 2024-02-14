@@ -60,6 +60,7 @@ vim.cmd("nmap <M-K> <C-Up>")
 vim.cmd("nmap <M-L> <C-Right>")
 
 
+vim.cmd("set relativenumber")
 vim.cmd("set background=dark")
 vim.cmd("set termguicolors")
 vim.cmd("set autoindent noexpandtab tabstop=8 shiftwidth=8")
@@ -313,9 +314,26 @@ vim.list_extend(lvim.builtin.cmp.sources, {
 
 -- Disable autocompletion popup unless I press ctrl-space
 local cmp = require 'cmp'
+local compare = cmp.config.compare
 cmp.setup {
 	completion = {
 		autocomplete = false,
+	},
+	sorting = {
+		priority_weight = 1.0,
+		comparators = {
+			-- compare.score_offset, -- not good at all
+			compare.locality,
+			compare.recently_used,
+			compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
+			compare.offset,
+			compare.order,
+			-- compare.scopes, -- what?
+			-- compare.sort_text,
+			-- compare.exact,
+			-- compare.kind,
+			-- compare.length, -- useless
+		},
 	},
 }
 
