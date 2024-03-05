@@ -5,6 +5,9 @@
 
 source ~/.zplug/init.zsh
 zplug "kutsan/zsh-system-clipboard"
+zplug "MichaelAquilina/zsh-autoswitch-virtualenv"
+
+export AUTOSWITCH_DEFAULT_PYTHON=python3
 # zplug "b4b4r07/zsh-vimode-visual"
 # zplug "jeffreytse/zsh-vi-mode"
 
@@ -278,3 +281,4 @@ eval `ssh-agent -s` >> /dev/null
 
 # ensure Ctrl-D works
 # stty eof ^D
+zplug load 

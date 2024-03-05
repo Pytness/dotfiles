@@ -1,0 +1,6 @@
+{
+	"rust-analyzer.cachePriming.enable": true,
+	"rust-analyzer.cachePriming.numThreads": 12,
+	"rust-analyzer.numThreads": 12,
+	"rust-analyzer.completion.privateEditable.enable": false
+}

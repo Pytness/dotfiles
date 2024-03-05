@@ -2,7 +2,6 @@ lvim.leader = "space"
 
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<leader>Q"] = ":q!<cr>"
-lvim.keys.normal_mode["<leader>W"] = ":SudaWrite<cr>"
 lvim.keys.normal_mode["C"] = "^d$<Esc>"
 
 
@@ -13,6 +12,10 @@ lvim.keys.normal_mode["F"] = "<Plug>Lightspeed_F";
 lvim.keys.normal_mode[";"] = "<Plug>Lightspeed_;_ft"
 lvim.keys.normal_mode[","] = "<Plug>Lightspeed_,_ft"
 
+-- For bookmark plugin
+-- vim.keymap.set({ "n", "v" }, "mm", "<cmd>BookmarksMark<cr>", { desc = "Mark current line into active BookmarkList." })
+-- vim.keymap.set({ "n", "v" }, "mo", "<cmd>BookmarksGoto<cr>", { desc = "Go to bookmark at current active BookmarkList" })
+-- vim.keymap.set({ "n", "v" }, "ma", "<cmd>BookmarksCommands<cr>", { desc = "Find and trigger a bookmark command." })
 
 -- Remap yank and delete to not copy to clipboard
 --

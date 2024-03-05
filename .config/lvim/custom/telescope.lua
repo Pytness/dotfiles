@@ -8,5 +8,9 @@ lvim.builtin.telescope.defaults.mappings = {
 	i = {
 		["<C-j>"] = telescope_actions.move_selection_next,
 		["<C-k>"] = telescope_actions.move_selection_previous,
+	},
+	n = {
+		["<C-j>"] = telescope_actions.move_selection_next,
+		["<C-k>"] = telescope_actions.move_selection_previous,
 	}
 }

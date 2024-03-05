@@ -26,7 +26,8 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.cmd('highlight FloatTitle guifg=#cccce6')
 	end,
 })
-vim.cmd("highlight FloatBorder guifg=white")
+vim.cmd("highlight FloatBorder guifg=#cccce6")
+vim.cmd("highlight CursorGrey guifg=#3E4452")
 
 -- Get palenight colors
 local colors = {

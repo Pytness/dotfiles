@@ -1,3 +1,4 @@
+vim.lsp.set_log_level("trace")
 local home_dir = os.getenv("HOME")
 package.path = home_dir .. "/.config/lvim/?.lua;" .. package.path
 

@@ -16,6 +16,8 @@ vim.diagnostic.config({
 	underline = true,
 })
 
+vim.opt.timeoutlen = 250 -- time to wait for a mapped sequence to complete, fixes slow which-key
+
 vim.cmd("set relativenumber")
 vim.cmd("set background=dark")
 vim.cmd("set termguicolors")

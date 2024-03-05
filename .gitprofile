@@ -3,5 +3,11 @@
 	; email
 	; signingkey
 
-[includeIf "gitdir:~/code/"]
+[includeIf "gitdir:~/code/pytness/"]
+    path = .gitconfig_pytness
+
+[includeIf "gitdir:~/.config/"]
+    path = .gitconfig_pytness
+
+[includeIf "gitdir:~/.git"]
     path = .gitconfig_pytness
