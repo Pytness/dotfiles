@@ -32,6 +32,9 @@ curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/instal
 # Oh My Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+# Powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
 # Build and install neovim 9
 
 wget https://github.com/neovim/neovim/archive/refs/tags/v0.9.4.tar.gz -O nvim-source.tar.gz

@@ -1,7 +1,13 @@
 [user]
 	name = Fernando Vega
-	email = fernando.vega@fcc.es
-	signingkey = B4B77C79616E50C1
+	; email
+	; signingkey
 
-[includeIf "gitdir:~/code/"]
+[includeIf "gitdir:~/code/pytness/"]
+    path = .gitconfig_pytness
+
+[includeIf "gitdir:~/.config/"]
+    path = .gitconfig_pytness
+
+[includeIf "gitdir:~/.git"]
     path = .gitconfig_pytness
