@@ -78,6 +78,32 @@ return {
   },
   {
     'stevearc/dressing.nvim',
+    opts = {
+      input = {
+        insert_only = false,
+        start_in_insert = false,
+      },
+    },
+  },
+  { -- Add indentation guides even on blank lines
+    'lukas-reineke/indent-blankline.nvim',
+    -- Enable `lukas-reineke/indent-blankline.nvim`
+    -- See `:help ibl`
+    main = 'ibl',
     opts = {},
+  },
+  {
+    'norcalli/nvim-colorizer.lua',
+    config = function()
+      require('colorizer').setup({ '*' }, {
+        RGB = true,
+        RRGGBB = true,
+        RRGGBBAA = true,
+        rgb_fn = true,
+        hsl_fn = true,
+        css = true,
+        css_fn = true,
+      })
+    end,
   },
 }
