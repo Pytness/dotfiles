@@ -58,13 +58,21 @@ vim.keymap.set('n', '<leader>bb', '<cmd>bprev<cr>', { desc = 'Previous buffer' }
 vim.keymap.set('n', '<leader>bn', '<cmd>bnext<cr>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<leader>c', '<cmd>BufDel<cr>', { desc = 'Close Buffer' })
 
-vim.keymap.set('n', '<leader>/', '<Plug>(comment_toggle_linewise_visual)', { desc = 'Comment line (visual)' })
+vim.keymap.set('v', '<leader>/', '<Plug>(comment_toggle_linewise_visual)', { desc = 'Comment line (visual)' })
 vim.keymap.set('n', '<leader>/', '<Plug>(comment_toggle_linewise_current)', { desc = 'Comment line' })
-vim.keymap.set('n', '<leader>sc', '<cmd>Telescope colorscheme<cr>')
+vim.keymap.set('n', '<leader>sc', '<cmd>Telescope colorscheme<cr>', { desc = 'Select coloscheme' })
 
 -- Stay in Visual when indenting
 vim.keymap.set('v', '>', '>gv')
 vim.keymap.set('v', '<', '<gv')
+
+-- Move lines around
+vim.keymap.set('n', '<M-k>', '<cmd>m .-2<cr>==')
+vim.keymap.set('n', '<M-j>', '<cmd>m .+1<cr>==')
+vim.keymap.set('i', '<M-k>', '<esc>:m .-2<cr>==gi')
+vim.keymap.set('i', '<M-j>', '<esc>:m .+1<cr>==gi')
+vim.keymap.set('v', '<M-k>', ":m '<-2<cr>gv=gv")
+vim.keymap.set('v', '<M-j>', ":m '>+1<cr>gv=gv")
 
 vim.g.lightspeed_no_default_keymaps = 1
 vim.keymap.set('n', 's', '<Plug>Lightspeed_omni_s')
@@ -74,10 +82,11 @@ vim.keymap.set('n', ';', '<Plug>Lightspeed_;_ft')
 vim.keymap.set('n', ',', '<Plug>Lightspeed_,_ft')
 
 -- Diagnostic keymaps
--- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
--- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
--- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
--- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>lk', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
+vim.keymap.set('n', '<leader>lj', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
+
+vim.keymap.set('n', '<leader>le', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
+vim.keymap.set('n', '<leader>lq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -148,11 +157,12 @@ require('lazy').setup {
 
       -- Document existing key chains
       require('which-key').register {
-        ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
+        -- ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
         ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
         ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
         ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
         ['<leader>n'] = { name = '[N]eovim', _ = 'which_key_ignore' },
+        ['<leader>l'] = { name = '[L]sp', _ = 'which_key_ignore' },
       }
     end,
   },
@@ -225,7 +235,7 @@ require('lazy').setup {
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-      vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      vim.keymap.set('n', '<leader>bs', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>b/', function()
@@ -300,18 +310,18 @@ require('lazy').setup {
 
           -- Rename the variable under your cursor
           --  Most Language Servers support renaming across files, etc.
-          map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+          map('<leader>lr', vim.lsp.buf.rename, '[R]e[n]ame')
 
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
-          map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+          map('<leader>la', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
           -- Opens a popup that displays documentation about the word under your cursor
           map('K', vim.lsp.buf.hover, 'Hover Documentation')
 
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header
-          map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+          map('<leader>ld', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
@@ -489,7 +499,7 @@ require('lazy').setup {
         },
         completion = {
           autcomplete = false,
-          completeopt = 'menu,menuone,noinsert',
+          -- completeopt = 'menu,menuone,noinsert',
         },
 
         sorting = {
@@ -545,25 +555,14 @@ require('lazy').setup {
       }
     end,
   },
-
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
+  {
     'catppuccin/nvim',
+    name = 'catppuccin',
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
+
     config = function()
-      -- Load the colorscheme here
       vim.cmd.colorscheme 'catppuccin-macchiato'
-
-      require('catppuccin').setup {
-        flavour = 'macchiato',
-      }
-
-      -- You can configure highlights by doing something like
-      -- vim.cmd.hi 'Comment gui=none'
     end,
   },
 
@@ -636,4 +635,4 @@ require('lazy').setup {
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=4 sts=4 sw=4 et
+-- vim: ts=2 sts=2 sw=2 et
