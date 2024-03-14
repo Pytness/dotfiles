@@ -55,7 +55,6 @@ return {
     'ojroques/nvim-bufdel',
   },
   {
-
     -- Add fast motions for the whole buffer
     'ggandor/lightspeed.nvim',
     config = function()
@@ -105,5 +104,19 @@ return {
         css_fn = true,
       })
     end,
+  },
+  {
+    'kdheepak/lazygit.nvim',
+    cmd = {
+      'LazyGit',
+      'LazyGitConfig',
+      'LazyGitCurrentFile',
+      'LazyGitFilter',
+      'LazyGitFilterCurrentFile',
+    },
+    -- optional for floating window border decoration
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
   },
 }

@@ -27,11 +27,13 @@ return {
       -- Document existing key chains
       require('which-key').register {
         -- ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-        ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-        ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-        ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-        ['<leader>n'] = { name = '[N]eovim', _ = 'which_key_ignore' },
-        ['<leader>l'] = { name = '[L]sp', _ = 'which_key_ignore' },
+        ['<leader>b'] = { name = '[b]uffer', _ = 'which_key_ignore' },
+        ['<leader>d'] = { name = '[d]ocument', _ = 'which_key_ignore' },
+        ['<leader>r'] = { name = '[r]ename', _ = 'which_key_ignore' },
+        ['<leader>s'] = { name = '[s]earch', _ = 'which_key_ignore' },
+        ['<leader>n'] = { name = '[n]eovim', _ = 'which_key_ignore' },
+        ['<leader>l'] = { name = '[l]sp', _ = 'which_key_ignore' },
+        ['<leader>C'] = { name = '[C]argo', _ = 'which_key_ignore' },
       }
     end,
   },
@@ -214,11 +216,48 @@ return {
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+
+      local home_dir = os.getenv 'HOME'
       local servers = {
         -- clangd = {},
         -- gopls = {},
         pyright = {},
-        rust_analyzer = {},
+        rust_analyzer = {
+          cmd = { home_dir .. '/.cargo/bin/ra-multiplex' },
+          settings = {
+            ['rust-analyzer'] = {
+              checkOnSave = {
+                allFeatures = true,
+                command = 'clippy',
+                extraArgs = {
+                  '--',
+                  '--no-deps',
+                },
+              },
+
+              imports = {
+                granularity = {
+                  group = 'module',
+                },
+                prefix = 'self',
+              },
+              cargo = {
+                buildScripts = {
+                  enable = true,
+                },
+              },
+              procMacro = {
+                enable = true,
+              },
+              diagnostics = {
+                disabled = { 'unresolved-prov-macro' },
+                experimental = {
+                  enable = true,
+                },
+              },
+            },
+          },
+        },
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -352,6 +391,7 @@ return {
             luasnip.lsp_expand(args.body)
           end,
         },
+
         completion = {
           autcomplete = false,
           -- completeopt = 'menu,menuone,noinsert',
@@ -372,10 +412,10 @@ return {
         mapping = cmp.mapping.preset.insert {
           ['<C-j>'] = cmp.mapping.select_next_item(),
           ['<C-k>'] = cmp.mapping.select_prev_item(),
-          -- Accept ([y]es) the completion.
+          -- Accept the completion.
           --  This will auto-import if your LSP supports it.
           --  This will expand snippets if the LSP sent a snippet.
-          ['<C-y>'] = cmp.mapping.confirm { select = true },
+          ['<C-l>'] = cmp.mapping.confirm { select = true },
 
           -- Manually trigger a completion from nvim-cmp.
           --  Generally you don't need this, because nvim-cmp will display
@@ -390,28 +430,45 @@ return {
           --
           -- <c-l> will move you to the right of each of the expansion locations.
           -- <c-h> is similar, except moving you backwards.
-          ['<C-l>'] = cmp.mapping(function()
-            if luasnip.expand_or_locally_jumpable() then
-              luasnip.expand_or_jump()
-            end
-          end, { 'i', 's' }),
-          ['<C-h>'] = cmp.mapping(function()
-            if luasnip.locally_jumpable(-1) then
-              luasnip.jump(-1)
-            end
-          end, { 'i', 's' }),
+          -- ['<C-l>'] = cmp.mapping(function()
+          --   if luasnip.expand_or_locally_jumpable() then
+          --     luasnip.expand_or_jump()
+          --   end
+          -- end, { 'i', 's' }),
+          -- ['<C-h>'] = cmp.mapping(function()
+          --   if luasnip.locally_jumpable(-1) then
+          --     luasnip.jump(-1)
+          --   end
+          -- end, { 'i', 's' }),
         },
 
-        sources = {
+        sources = cmp.config.sources {
           { name = 'nvim_lsp' },
-          { name = 'luasnip' },
           { name = 'path' },
+          { name = 'crates' },
         },
       }
     end,
   },
   -- Highlight todo, notes, etc in comments
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  {
+    'folke/todo-comments.nvim',
+    event = 'VimEnter',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = {
+
+      -- signs = false,
+      keywords = {
+        FIX = { icon = '', alt = { 'FIXME', 'BUG', 'FIXIT', 'ISSUE', '' } },
+        TODO = { icon = ' ' },
+        HACK = { icon = ' ' },
+        WARN = { icon = ' ', alt = { 'WARNING', 'XXX' } },
+        PERF = { icon = ' ', alt = { 'OPTIM', 'PERFORMANCE', 'OPTIMIZE' } },
+        NOTE = { icon = ' ', alt = { 'INFO' } },
+        TEST = { icon = '⏲ ', alt = { 'TESTING', 'PASSED', 'FAILED' } },
+      },
+    },
+  },
 
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
