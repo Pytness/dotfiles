@@ -223,7 +223,7 @@ return {
         -- gopls = {},
         pyright = {},
         rust_analyzer = {
-          cmd = { home_dir .. '/.cargo/bin/ra-multiplex' },
+          -- cmd = { home_dir .. '/.cargo/bin/ra-multiplex' },
           settings = {
             ['rust-analyzer'] = {
               checkOnSave = {
@@ -530,5 +530,11 @@ return {
       --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
       --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     end,
+  },
+  {
+    'Pytness/hyprland-vim-syntax',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    branch = 'fix-comments-in-paths',
+    ft = 'hypr',
   },
 }
