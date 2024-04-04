@@ -67,7 +67,7 @@ vim.keymap.set('n', '<leader>lj', vim.diagnostic.goto_next, { desc = 'Go to next
 
 vim.keymap.set('n', '<leader>le', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>lq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-vim.keymap.set('n', '<leader>lR', telescope_builtin.lsp_references, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>lR', telescope_builtin.lsp_references, { desc = '[R]eferences' })
 
 -- Search keymaps
 vim.keymap.set('n', '<leader>sh', telescope_builtin.help_tags, { desc = '[S]earch [H]elp' })
@@ -81,6 +81,7 @@ vim.keymap.set('n', '<leader>sb', telescope_builtin.buffers, { desc = '[ ] Find 
 
 local todo_keywords = 'FIX,BUG,ISSUE,TODO,HACK,WARN,WARNING,XXX,NOTE,INFO,PERF,OPTIM,PERFORMANCE,OPTIMIZE,TEST'
 vim.keymap.set('n', '<leader>st', '<cmd>TodoTelescope keywords=' .. todo_keywords .. '<cr>', { desc = '[T]odo' })
+vim.keymap.set('n', '<leader>sp', '<cmd>Telescope persisted<cr>', { desc = '[P]rojects' })
 
 -- Search current word under cursor
 -- vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
