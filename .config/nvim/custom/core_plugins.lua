@@ -497,7 +497,63 @@ return {
 
       local files = require 'mini.files'
 
+      local function close()
+        files.synchronize()
+        files.close()
+      end
+
+      local show_dotfiles = false
+      local show_gitignored = false
+
+      local is_dotfile = function(fs_entry)
+        return vim.startswith(fs_entry.name, '.')
+      end
+
+      local is_gitignored = function(fs_entry)
+        local output = vim.fn.systemlist('git check-ignore ' .. fs_entry.path)
+
+        return #output ~= 0
+      end
+
+      local function file_filter(fs_entry)
+        if not show_dotfiles and is_dotfile(fs_entry) then
+          return false
+        end
+
+        if not show_gitignored and is_gitignored(fs_entry) then
+          return false
+        end
+
+        return true
+      end
+
+      local toggle_show_dotfiles = function()
+        show_dotfiles = not show_dotfiles
+        files.refresh {
+          content = {
+            filter = file_filter,
+          },
+        }
+      end
+
+      local toggle_show_gitignored = function()
+        show_gitignored = not show_gitignored
+        files.refresh {
+          content = {
+            filter = file_filter,
+          },
+        }
+      end
+
+      vim.keymap.set('n', 'q', close)
+      vim.keymap.set('n', '<Esc>', close)
+      vim.keymap.set('n', 'H', toggle_show_gitignored)
+      vim.keymap.set('n', '.', toggle_show_dotfiles)
+
       files.setup {
+        content = {
+          filter = file_filter,
+        },
         mappings = {
           close = 'q',
           go_in = '',
@@ -512,32 +568,6 @@ return {
           trim_right = '>',
         },
       }
-
-      local function close()
-        files.synchronize()
-        files.close()
-      end
-
-      local show_dotfiles = true
-      local filter_show = function(fs_entry)
-        return true
-      end
-
-      local filter_hide = function(fs_entry)
-        return not vim.startswith(fs_entry.name, '.')
-      end
-
-      local toggle_dotfiles = function()
-        show_dotfiles = not show_dotfiles
-        local new_filter = show_dotfiles and filter_show or filter_hide
-        files.refresh {
-          content = { filter = new_filter },
-        }
-      end
-
-      vim.keymap.set('n', 'q', close)
-      vim.keymap.set('n', '<Esc>', close)
-      vim.keymap.set('n', 'H', toggle_dotfiles)
 
       -- You can configure sections in the statusline by overriding their
       -- default behavior. For example, here we set the section for
