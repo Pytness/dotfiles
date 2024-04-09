@@ -498,20 +498,18 @@ return {
 
       local files = require 'mini.files'
 
-      local is_open = false
-
       local function close()
-        is_open = false
         files.synchronize()
         files.close()
       end
 
       local function toggle()
+        local is_open = files.get_target_window() ~= nil
+
         if not is_open then
-          is_open = true
           files.open()
         else
-          is_open = false
+          -- Synchronize the files without acceping changes
           no_confirm_execute(0, files.synchronize)
           files.close()
         end
@@ -562,10 +560,24 @@ return {
         }
       end
 
+      local synchronize = function()
+        -- Synchronize the files acceping changes
+        no_confirm_execute(1, files.synchronize)
+
+        files.refresh {
+          content = {
+            force_update = true,
+          },
+        }
+
+        print 'Files synchronized!'
+      end
+
       vim.keymap.set('n', 'q', close)
       vim.keymap.set('n', '<Esc>', close)
       vim.keymap.set('n', 'H', toggle_show_gitignored)
       vim.keymap.set('n', '.', toggle_show_dotfiles)
+      vim.keymap.set('n', '=', synchronize)
 
       files.setup {
         content = {
@@ -580,7 +592,7 @@ return {
           reset = '<BS>',
           reveal_cwd = '@',
           show_help = 'g?',
-          synchronize = '=',
+          synchronize = '',
           trim_left = '<',
           trim_right = '>',
         },
