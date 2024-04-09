@@ -501,19 +501,19 @@ return {
       local is_open = false
 
       local function close()
+        is_open = false
         files.synchronize()
         files.close()
       end
 
       local function toggle()
         if not is_open then
-          files.open()
           is_open = true
+          files.open()
         else
+          is_open = false
           no_confirm_execute(0, files.synchronize)
           files.close()
-
-          is_open = false
         end
       end
 
