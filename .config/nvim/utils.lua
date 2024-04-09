@@ -7,3 +7,16 @@ function merge_arrays(...)
   end
   return result
 end
+
+-- Execute a function skipin vim.fn.confirm
+function no_confirm_execute(confirm_value, func)
+  local old_confirm = vim.fn.confirm
+
+  vim.fn.confirm = function(_, _, _)
+    return confirm_value
+  end
+
+  func()
+
+  vim.fn.confirm = old_confirm
+end
