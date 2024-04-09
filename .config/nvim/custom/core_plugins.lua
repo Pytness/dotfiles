@@ -1,3 +1,4 @@
+local utils = require 'utils'
 return {
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   -- Code commenting ccommands
@@ -497,10 +498,26 @@ return {
 
       local files = require 'mini.files'
 
+      local is_open = false
+
       local function close()
         files.synchronize()
         files.close()
       end
+
+      local function toggle()
+        if not is_open then
+          files.open()
+          is_open = true
+        else
+          no_confirm_execute(0, files.synchronize)
+          files.close()
+
+          is_open = false
+        end
+      end
+
+      files.toggle = toggle
 
       local show_dotfiles = false
       local show_gitignored = false
