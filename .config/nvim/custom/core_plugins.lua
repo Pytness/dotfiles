@@ -495,6 +495,50 @@ return {
       local statusline = require 'mini.statusline'
       statusline.setup()
 
+      local files = require 'mini.files'
+
+      files.setup {
+        mappings = {
+          close = 'q',
+          go_in = '',
+          go_in_plus = 'l',
+          go_out = '',
+          go_out_plus = 'h',
+          reset = '<BS>',
+          reveal_cwd = '@',
+          show_help = 'g?',
+          synchronize = '=',
+          trim_left = '<',
+          trim_right = '>',
+        },
+      }
+
+      local function close()
+        files.synchronize()
+        files.close()
+      end
+
+      local show_dotfiles = true
+      local filter_show = function(fs_entry)
+        return true
+      end
+
+      local filter_hide = function(fs_entry)
+        return not vim.startswith(fs_entry.name, '.')
+      end
+
+      local toggle_dotfiles = function()
+        show_dotfiles = not show_dotfiles
+        local new_filter = show_dotfiles and filter_show or filter_hide
+        files.refresh {
+          content = { filter = new_filter },
+        }
+      end
+
+      vim.keymap.set('n', 'q', close)
+      vim.keymap.set('n', '<Esc>', close)
+      vim.keymap.set('n', 'H', toggle_dotfiles)
+
       -- You can configure sections in the statusline by overriding their
       -- default behavior. For example, here we set the section for
       -- cursor location to LINE:COLUMN
