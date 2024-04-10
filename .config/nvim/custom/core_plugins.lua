@@ -498,24 +498,23 @@ return {
 
       local files = require 'mini.files'
 
-      local function close()
-        files.synchronize()
+      local function is_open()
+        return files.get_target_window() ~= nil
+      end
+
+      local function close_without_sync()
+        -- Synchronize the files without acceping changes
+        no_confirm_execute(0, files.synchronize)
         files.close()
       end
 
-      local function toggle()
-        local is_open = files.get_target_window() ~= nil
-
-        if not is_open then
-          files.open()
-        else
-          -- Synchronize the files without acceping changes
-          no_confirm_execute(0, files.synchronize)
-          files.close()
-        end
+      local function force_refresh()
+        files.refresh {
+          content = {
+            force_update = true,
+          },
+        }
       end
-
-      files.toggle = toggle
 
       local show_dotfiles = false
       local show_gitignored = false
@@ -544,45 +543,64 @@ return {
 
       local toggle_show_dotfiles = function()
         show_dotfiles = not show_dotfiles
-        files.refresh {
-          content = {
-            filter = file_filter,
-          },
-        }
+        force_refresh()
       end
 
       local toggle_show_gitignored = function()
         show_gitignored = not show_gitignored
-        files.refresh {
-          content = {
-            filter = file_filter,
-          },
-        }
+        force_refresh()
       end
 
       local synchronize = function()
+        -- INFO: Check if the window is open just in case
+        if not is_open() then
+          return
+        end
+
         -- Synchronize the files acceping changes
         no_confirm_execute(1, files.synchronize)
-
-        files.refresh {
-          content = {
-            force_update = true,
-          },
-        }
+        force_refresh()
 
         print 'Files synchronized!'
       end
 
-      vim.keymap.set('n', 'q', close)
-      vim.keymap.set('n', '<Esc>', close)
-      vim.keymap.set('n', 'H', toggle_show_gitignored)
-      vim.keymap.set('n', '.', toggle_show_dotfiles)
-      vim.keymap.set('n', '=', synchronize)
+      local key_mappings = {
+        { 'n', 'q', close_without_sync, 'Close' },
+        { 'n', '<Esc>', close_without_sync, 'Close' },
+        { 'n', 'H', toggle_show_gitignored, 'Toggle gitignored' },
+        { 'n', '.', toggle_show_dotfiles, 'Toggle dotfiles' },
+        { 'n', '=', synchronize, 'Synchronize' },
+      }
+
+      local function buffer_make_mappings(buffer_id, mappings)
+        local function buffer_map(mode, key, func, desc)
+          -- Use `nowait` to account for non-buffer mappings starting with `lhs`
+          vim.keymap.set(mode, key, func, { buffer = buffer_id, desc = desc, nowait = true })
+        end
+
+        for _, keymap in ipairs(mappings) do
+          buffer_map(unpack(keymap))
+        end
+      end
+
+      local function toggle()
+        if not is_open() then
+          files.open()
+
+          local buffer_id = vim.api.nvim_get_current_buf()
+          buffer_make_mappings(buffer_id, key_mappings)
+        else
+          close_without_sync()
+        end
+      end
+
+      files.toggle = toggle
 
       files.setup {
         content = {
           filter = file_filter,
         },
+
         mappings = {
           close = 'q',
           go_in = '',
@@ -598,16 +616,9 @@ return {
         },
       }
 
-      -- You can configure sections in the statusline by overriding their
-      -- default behavior. For example, here we set the section for
-      -- cursor location to LINE:COLUMN
-      ---@diagnostic disable-next-line: duplicate-set-field
       statusline.section_location = function()
         return '%2l:%-2v %P'
       end
-
-      -- ... and there is more!
-      --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
 
