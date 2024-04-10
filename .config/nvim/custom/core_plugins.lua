@@ -552,11 +552,6 @@ return {
       end
 
       local synchronize = function()
-        -- INFO: Check if the window is open just in case
-        if not is_open() then
-          return
-        end
-
         -- Synchronize the files acceping changes
         no_confirm_execute(1, files.synchronize)
         force_refresh()
