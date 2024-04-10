@@ -72,7 +72,6 @@ end
 
 local key_mappings = {
   { 'n', 'q', close_without_sync, 'Close' },
-  { 'n', '<Esc>', close_without_sync, 'Close' },
   { 'n', 'H', toggle_show_gitignored, 'Toggle gitignored' },
   { 'n', '.', toggle_show_dotfiles, 'Toggle dotfiles' },
   { 'n', '<leader>w', synchronize, 'Synchronize' },
