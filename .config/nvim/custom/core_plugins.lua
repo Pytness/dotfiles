@@ -574,7 +574,7 @@ return {
 
       local function buffer_make_mappings(buffer_id, mappings)
         local function buffer_map(mode, key, func, desc)
-          -- Use `nowait` to account for non-buffer mappings starting with `lhs`
+          -- Use `nowait` to account for non-buffer mappings starting with `key`
           vim.keymap.set(mode, key, func, { buffer = buffer_id, desc = desc, nowait = true })
         end
 
