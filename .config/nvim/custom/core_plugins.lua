@@ -496,6 +496,10 @@ return {
       local statusline = require 'mini.statusline'
       statusline.setup()
 
+      statusline.section_location = function()
+        return '%2l:%-2v %P'
+      end
+
       local files = require 'mini.files'
 
       local function is_open()
@@ -610,10 +614,6 @@ return {
           trim_right = '>',
         },
       }
-
-      statusline.section_location = function()
-        return '%2l:%-2v %P'
-      end
     end,
   },
 
