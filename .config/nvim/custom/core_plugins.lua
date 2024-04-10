@@ -564,7 +564,7 @@ return {
         { 'n', '<Esc>', close_without_sync, 'Close' },
         { 'n', 'H', toggle_show_gitignored, 'Toggle gitignored' },
         { 'n', '.', toggle_show_dotfiles, 'Toggle dotfiles' },
-        { 'n', '=', synchronize, 'Synchronize' },
+        { 'n', '<leader>w', synchronize, 'Synchronize' },
       }
 
       local function buffer_make_mappings(buffer_id, mappings)
