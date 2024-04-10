@@ -1,4 +1,4 @@
-local utils = require 'utils'
+require 'utils'
 return {
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   -- Code commenting ccommands
