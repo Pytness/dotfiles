@@ -30,3 +30,5 @@ require 'custom.keybinds.navigation'
 require 'custom.keybinds.lsp'
 
 require 'custom.keybinds.search'
+
+require 'custom.keybinds.zen'

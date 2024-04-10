@@ -128,4 +128,27 @@ return {
       end, {})
     end,
   },
+  {
+    'Pocco81/true-zen.nvim',
+    config = function()
+      require('true-zen').setup {
+        modes = {
+          narrow = {
+            --- change the style of the fold lines. Set it to:
+            --- `informative`: to get nice pre-baked folds
+            --- `invisible`: hide them
+            --- function() end: pass a custom func with your fold lines. See :h foldtext
+            folds_style = 'invisible',
+            run_ataraxis = true, -- display narrowed text in a Ataraxis session
+            callbacks = { -- run functions when opening/closing Narrow mode
+              open_pre = nil,
+              open_pos = nil,
+              close_pre = nil,
+              close_pos = nil,
+            },
+          },
+        },
+      }
+    end,
+  },
 }
