@@ -79,7 +79,15 @@ if not vim.loop.fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup(require 'plugins')
+require 'utils'
+
+local plugins = merge_arrays {
+  require 'custom.core_plugins',
+  require 'custom.plugins',
+  require 'custom.theme',
+}
+
+require('lazy').setup(plugins)
 require 'custom.keybinds'
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
