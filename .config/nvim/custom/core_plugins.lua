@@ -585,15 +585,19 @@ return {
       local function toggle()
         if not is_open() then
           files.open()
-
-          local buffer_id = vim.api.nvim_get_current_buf()
-          buffer_make_mappings(buffer_id, key_mappings)
         else
           close_without_sync()
         end
       end
-
       files.toggle = toggle
+
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'MiniFilesBufferCreate',
+        callback = function(args)
+          local buffer_id = args.data.buf_id
+          buffer_make_mappings(buffer_id, key_mappings)
+        end,
+      })
 
       files.setup {
         content = {
