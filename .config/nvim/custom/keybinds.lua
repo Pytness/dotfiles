@@ -9,6 +9,19 @@ vim.keymap.set('v', '<leader>/', '<Plug>(comment_toggle_linewise_visual)', { des
 vim.keymap.set('n', '<leader>/', '<Plug>(comment_toggle_linewise_current)', { desc = 'Comment line' })
 vim.keymap.set('n', '<leader>sc', '<cmd>Telescope colorscheme<cr>', { desc = 'Select coloscheme' })
 
+-- Git
+local gittools = require 'custom.gittools'
+
+-- git restore current file and reload it
+local function restore_current_file()
+  local current_file = vim.api.nvim_buf_get_name(0)
+  gittools.restore_file(current_file)
+
+  vim.cmd 'edit!'
+end
+
+vim.keymap.set('n', '<leader>gr', restore_current_file, { desc = 'Restore current file' })
+
 -- Stay in Visual when indenting
 vim.keymap.set('v', '>', '>gv')
 vim.keymap.set('v', '<', '<gv')

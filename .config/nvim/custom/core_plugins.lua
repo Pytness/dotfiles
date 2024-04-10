@@ -35,6 +35,7 @@ return {
         ['<leader>n'] = { name = '[n]eovim', _ = 'which_key_ignore' },
         ['<leader>l'] = { name = '[l]sp', _ = 'which_key_ignore' },
         ['<leader>C'] = { name = '[C]argo', _ = 'which_key_ignore' },
+        ['<leader>g'] = { name = '[g]it', _ = 'which_key_ignore' },
       }
     end,
   },
