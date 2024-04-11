@@ -91,10 +91,10 @@ fi
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export GOBIN=$HOME/.local/bin/
 
-alias vim=lvim
-export EDITOR=lvim
-export SUDO_EDITOR=lvim
-export VISUAL=lvim
+alias vim=nvim
+export EDITOR=nvim
+export SUDO_EDITOR=nvim
+export VISUAL=nvim
 
 # disable less behaviour of git related output
 export LESS=-FRX

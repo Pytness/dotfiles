@@ -1,5 +1,5 @@
 # shortcut for vim
-alias v='vim'
+alias v='nvim'
 
 # enable color support of ls and also add handy aliases
 
@@ -39,5 +39,5 @@ function git() {
     fi
 }
 
-alias wezconf='vim /mnt/c/Users/ffvc/.wezterm.lua'
+alias wezconf='nvim /mnt/c/Users/ffvc/.wezterm.lua'
 
