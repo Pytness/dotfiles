@@ -276,6 +276,8 @@ export PATH=/usr/lib/cuda/bin:$HOME/.local/bin:$PATH
 # eval "`fnm env`"
 
 eval `ssh-agent -s` >> /dev/null
+export GPG_TTY=$TTY
+# echo $GPG_TTY
 
 
 # export RUSTC_WRAPPER=sccache cargo install
