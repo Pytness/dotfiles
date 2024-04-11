@@ -1,8 +1,16 @@
 local telescope_builtin = require 'telescope.builtin'
 
+local function find_files_glob()
+  telescope_builtin.find_files {
+    find_command = { 'fd', '--type', 'file', '--hidden', '--exclude', '.git', '--glob' },
+    prompt_title = 'Live Files glob',
+  }
+end
+
 vim.keymap.set('n', '<leader>sh', telescope_builtin.help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sk', telescope_builtin.keymaps, { desc = '[S]earch [K]eymaps' })
 vim.keymap.set('n', '<leader>sf', telescope_builtin.find_files, { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<leader>sF', find_files_glob, { desc = '[S]earch [F]iles glob' })
 vim.keymap.set('n', '<leader>ss', telescope_builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
 vim.keymap.set('n', '<leader>sg', telescope_builtin.live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', telescope_builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
