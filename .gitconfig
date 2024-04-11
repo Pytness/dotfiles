@@ -10,5 +10,3 @@
 [core]
 	autocrlf = input
 	safecrlf = false
-[status]
-	showUntrackedFiles = no

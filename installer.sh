@@ -57,7 +57,10 @@ bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/
 git init
 git remote add origin https://github.com/Pytness/dotfiles.git
 git reset --hard HEAD
-git config --global status.showUntrackedFiles no
+
+
+git config status.showUntrackedFiles no
+git update-index --assume-unchanged .gitprofile
 
 
 sudo chsh $USER -s /bin/zsh
