@@ -1,7 +1,17 @@
 local home_dir = os.getenv 'HOME'
-package.path = home_dir .. '/.config/nvim/?.lua;' .. package.path
+local nvim_dir = home_dir .. '/.config/nvim/'
+
+package.path = nvim_dir .. '?.lua;' .. package.path
+package.path = nvim_dir .. '?/?.lua;' .. package.path
+package.path = nvim_dir .. '?/init.lua;' .. package.path
 
 require 'utils'
+local libs = require 'libs'
+
+local string = libs.string
+local utf8 = libs.utf8
+
+-- local string = libs.string
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -20,7 +30,52 @@ vim.opt.showmode = false
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
+--
+--
 vim.opt.clipboard = 'unnamedplus'
+
+local function yank_to_clipboard(lines)
+  local text = table.concat(lines, '\r\n')
+  vim.fn.system('win32yank -i --crlf', text)
+end
+
+local function paste_to_clipboard()
+  local text = vim.fn.system 'win32yank -o --lf'
+  return text:split '\n'
+end
+
+if vim.fn.has 'wsl' == 1 then
+  vim.g.clipboard = {
+    name = 'win32yank-wsl',
+
+    copy = {
+      -- ['+'] = 'win32yank -i --crlf',
+      -- ['*'] = 'win32yank -i --crlf',
+      ['+'] = yank_to_clipboard,
+      ['*'] = yank_to_clipboard,
+    },
+
+    paste = {
+      -- ['+'] = 'win32yank -o --lf',
+      -- ['*'] = 'win32yank -o --lf',
+      ['+'] = paste_to_clipboard,
+      ['*'] = paste_to_clipboard,
+    },
+
+    cache_enabled = false,
+  }
+end
+
+if vim.fn.has 'wsl' == 1 then
+  vim.api.nvim_create_autocmd('TextYankPost', {
+
+    group = vim.api.nvim_create_augroup('Yank', { clear = true }),
+
+    callback = function()
+      vim.fn.system('clip.exe', vim.fn.getreg '"')
+    end,
+  })
+end
 
 vim.opt.breakindent = true
 vim.opt.undofile = true
@@ -88,6 +143,7 @@ local plugins = merge_arrays {
 }
 
 require('lazy').setup(plugins)
+
 require 'custom.keybinds'
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

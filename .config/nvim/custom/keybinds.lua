@@ -1,3 +1,15 @@
+-- " " Copy to clipboard
+vim.cmd 'vnoremap  y  "+y'
+vim.cmd 'nnoremap  Y  "+yg_'
+vim.cmd 'nnoremap  y  "+y'
+vim.cmd 'nnoremap  yy  "+yy'
+
+-- " " P'aste from clipboard
+vim.cmd 'nnoremap p "+p'
+vim.cmd 'nnoremap P "+P'
+vim.cmd 'vnoremap p "+p'
+vim.cmd 'vnoremap P "+P'
+
 vim.keymap.set('n', '<leader>h', '<cmd>nohlsearch<CR>', { desc = 'Clear highlight' })
 
 vim.keymap.set('n', '<leader>q', '<cmd>confirm q<cr>', { desc = ':q' })
