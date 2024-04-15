@@ -130,4 +130,7 @@ return {
       }
     end,
   },
+  { -- Ascii box drawing
+    'jbyuki/venn.nvim',
+  },
 }
