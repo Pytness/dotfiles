@@ -1,0 +1,3 @@
+[submodule ".config/nvim/libs/utf8"]
+	path = .config/nvim/libs/utf8
+	url = https://github.com/Stepets/utf8.lua.git
