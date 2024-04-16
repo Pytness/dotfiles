@@ -7,3 +7,5 @@ vim.keymap.set('n', '<leader>lj', vim.diagnostic.goto_next, { desc = 'Go to next
 vim.keymap.set('n', '<leader>le', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>lq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 vim.keymap.set('n', '<leader>lR', telescope_builtin.lsp_references, { desc = '[R]eferences' })
+
+vim.keymap.set('n', '<leader>lC', '<cmd>Copilot toggle<cr>', { desc = '[R]eferences' })
