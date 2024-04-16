@@ -72,6 +72,10 @@ local function synchronize()
 
   print 'Files synchronized!'
 end
+local function trim_all()
+  files.trim_left()
+  files.trim_right()
+end
 
 local function set_target_as_cwd()
   local entry = files.get_fs_entry()
@@ -85,7 +89,7 @@ local function set_target_as_cwd()
     print('Set ' .. entry.path .. ' as cwd')
 
     files.go_in {}
-    files.trim_left()
+    trim_all()
 
     force_refresh()
   end
@@ -93,7 +97,7 @@ end
 
 local function set_parent_as_cwd()
   files.go_out()
-  files.trim_right()
+  trim_all()
 
   local entry = files.get_fs_entry()
 
