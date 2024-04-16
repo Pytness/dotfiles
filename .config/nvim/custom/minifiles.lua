@@ -35,9 +35,12 @@ local is_dotfile = function(fs_entry)
 end
 
 local is_gitignored = function(fs_entry)
-  local output = vim.fn.systemlist('git check-ignore ' .. fs_entry.path)
+  local path = fs_entry.path
+  local parent_path = vim.fn.fnamemodify(path, ':h')
 
-  return #output ~= 0
+  local output = vim.fn.systemlist('git -C ' .. parent_path .. ' check-ignore ' .. fs_entry.path)
+
+  return #output > 0
 end
 
 local function file_filter(fs_entry)
