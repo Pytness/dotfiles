@@ -33,49 +33,7 @@ vim.opt.showmode = false
 --
 --
 vim.opt.clipboard = 'unnamedplus'
-
-local function yank_to_clipboard(lines)
-  local text = table.concat(lines, '\r\n')
-  vim.fn.system('win32yank -i --crlf', text)
-end
-
-local function paste_to_clipboard()
-  local text = vim.fn.system 'win32yank -o --lf'
-  return text:split '\n'
-end
-
-if vim.fn.has 'wsl' == 1 then
-  vim.g.clipboard = {
-    name = 'win32yank-wsl',
-
-    copy = {
-      -- ['+'] = 'win32yank -i --crlf',
-      -- ['*'] = 'win32yank -i --crlf',
-      ['+'] = yank_to_clipboard,
-      ['*'] = yank_to_clipboard,
-    },
-
-    paste = {
-      -- ['+'] = 'win32yank -o --lf',
-      -- ['*'] = 'win32yank -o --lf',
-      ['+'] = paste_to_clipboard,
-      ['*'] = paste_to_clipboard,
-    },
-
-    cache_enabled = false,
-  }
-end
-
-if vim.fn.has 'wsl' == 1 then
-  vim.api.nvim_create_autocmd('TextYankPost', {
-
-    group = vim.api.nvim_create_augroup('Yank', { clear = true }),
-
-    callback = function()
-      vim.fn.system('clip.exe', vim.fn.getreg '"')
-    end,
-  })
-end
+require 'clipboard'
 
 vim.opt.breakindent = true
 vim.opt.undofile = true
