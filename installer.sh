@@ -62,6 +62,8 @@ git reset --hard HEAD
 git config status.showUntrackedFiles no
 git update-index --assume-unchanged .gitprofile
 
+git submodule update --init --recursive
+
 
 sudo chsh $USER -s /bin/zsh
 
