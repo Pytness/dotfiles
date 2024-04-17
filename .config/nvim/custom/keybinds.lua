@@ -33,6 +33,8 @@ require 'custom.keybinds.git'
 
 require 'custom.keybinds.movement'
 
+require 'custom.keybinds.misc'
+
 require 'custom.keybinds.cargo'
 
 require 'custom.keybinds.neovim'

@@ -117,7 +117,6 @@ local key_mappings = {
   { 'n', 'H', toggle_show_gitignored, 'Toggle gitignored' },
   { 'n', '.', toggle_show_dotfiles, 'Toggle dotfiles' },
   { 'n', '<leader>w', synchronize, 'Synchronize' },
-  { 'n', '=', synchronize, 'Synchronize' },
   { 'n', ']', set_target_as_cwd, 'Target as cwd' },
   { 'n', 't', set_parent_as_cwd, 'Target parent as cwd' },
 }
@@ -157,7 +156,7 @@ files.setup {
     trim_right = '>',
 
     -- Disable default mappings
-    synchronize = '',
+    synchronize = '=',
     go_in = '',
     go_out = '',
   },

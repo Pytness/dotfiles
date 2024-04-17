@@ -94,6 +94,9 @@ vim.opt.rtp:prepend(lazypath)
 
 require 'utils'
 
+-- HACK: Must be set before loading plugins
+vim.g.lightspeed_no_default_keymaps = 1
+
 local plugins = merge_arrays {
   require 'custom.core_plugins',
   require 'custom.plugins',
