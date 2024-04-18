@@ -37,7 +37,35 @@ return {
   --     }
   --   end,
   -- },
-  { 'ggandor/leap.nvim', opts = {} },
+  {
+    'ggandor/leap.nvim',
+    config = function()
+      -- The below settings make Leap's highlighting closer to what you've been
+      -- used to in Lightspeed.
+
+      vim.api.nvim_set_hl(0, 'LeapBackdrop', { link = 'Comment' }) -- or some grey
+      vim.api.nvim_set_hl(0, 'LeapMatch', {
+        -- For light themes, set to 'black' or similar.
+        fg = 'white',
+        bold = true,
+        nocombine = true,
+      })
+
+      vim.api.nvim_set_hl(0, 'LeapLabelPrimary', {
+        fg = 'white',
+        bg = '#ff2f87',
+        bold = false,
+        nocombine = true,
+      })
+
+      vim.api.nvim_set_hl(0, 'LeapLabelSecondary', {
+        fg = 'black',
+        bg = '#99ddff',
+        bold = false,
+        nocombine = true,
+      })
+    end,
+  },
   {
     'ggandor/flit.nvim',
     config = function()
