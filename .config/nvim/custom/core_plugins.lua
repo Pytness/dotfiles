@@ -541,6 +541,10 @@ return {
         },
       }
 
+      require('mini.bracketed').setup {
+        treesitter = { suffix = 't', options = {} },
+      }
+
       statusline.section_location = function()
         return '%2l:%-2v %P'
       end
