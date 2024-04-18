@@ -28,6 +28,7 @@ return {
     -- Improves buffer deletion
     'ojroques/nvim-bufdel',
   },
+
   -- {
   --   -- Add fast motions for the whole buffer
   --   'ggandor/lightspeed.nvim',
@@ -52,15 +53,15 @@ return {
       })
 
       vim.api.nvim_set_hl(0, 'LeapLabelPrimary', {
-        fg = 'white',
-        bg = '#ff2f87',
+        -- fg = 'white',
+        fg = '#ff2f87',
         bold = false,
         nocombine = true,
       })
 
       vim.api.nvim_set_hl(0, 'LeapLabelSecondary', {
-        fg = 'black',
-        bg = '#99ddff',
+        -- fg = 'black',
+        fg = '#99ddff',
         bold = false,
         nocombine = true,
       })
