@@ -188,4 +188,10 @@ return {
       vim.fn['mkdp#util#install']()
     end,
   },
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    opts = {
+      after = 'nvim-treesitter',
+    },
+  },
 }
