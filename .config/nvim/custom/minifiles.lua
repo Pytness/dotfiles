@@ -72,6 +72,7 @@ local function synchronize()
 
   print 'Files synchronized!'
 end
+
 local function trim_all()
   files.trim_left()
   files.trim_right()
@@ -84,13 +85,23 @@ local function set_target_as_cwd()
     return
   end
 
-  if entry.fs_type == 'directory' then
-    vim.api.nvim_set_current_dir(entry.path)
-    print('Set ' .. entry.path .. ' as cwd')
+  local is_file = entry.fs_type == 'file'
+  local is_dir = entry.fs_type == 'directory'
 
+  local current_dir = nil
+
+  if is_file then
+    current_dir = vim.fn.fnamemodify(entry.path, ':h')
+  elseif is_dir then
+    current_dir = entry.path
     files.go_in {}
-    trim_all()
+  end
 
+  if current_dir then
+    print('Set ' .. current_dir .. ' as cwd')
+    vim.api.nvim_set_current_dir(current_dir)
+
+    trim_all()
     force_refresh()
   end
 end
@@ -114,11 +125,12 @@ end
 
 local key_mappings = {
   { 'n', 'q', close_without_sync, 'Close' },
-  { 'n', 'H', toggle_show_gitignored, 'Toggle gitignored' },
+  { 'n', ',', toggle_show_gitignored, 'Toggle gitignored' },
   { 'n', '.', toggle_show_dotfiles, 'Toggle dotfiles' },
   { 'n', '<leader>w', synchronize, 'Synchronize' },
-  { 'n', ']', set_target_as_cwd, 'Target as cwd' },
   { 'n', 't', set_parent_as_cwd, 'Target parent as cwd' },
+  { 'n', '[', set_parent_as_cwd, 'Target parent as cwd' },
+  { 'n', ']', set_target_as_cwd, 'Target as cwd' },
 }
 
 local function buffer_make_mappings(buffer_id, mappings)
@@ -147,8 +159,8 @@ files.setup {
 
   mappings = {
     close = 'q',
-    go_in_plus = 'l',
-    go_out_plus = 'h',
+    go_in_plus = 'L',
+    go_out_plus = 'H',
     reset = '<BS>',
     reveal_cwd = '@',
     show_help = 'g?',
