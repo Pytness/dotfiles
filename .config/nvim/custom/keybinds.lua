@@ -10,6 +10,10 @@ vim.cmd 'nnoremap P "+P'
 vim.cmd 'vnoremap p "+p'
 vim.cmd 'vnoremap P "+P'
 
+vim.keymap.set('i', 'jj', '<ESC>', { silent = true })
+vim.keymap.set('i', 'kk', '<ESC>', { silent = true })
+vim.keymap.set('i', 'kj', '<ESC>', { silent = true })
+
 vim.keymap.set('n', '<leader>h', '<cmd>nohlsearch<CR>', { desc = 'Clear highlight' })
 
 vim.keymap.set('n', '<leader>q', '<cmd>confirm q<cr>', { desc = ':q' })
