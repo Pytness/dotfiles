@@ -65,6 +65,10 @@ return {
         bold = false,
         nocombine = true,
       })
+
+      require('leap').setup {
+        labels = 'sfnjklhodweimbuyvrgtaqpcxz',
+      }
     end,
   },
   {
