@@ -36,6 +36,7 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 require 'custom.keybinds.git'
 
 require 'custom.keybinds.movement'
+require 'custom.keybinds.harpoon'
 
 require 'custom.keybinds.misc'
 

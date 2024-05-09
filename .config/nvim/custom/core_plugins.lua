@@ -32,6 +32,7 @@ return {
         ['<leader>d'] = { name = '[d]ocument', _ = 'which_key_ignore' },
         ['<leader>r'] = { name = '[r]ename', _ = 'which_key_ignore' },
         ['<leader>s'] = { name = '[s]earch', _ = 'which_key_ignore' },
+        ['<leader>h'] = { name = '[h]arpoon', _ = 'which_key_ignore' },
         ['<leader>n'] = { name = '[n]eovim', _ = 'which_key_ignore' },
         ['<leader>l'] = { name = '[l]sp', _ = 'which_key_ignore' },
         ['<leader>C'] = { name = '[C]argo', _ = 'which_key_ignore' },
