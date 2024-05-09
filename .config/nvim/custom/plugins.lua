@@ -67,6 +67,7 @@ return {
       })
 
       require('leap').setup {
+        safe_labels = 'sfnut/',
         labels = 'sfnjklhodweimbuyvrgtaqpcxz',
       }
     end,
