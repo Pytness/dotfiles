@@ -570,6 +570,9 @@ return {
         indent = { enable = true },
       }
 
+      -- Make nvim stfu about dock- wah wah wah
+      vim.treesitter.language.register('dockerfile', 'Dockerfile')
+
       -- There are additional nvim-treesitter modules that you can use to interact
       -- with nvim-treesitter. You should go explore a few and see what interests you:
       --
