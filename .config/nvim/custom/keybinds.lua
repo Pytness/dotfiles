@@ -15,6 +15,7 @@ vim.keymap.set('i', 'kk', '<ESC>', { silent = true })
 vim.keymap.set('i', 'kj', '<ESC>', { silent = true })
 
 vim.keymap.set('n', '<leader>h', '<cmd>nohlsearch<CR>', { desc = 'Clear highlight' })
+vim.keymap.set('n', '<leader>k', '<cmd>nohlsearch<CR>', { desc = 'Clear highlight' })
 
 vim.keymap.set('n', '<leader>q', '<cmd>confirm q<cr>', { desc = ':q' })
 vim.keymap.set('n', '<leader>Q', '<cmd>q!<cr>', { desc = ':q!' })
