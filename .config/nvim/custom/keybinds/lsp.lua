@@ -24,3 +24,7 @@ vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Hover Documentation' })
 -- WARN: This is not Goto Definition, this is Goto Declaration.
 --  For example, in C this would take you to the header
 vim.keymap.set('n', '<leader>ld', vim.lsp.buf.declaration, { desc = '[G]oto [D]eclaration' })
+
+vim.keymap.set('n', '<leader>lh', function()
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = 'Show inlay [H]ints' })

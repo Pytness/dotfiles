@@ -216,6 +216,7 @@ return {
           -- cmd = { home_dir .. '/.cargo/bin/ra-multiplex' },
           settings = {
             ['rust-analyzer'] = {
+
               checkOnSave = {
                 allFeatures = true,
                 command = 'clippy',
@@ -245,16 +246,76 @@ return {
                   enable = true,
                 },
               },
+              inlayHints = {
+                bindingModeHints = {
+                  enable = false,
+                },
+                chainingHints = {
+                  enable = true,
+                },
+                closingBraceHints = {
+                  enable = true,
+                  minLines = 25,
+                },
+                closureReturnTypeHints = {
+                  enable = 'never',
+                },
+                lifetimeElisionHints = {
+                  enable = 'never',
+                  useParameterNames = false,
+                },
+                maxLength = 25,
+                parameterHints = {
+                  enable = true,
+                },
+                reborrowHints = {
+                  enable = 'never',
+                },
+                renderColons = true,
+                typeHints = {
+                  enable = true,
+                  hideClosureInitialization = false,
+                  hideNamedConstructor = false,
+                },
+              },
             },
           },
         },
+
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        -- tsserver = {},
+        tsserver = {
+          settings = {
+            typescript = {
+              inlayHints = {
+                includeInlayParameterNameHints = 'all',
+                includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+              },
+            },
+            javascript = {
+              inlayHints = {
+                includeInlayParameterNameHints = 'all',
+                includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+              },
+            },
+          },
+        },
         --
 
         lua_ls = {
@@ -278,6 +339,7 @@ return {
               completion = {
                 callSnippet = 'Replace',
               },
+              hint = { enable = true },
               -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
               -- diagnostics = { disable = { 'missing-fields' } },
             },
@@ -335,7 +397,13 @@ return {
       },
     },
   },
-
+  {
+    'saecki/crates.nvim',
+    tag = 'stable',
+    config = function()
+      require('crates').setup()
+    end,
+  },
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
@@ -400,6 +468,7 @@ return {
 
         -- Please read `:help ins-completion`, it is really good!
         mapping = cmp.mapping.preset.insert {
+
           ['<C-j>'] = cmp.mapping.select_next_item(),
           ['<C-k>'] = cmp.mapping.select_prev_item(),
           -- Accept the completion.
@@ -438,6 +507,13 @@ return {
           { name = 'crates' },
         },
       }
+
+      cmp.setup.filetype({ 'sql' }, {
+        sources = {
+          { name = 'vim-dadbod-completion' },
+          { name = 'buffer' },
+        },
+      })
     end,
   },
   -- Highlight todo, notes, etc in comments
