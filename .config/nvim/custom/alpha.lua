@@ -2,8 +2,11 @@ local alpha = require 'alpha'
 local dashboard = require 'alpha.themes.dashboard'
 local button = dashboard.button
 
+local version = vim.version()
+local nvim_version_info = 'v' .. version.major .. '.' .. version.minor .. '.' .. version.patch
+
 dashboard.section.header.val = {
-  'NEOVIM',
+  'NEOVIM' .. '    ' .. nvim_version_info,
 }
 
 dashboard.section.buttons.val = {
@@ -17,13 +20,11 @@ dashboard.section.buttons.val = {
 
 local function footer()
   local datetime = os.date ' %d/%m/%Y   %H:%M:%S'
-  local version = vim.version()
-  local nvim_version_info = ' v' .. version.major .. '.' .. version.minor .. '.' .. version.patch
 
   local text_table = {
-    datetime .. '   ' .. nvim_version_info,
+    datetime,
+    'Pytness',
   }
-  table.insert(text_table, 'Pytness')
 
   return {
     type = 'text',
@@ -38,8 +39,9 @@ end
 dashboard.config.layout = {
   { type = 'padding', val = 3 },
   dashboard.section.header,
-  { type = 'padding', val = 1 },
+  { type = 'padding', val = 2 },
   dashboard.section.buttons,
+  { type = 'padding', val = 1 },
   footer(),
 }
 
