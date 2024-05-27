@@ -5,4 +5,4 @@ vim.keymap.set('n', '<leader>nC', '<cmd>cd ' .. config_path .. '<cr>', { desc = 
 
 vim.keymap.set('n', '<leader>ns', '<cmd>Lazy sync<cr>', { desc = 'Lazy sync' })
 vim.keymap.set('n', '<leader>nu', '<cmd>Lazy update<cr>', { desc = 'Lazy update' })
-vim.keymap.set('n', '<leader>nr', '<cmd>so<cr>', { desc = 'Re source init.lua' })
+vim.keymap.set('n', '<leader>nr', '<cmd>source $MYVIMRC<cr>', { desc = 'Re source init.lua' })
