@@ -35,20 +35,13 @@ vim.keymap.set('n', '<leader>sc', '<cmd>Telescope colorscheme<cr>', { desc = 'Se
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 require 'custom.keybinds.git'
-
 require 'custom.keybinds.movement'
 require 'custom.keybinds.harpoon'
-
 require 'custom.keybinds.misc'
-
 require 'custom.keybinds.cargo'
-
+require 'custom.keybinds.copilot'
 require 'custom.keybinds.neovim'
-
 require 'custom.keybinds.navigation'
-
 require 'custom.keybinds.lsp'
-
 require 'custom.keybinds.search'
-
 require 'custom.keybinds.zen'
