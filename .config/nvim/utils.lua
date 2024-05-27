@@ -16,7 +16,8 @@ function no_confirm_execute(confirm_value, callback)
     return confirm_value
   end
 
-  callback()
+  local value = callback()
 
   vim.fn.confirm = old_confirm
+  return value
 end
