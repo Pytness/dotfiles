@@ -238,8 +238,36 @@ return {
       { 'nvim-lua/plenary.nvim' }, -- for curl, log wrapper
     },
     opts = {
-      debug = true, -- Enable debugging
-      -- See Configuration section for rest
+      clear_chat_on_new_prompt = false,
+      prompts = {
+        Explain = {
+          prompt = '/COPILOT_EXPLAIN Write a detailed and technical explanation for the following code.',
+        },
+        Review = {
+          prompt = '/COPILOT_REVIEW Review the selected code.',
+        },
+        Fix = {
+          prompt = '/COPILOT_GENERATE There is an issue in this code. Rewrite the code to show it with the bug fixed.',
+        },
+        Optimize = {
+          prompt = '/COPILOT_GENERATE Optimize the selected code to improve performance and readablilty.',
+        },
+        Docs = {
+          prompt = '/COPILOT_GENERATE Add documentation and comments for the following code. Follow this rules: 1) The comments should not duplicate the code. 2) Explain unidiomatic code.',
+        },
+        Tests = {
+          prompt = '/COPILOT_GENERATE Generate tests for my code.',
+        },
+        FixDiagnostic = {
+          prompt = 'Please assist with the following diagnostic issue in file:',
+        },
+        Commit = {
+          prompt = 'Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. Wrap the whole message in code block with language gitcommit.',
+        },
+        CommitStaged = {
+          prompt = 'Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. Wrap the whole message in code block with language gitcommit.',
+        },
+      },
     },
     -- See Commands section for default commands if you want to lazy load on them
   },

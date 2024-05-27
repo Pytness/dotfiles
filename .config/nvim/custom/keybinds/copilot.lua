@@ -1,14 +1,32 @@
+local chat = require 'CopilotChat'
+local select = require 'CopilotChat.select'
+
+local function selection(source)
+  return select.visual(source) or select.buffer
+end
+local function chat_refactor()
+  chat.reset()
+  chat.open()
+
+  chat.ask 'Refactor the following code. Extract code into functions, methods, or classes as needed.'
+end
+
+vim.api.nvim_create_user_command('CopilotChatRefactor', function()
+  chat.ask('Refactor the following code. Extract code into functions, methods, or classes as needed.', { selection = selection })
+end, { nargs = '*', range = true })
 local mappings = {
-  { '<leader>mcc', '<cmd>CopilotChatCommit<cr>', { desc = 'CopilotChatCommit' } },
-  { '<leader>mcC', '<cmd>CopilotChatCommitStaged<cr>', { desc = 'CopilotChatCommitStaged' } },
-  { '<leader>mcr', '<cmd>CopilotChatReview<cr>', { desc = 'CopilotChatReview' } },
-  { '<leader>mcf', '<cmd>CopilotChatFix<cr>', { desc = 'CopilotChatFix' } },
-  { '<leader>mcF', '<cmd>CopilotChatFixDiagnostic<cr>', { desc = 'CopilotChatFixDiagnostic' } },
-  { '<leader>mco', '<cmd>CopilotChatOptimize<cr>', { desc = 'CopilotChatOptimize' } },
-  { '<leader>mcd', '<cmd>CopilotChatDocs<cr>', { desc = 'CopilotChatDocs' } },
-  { '<leader>mct', '<cmd>CopilotChatTests<cr>', { desc = 'CopilotChatTests' } },
-  { '<leader>mct', '<cmd>CopilotChatTests<cr>', { desc = 'CopilotChatTests' } },
-  { '<leader>mce', '<cmd>CopilotChatExplain<cr>', { desc = 'CopilotChatExplain' } },
+  { '<leader>aa', '<cmd>CopilotChatToggle<cr>', { desc = 'CopilotChat: Open chat' } },
+  { '<leader>al', '<cmd>CopilotChatReset<cr>', { desc = 'CopilotChat: Reset chat' } },
+  { '<leader>ac', '<cmd>CopilotChatCommit<cr>', { desc = 'CopilotChat: Commit' } },
+  { '<leader>aC', '<cmd>CopilotChatCommitStaged<cr>', { desc = 'CopilotChat: CommitStaged' } },
+  { '<leader>ar', '<cmd>CopilotChatReview<cr>', { desc = 'CopilotChat: Review' } },
+  { '<leader>af', '<cmd>CopilotChatFix<cr>', { desc = 'CopilotChat: Fix' } },
+  { '<leader>aF', '<cmd>CopilotChatFixDiagnostic<cr>', { desc = 'CopilotChat: FixDiagnostic' } },
+  { '<leader>ao', '<cmd>CopilotChatOptimize<cr>', { desc = 'CopilotChat: Optimize' } },
+  { '<leader>ad', '<cmd>CopilotChatDocs<cr>', { desc = 'CopilotChat: Docs' } },
+  { '<leader>at', '<cmd>CopilotChatTests<cr>', { desc = 'CopilotChat: Tests' } },
+  { '<leader>ae', '<cmd>CopilotChatExplain<cr>', { desc = 'CopilotChat: Explain' } },
+  { '<leader>aR', '<cmd>CopilotChatRefactor<cr>', { desc = 'CopilotChat: Refactor' } },
 }
 
 for _, keymap in ipairs(mappings) do
