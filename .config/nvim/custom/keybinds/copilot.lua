@@ -14,6 +14,14 @@ end
 vim.api.nvim_create_user_command('CopilotChatRefactor', function()
   chat.ask('Refactor the following code. Extract code into functions, methods, or classes as needed.', { selection = selection })
 end, { nargs = '*', range = true })
+
+vim.api.nvim_create_user_command('CopilotChatExplainAdvanced', function()
+  chat.ask(
+    '/COPILOT_EXPLAIN Write a detailed and technical explanation of the following code. Assume the user is a senior programmer and is extremelly knowledgeable of programming topics',
+    { selection = selection }
+  )
+end, { nargs = '*', range = true })
+
 local mappings = {
   { '<leader>aa', '<cmd>CopilotChatToggle<cr>', { desc = 'CopilotChat: Open chat' } },
   { '<leader>al', '<cmd>CopilotChatReset<cr>', { desc = 'CopilotChat: Reset chat' } },
@@ -26,6 +34,7 @@ local mappings = {
   { '<leader>ad', '<cmd>CopilotChatDocs<cr>', { desc = 'CopilotChat: Docs' } },
   { '<leader>at', '<cmd>CopilotChatTests<cr>', { desc = 'CopilotChat: Tests' } },
   { '<leader>ae', '<cmd>CopilotChatExplain<cr>', { desc = 'CopilotChat: Explain' } },
+  { '<leader>aE', '<cmd>CopilotChatExplainAdvanced<cr>', { desc = 'CopilotChat: Advanced Explain' } },
   { '<leader>aR', '<cmd>CopilotChatRefactor<cr>', { desc = 'CopilotChat: Refactor' } },
 }
 
