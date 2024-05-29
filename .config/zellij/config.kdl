@@ -83,7 +83,7 @@ keybinds clear-defaults=true {
         bind "n" { NewTab; SwitchToMode "Normal"; }
         bind "x" { CloseTab; SwitchToMode "Normal"; }
 
-        bind "s" { ToggleActiveSyncTab; SwitchToMode "Normal"; }
+        // bind "s" { ToggleActiveSyncTab; SwitchToMode "Normal"; }
         bind "b" { BreakPane; SwitchToMode "Normal"; }
         bind "]" { BreakPaneRight; SwitchToMode "Normal"; }
         bind "[" { BreakPaneLeft; SwitchToMode "Normal"; }
@@ -301,7 +301,7 @@ plugins clear-defaults=true {
 //   - true (default)
 //   - false
 //
-// pane_frames true
+    pane_frames false 
 
 // Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
 // Options:
@@ -357,7 +357,7 @@ plugins clear-defaults=true {
 // The name of the default layout to load on startup
 // Default: "default"
 //
-// default_layout "custom_default"
+default_layout "custom_default"
 
 // Choose the mode that zellij uses when starting up.
 // Default: normal
@@ -408,7 +408,7 @@ plugins clear-defaults=true {
 // Path to the default editor to use to edit pane scrollbuffer
 // Default: $EDITOR or $VISUAL
 //
-// scrollback_editor "/usr/bin/vim"
+// scrollback_editor "/usr/bin/nvim"
 
 // When attaching to an existing session with other users,
 // should the session be mirrored (true)
