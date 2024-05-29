@@ -268,6 +268,24 @@ return {
           prompt = 'Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. Wrap the whole message in code block with language gitcommit.',
         },
       },
+      mappings = {
+        close = {
+          normal = 'q',
+          insert = '<C-c>',
+        },
+        reset = {
+          normal = 'R',
+          insert = '<C-R>',
+        },
+        submit_prompt = {
+          normal = '<CR>',
+          insert = '<C-m>',
+        },
+        accept_diff = {
+          normal = '<C-y>',
+          insert = '<C-y>',
+        },
+      },
     },
     -- See Commands section for default commands if you want to lazy load on them
   },
