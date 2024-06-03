@@ -37,7 +37,9 @@ return {
         ['<leader>l'] = { name = '[l]sp', _ = 'which_key_ignore' },
         ['<leader>C'] = { name = '[C]argo', _ = 'which_key_ignore' },
         ['<leader>g'] = { name = '[g]it', _ = 'which_key_ignore' },
-        ['<leader>m'] = { name = '[M]isc', _ = 'which_key_ignore' },
+        ['<leader>m'] = { name = '[m]isc', _ = 'which_key_ignore' },
+        ['<leader>a'] = { name = 'Copilot Ch[a]t', _ = 'which_key_ignore' },
+        ['<leader>z'] = { name = '[Z]en mode', _ = 'which_key_ignore' },
       }
     end,
   },
