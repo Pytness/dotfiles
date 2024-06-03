@@ -18,7 +18,7 @@ vim.keymap.set('i', 'kj', '<ESC>', { silent = true })
 vim.keymap.set('n', '<leader>k', '<cmd>nohlsearch<CR>', { desc = 'Clear highlight' })
 
 local function quit()
-  vim.cmd 'q'
+  vim.cmd 'silent q'
 end
 
 -- For some reason, neovim started spitting out errors
