@@ -7,6 +7,14 @@ end
 
 vim.keymap.set('n', '<leader>ha', add, { desc = 'Add current file to Harpoon' })
 
+vim.keymap.set('n', '<leader>hA', function()
+  local list = harpoon:list()
+  list:select(1)
+  list:select(2)
+  list:select(3)
+  list:select(4)
+end, { desc = 'Open all' })
+
 local function toggle_telescope(harpoon_files)
   -- local opts = {
   --   attach_mappings = function(_, map)
@@ -42,6 +50,7 @@ end, { desc = 'Select Harpoon 4' })
 vim.keymap.set('n', '<leader>hp', function()
   harpoon:list():prev()
 end, { desc = 'Select previous Harpoon buffer' })
+
 vim.keymap.set('n', '<leader>hn', function()
   harpoon:list():next()
 end, { desc = 'Select next Harpoon buffer' })
