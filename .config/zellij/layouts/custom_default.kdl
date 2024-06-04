@@ -19,8 +19,9 @@ layout {
                 format_space  ""
 
                 border_enabled  "true"
+                // border_char     "─"
                 border_char     "─"
-                border_format   "#[fg=#6C7086]{char}"
+                border_format   "#[fg=#8a87de]{char}"
                 border_position "bottom"
 
                 //hide_frame_for_single_pane "true"
@@ -39,14 +40,14 @@ layout {
                 datetime_timezone "Europe/Madrid"
 
                 // tab_normal             #F78C6C #8a8a8a "#[fg=#6C7086]  {index} :: {name} "
-                tab_normal              "#[bg=#8a8a8a,fg=#181A1F] Tab {index}{floating_indicator} "
-                tab_normal_fullscreen   "#[bg=#8a8a8a,fg=#181A1F] Tab {index}{fullscreen_indicator} "
-                tab_normal_sync         "#[bg=#8a8a8a,fg=#181A1F] Tab {index}{sync_indicator} "
+                tab_normal              "#[bg=#8a8a8a,fg=#181A1F] {name}{floating_indicator} "
+                tab_normal_fullscreen   "#[bg=#8a8a8a,fg=#181A1F] {name}{fullscreen_indicator} "
+                tab_normal_sync         "#[bg=#8a8a8a,fg=#181A1F] {name}{sync_indicator} "
 
                 // formatting for the current active tab
-                tab_active              "#[bg=#ffcb6b,fg=#181A1F,bold,italic] Tab {index}{floating_indicator} "
-                tab_active_fullscreen   "#[bg=#ffcb6b,fg=#181A1F,bold,italic] Tab {index}{fullscreen_indicator} "
-                tab_active_sync         "#[bg=#ffcb6b,fg=#181A1F,bold,italic] Tab {index}{sync_indicator} "
+                tab_active              "#[bg=#ffcb6b,fg=#181A1F,bold,italic] {name}{floating_indicator} "
+                tab_active_fullscreen   "#[bg=#ffcb6b,fg=#181A1F,bold,italic] {name}{fullscreen_indicator} "
+                tab_active_sync         "#[bg=#ffcb6b,fg=#181A1F,bold,italic] {name}{sync_indicator} "
 
                 // separator between the tabs
                 tab_separator           "#[fg=#6C7086,bg=#181825] | "
@@ -56,10 +57,10 @@ layout {
                 tab_fullscreen_indicator ""
                 tab_floating_indicator   ""
 
-                mode_normal        "#[bg=#8cb8ff,fg=#181A1F] NORMAL "
-                mode_pane          "#[bg=#ffcb6b,fg=#181A1F]  PANE  "
-                mode_tab           "#[bg=#d67cde,fg=#181A1F]  TAB   "
-                mode_tmux          "#[bg=#C3E88D,fg=#181A1F]  TMUX  "
+                mode_normal        "#[bg=#8cb8ff,fg=#181A1F]   NORMAL   "
+                mode_pane          "#[bg=#ffcb6b,fg=#181A1F]    PANE    "
+                mode_tab           "#[bg=#d67cde,fg=#181A1F]    TAB     "
+                mode_tmux          "#[bg=#C3E88D,fg=#181A1F]    TMUX    "
 
                 mode_locked        "#[bg=#89B4FA,fg=#181A1F] {name} "
                 mode_resize        "#[bg=#89B4FA,fg=#181A1F] {name} "
