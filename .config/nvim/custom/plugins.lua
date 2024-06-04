@@ -28,16 +28,6 @@ return {
     -- Improves buffer deletion
     'ojroques/nvim-bufdel',
   },
-
-  -- {
-  --   -- Add fast motions for the whole buffer
-  --   'ggandor/lightspeed.nvim',
-  --   config = function()
-  --     require('lightspeed').setup {
-  --       ignore_case = true,
-  --     }
-  --   end,
-  -- },
   {
     'ggandor/leap.nvim',
     config = function()
