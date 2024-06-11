@@ -4,12 +4,6 @@ local select = require 'CopilotChat.select'
 local function selection(source)
   return select.visual(source) or select.buffer
 end
-local function chat_refactor()
-  chat.reset()
-  chat.open()
-
-  chat.ask 'Refactor the following code. Extract code into functions, methods, or classes as needed.'
-end
 
 vim.api.nvim_create_user_command('CopilotChatRefactor', function()
   chat.ask('Refactor the following code. Extract code into functions, methods, or classes as needed.', { selection = selection })
@@ -18,6 +12,18 @@ end, { nargs = '*', range = true })
 vim.api.nvim_create_user_command('CopilotChatExplainAdvanced', function()
   chat.ask(
     '/COPILOT_EXPLAIN Write a detailed and technical explanation of the following code. Assume the user is a senior programmer and is extremelly knowledgeable of programming topics',
+    { selection = selection }
+  )
+end, { nargs = '*', range = true })
+
+vim.api.nvim_create_user_command('CopilotChatImplementate', function()
+  chat.ask(
+    [[
+    @buffers
+
+    Write the missing implementations of the following code.
+    The user will use your code and `git patch` it into their codebase.
+    ]],
     { selection = selection }
   )
 end, { nargs = '*', range = true })
@@ -36,6 +42,7 @@ local mappings = {
   { '<leader>ae', '<cmd>CopilotChatExplain<cr>', { desc = 'CopilotChat: Explain' } },
   { '<leader>aE', '<cmd>CopilotChatExplainAdvanced<cr>', { desc = 'CopilotChat: Advanced Explain' } },
   { '<leader>aR', '<cmd>CopilotChatRefactor<cr>', { desc = 'CopilotChat: Refactor' } },
+  { '<leader>ai', '<cmd>CopilotChatImplementate<cr>', { desc = 'CopilotChat: Implementate' } },
 }
 
 for _, keymap in ipairs(mappings) do
