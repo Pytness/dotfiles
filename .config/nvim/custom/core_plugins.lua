@@ -382,6 +382,16 @@ return {
 
   { -- Autoformat
     'stevearc/conform.nvim',
+    dependencies = {
+      {
+        'stsewd/isort.nvim',
+        build = ':UpdateRemotePlugins',
+      },
+      {
+        'averms/black-nvim',
+        build = ':UpdateRemotePlugins',
+      },
+    },
     opts = {
       notify_on_error = false,
       format_on_save = {
@@ -391,7 +401,7 @@ return {
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
+        python = { 'isort', 'black' },
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
@@ -430,6 +440,7 @@ return {
       --  into multiple repos for maintenance purposes.
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
+      'hrsh7th/cmp-buffer',
 
       -- If you want to add a bunch of pre-configured snippets,
       --    you can use this plugin to help you. It even has snippets
@@ -460,11 +471,22 @@ return {
         sorting = {
           priority_wight = 1.0,
           comparators = {
-            compare.locality,
-            compare.recently_used,
-            compare.score,
             compare.offset,
+            compare.exact,
+            -- compare.scopes,
+            compare.score,
+            compare.recently_used,
+            compare.locality,
+            compare.kind,
+            -- compare.sort_text,
+            compare.length,
             compare.order,
+            --
+            -- compare.locality,
+            -- compare.recently_used,
+            -- compare.score,
+            -- compare.offset,
+            -- compare.order,
           },
         },
 
@@ -481,32 +503,14 @@ return {
           -- Manually trigger a completion from nvim-cmp.
           --  Generally you don't need this, because nvim-cmp will display
           --  completions whenever it has completion options available.
-          ['<C-Space>'] = cmp.mapping.complete {},
-
-          -- Think of <c-l> as moving to the right of your snippet expansion.
-          --  So if you have a snippet that's like:
-          --  function $name($args)
-          --    $body
-          --  end
-          --
-          -- <c-l> will move you to the right of each of the expansion locations.
-          -- <c-h> is similar, except moving you backwards.
-          -- ['<C-l>'] = cmp.mapping(function()
-          --   if luasnip.expand_or_locally_jumpable() then
-          --     luasnip.expand_or_jump()
-          --   end
-          -- end, { 'i', 's' }),
-          -- ['<C-h>'] = cmp.mapping(function()
-          --   if luasnip.locally_jumpable(-1) then
-          --     luasnip.jump(-1)
-          --   end
-          -- end, { 'i', 's' }),
+          ['<C-Space>'] = cmp.mapping.complete(),
         },
 
         sources = cmp.config.sources {
+          { name = 'crates' },
           { name = 'nvim_lsp' },
           { name = 'path' },
-          { name = 'crates' },
+          { name = 'buffer' },
         },
       }
 
