@@ -8,4 +8,4 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('n', '<leader>bb', '<cmd>bprev<cr>', { desc = 'Previous buffer' })
 vim.keymap.set('n', '<leader>bn', '<cmd>bnext<cr>', { desc = 'Next buffer' })
 -- vim.keymap.set('n', '<leader>c', '<cmd>BufDel<cr>', { desc = 'Close Buffer' })
-vim.keymap.set('n', '<leader>c', '<cmd>bd<cr>', { desc = 'Close Buffer' })
+vim.keymap.set('n', '<leader>c', '<cmd>bd!<cr>', { desc = 'Close Buffer' })
