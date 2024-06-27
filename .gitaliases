@@ -4,4 +4,8 @@
         sdiff = diff --staged -w
        	yolo = !git commit -m \"yolo: $(curl -s https://whatthecommit.com/index.txt)\"
 
+	hist = log --graph --abbrev-commit --decorate --date=short \
+		--branches --remotes --tags \
+		--format=format:'%C(bold cyan)%h%C(reset) %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)%an%C(reset) %C(bold yellow)%d%C(reset)' \
+		--branches --remotes --tags
 
