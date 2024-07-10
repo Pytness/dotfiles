@@ -279,4 +279,20 @@ return {
     },
     -- See Commands section for default commands if you want to lazy load on them
   },
+  {
+    'anurag3301/nvim-platformio.lua',
+    dependencies = {
+      { 'akinsho/nvim-toggleterm.lua' },
+      { 'nvim-telescope/telescope.nvim' },
+      { 'nvim-lua/plenary.nvim' },
+    },
+    cmd = {
+      'Pioinit',
+      'Piorun',
+      'Piocmd',
+      'Piolib',
+      'Piomon',
+      'Piodebug',
+    },
+  },
 }
