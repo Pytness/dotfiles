@@ -34,30 +34,31 @@ return {
       -- The below settings make Leap's highlighting closer to what you've been
       -- used to in Lightspeed.
 
+      local normal = vim.api.nvim_get_hl(0, { name = 'Normal' })
+
       vim.api.nvim_set_hl(0, 'LeapBackdrop', { link = 'Comment' }) -- or some grey
       vim.api.nvim_set_hl(0, 'LeapMatch', {
-        -- For light themes, set to 'black' or similar.
         fg = 'white',
         bold = true,
         nocombine = true,
       })
 
       vim.api.nvim_set_hl(0, 'LeapLabelPrimary', {
-        -- fg = 'white',
+        bg = normal.bg,
         fg = '#ff2f87',
         bold = false,
         nocombine = true,
       })
 
       vim.api.nvim_set_hl(0, 'LeapLabelSecondary', {
-        -- fg = 'black',
+        bg = normal.bg,
         fg = '#99ddff',
         bold = false,
         nocombine = true,
       })
 
       require('leap').setup {
-        safe_labels = 'sfnut/',
+        safe_labels = '', -- Disable the default labels so keypresses are always 3
         labels = 'sfnjklhodweimbuyvrgtaqpcxz',
       }
     end,
