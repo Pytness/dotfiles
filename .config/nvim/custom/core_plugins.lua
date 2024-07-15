@@ -20,28 +20,7 @@ return {
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
-    config = function() -- This is the function that runs, AFTER loading
-      require('which-key').setup {
-        window = { border = 'single' },
-      }
-
-      -- Document existing key chains
-      require('which-key').register {
-        -- ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-        ['<leader>b'] = { name = '[b]uffer', _ = 'which_key_ignore' },
-        ['<leader>d'] = { name = '[d]ocument', _ = 'which_key_ignore' },
-        ['<leader>r'] = { name = '[r]ename', _ = 'which_key_ignore' },
-        ['<leader>s'] = { name = '[s]earch', _ = 'which_key_ignore' },
-        ['<leader>h'] = { name = '[h]arpoon', _ = 'which_key_ignore' },
-        ['<leader>n'] = { name = '[n]eovim', _ = 'which_key_ignore' },
-        ['<leader>l'] = { name = '[l]sp', _ = 'which_key_ignore' },
-        ['<leader>C'] = { name = '[C]argo', _ = 'which_key_ignore' },
-        ['<leader>g'] = { name = '[g]it', _ = 'which_key_ignore' },
-        ['<leader>m'] = { name = '[m]isc', _ = 'which_key_ignore' },
-        ['<leader>a'] = { name = 'Copilot Ch[a]t', _ = 'which_key_ignore' },
-        ['<leader>z'] = { name = '[Z]en mode', _ = 'which_key_ignore' },
-      }
-    end,
+    opts = {},
   },
 
   { -- Fuzzy Finder (files, lsp, etc)
@@ -126,7 +105,6 @@ return {
             { '╭', 'FloatBorder' },
             { '─', 'FloatBorder' },
             { '╮', 'FloatBorder' },
-
             { '│', 'FloatBorder' },
             { '╯', 'FloatBorder' },
             { '─', 'FloatBorder' },
@@ -157,7 +135,7 @@ return {
 
           -- Jump to the implementation of the word under your cursor.
           --  Useful when your language has ways of declaring types without an actual implementation.
-          -- map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+          map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
 
           -- Jump to the type of the word under your cursor.
           --  Useful when you're not sure what type a variable is and you want to see
