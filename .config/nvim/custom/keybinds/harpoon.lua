@@ -9,10 +9,15 @@ vim.keymap.set('n', '<leader>ha', add, { desc = 'Add current file to Harpoon' })
 
 vim.keymap.set('n', '<leader>hA', function()
   local list = harpoon:list()
+
+  -- Open the fist 4 files
   list:select(1)
   list:select(2)
   list:select(3)
   list:select(4)
+
+  -- Select the first one
+  list:select(1)
 end, { desc = 'Open all' })
 
 local function toggle_telescope(harpoon_files)

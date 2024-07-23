@@ -20,28 +20,9 @@ return {
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
-    config = function() -- This is the function that runs, AFTER loading
-      require('which-key').setup {
-        window = { border = 'single' },
-      }
-
-      -- Document existing key chains
-      require('which-key').register {
-        -- ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-        ['<leader>b'] = { name = '[b]uffer', _ = 'which_key_ignore' },
-        ['<leader>d'] = { name = '[d]ocument', _ = 'which_key_ignore' },
-        ['<leader>r'] = { name = '[r]ename', _ = 'which_key_ignore' },
-        ['<leader>s'] = { name = '[s]earch', _ = 'which_key_ignore' },
-        ['<leader>h'] = { name = '[h]arpoon', _ = 'which_key_ignore' },
-        ['<leader>n'] = { name = '[n]eovim', _ = 'which_key_ignore' },
-        ['<leader>l'] = { name = '[l]sp', _ = 'which_key_ignore' },
-        ['<leader>C'] = { name = '[C]argo', _ = 'which_key_ignore' },
-        ['<leader>g'] = { name = '[g]it', _ = 'which_key_ignore' },
-        ['<leader>m'] = { name = '[m]isc', _ = 'which_key_ignore' },
-        ['<leader>a'] = { name = 'Copilot Ch[a]t', _ = 'which_key_ignore' },
-        ['<leader>z'] = { name = '[Z]en mode', _ = 'which_key_ignore' },
-      }
-    end,
+    opts = {
+      preset = 'modern',
+    },
   },
 
   { -- Fuzzy Finder (files, lsp, etc)
@@ -126,7 +107,6 @@ return {
             { '╭', 'FloatBorder' },
             { '─', 'FloatBorder' },
             { '╮', 'FloatBorder' },
-
             { '│', 'FloatBorder' },
             { '╯', 'FloatBorder' },
             { '─', 'FloatBorder' },
@@ -157,7 +137,7 @@ return {
 
           -- Jump to the implementation of the word under your cursor.
           --  Useful when your language has ways of declaring types without an actual implementation.
-          -- map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+          map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
 
           -- Jump to the type of the word under your cursor.
           --  Useful when you're not sure what type a variable is and you want to see
@@ -411,9 +391,20 @@ return {
   },
   {
     'saecki/crates.nvim',
-    tag = 'stable',
+    -- tag = 'stable',
     config = function()
-      require('crates').setup()
+      require('crates').setup {
+        completion = {
+          cmp = {
+            enabled = true,
+          },
+          crates = {
+            enabled = true,
+            max_results = 16,
+            min_chars = 2,
+          },
+        },
+      }
     end,
   },
   { -- Autocompletion
@@ -441,6 +432,7 @@ return {
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-buffer',
+      'saecki/crates.nvim',
 
       -- If you want to add a bunch of pre-configured snippets,
       --    you can use this plugin to help you. It even has snippets
@@ -679,34 +671,6 @@ return {
     ft = 'hypr',
   },
   {
-    'olimorris/persisted.nvim',
-    lazy = false, -- make sure the plugin is always loaded at startup
-    config = function()
-      require('persisted').setup {
-        save_dir = vim.fn.expand(vim.fn.stdpath 'data' .. '/sessions/'), -- directory where session files are saved
-        silent = false, -- silent nvim message when sourcing session file
-        use_git_branch = false, -- create session files based on the branch of a git enabled repository
-        default_branch = 'main', -- the branch to load if a session file is not found for the current branch
-        autosave = true, -- automatically save session files when exiting Neovim
-        should_autosave = nil, -- function to determine if a session should be autosaved
-        autoload = false, -- automatically load the session for the cwd on Neovim startup
-        on_autoload_no_session = nil, -- function to run when `autoload = true` but there is no session to load
-        follow_cwd = true, -- change session file name to match current working directory if it changes
-        allowed_dirs = nil, -- table of dirs that the plugin will auto-save and auto-load from
-        ignored_dirs = nil, -- table of dirs that are ignored when auto-saving and auto-loading
-        ignored_branches = nil, -- table of branch patterns that are ignored for auto-saving and auto-loading
-        telescope = {
-          reset_prompt = true, -- Reset the Telescope prompt after an action?
-          mappings = { -- table of mappings for the Telescope extension
-            change_branch = '<c-r>',
-            copy_session = '<c-c>',
-            delete_session = '<c-d>',
-          },
-        },
-      }
-    end,
-  },
-  {
     'ThePrimeagen/vim-be-good',
   },
   {
@@ -715,5 +679,17 @@ return {
       local dash = require 'custom.alpha'
       require('alpha').setup(dash.opts)
     end,
+  },
+  {
+    'm4xshen/hardtime.nvim',
+    dependencies = { 'MunifTanjim/nui.nvim', 'nvim-lua/plenary.nvim' },
+    opts = {
+      disabled_keys = {
+        ['<Esc>'] = { 'i' },
+        -- Enable scrolling
+        ['<Up>'] = { 'i' },
+        ['<Down>'] = { 'i' },
+      },
+    },
   },
 }

@@ -8,11 +8,6 @@ package.path = nvim_dir .. '?/init.lua;' .. package.path
 require 'utils'
 local libs = require 'libs'
 
-local string = libs.string
-local utf8 = libs.utf8
-
--- local string = libs.string
-
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.opt.termguicolors = true
@@ -26,7 +21,6 @@ vim.opt.relativenumber = true
 
 vim.opt.mouse = 'a'
 
--- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
 vim.opt.showmode = false
 
@@ -73,10 +67,6 @@ vim.opt.scrolloff = 10
 
 -- Set highlight on search
 vim.opt.hlsearch = true
--- Clear highlight
-
--- [[ Basic Autocommands ]]
---  See `:help lua-guide-autocommands`
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
@@ -86,6 +76,29 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
   callback = function()
     vim.highlight.on_yank()
+  end,
+})
+
+vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
+  pattern = { '*' },
+  callback = function()
+    local save_cursor = vim.fn.getpos '.'
+
+    -- Remove trailing whitespace
+    vim.cmd [[%s/\s\+$//e]]
+
+    -- Remove trailing empty lines
+    vim.cmd [[%s/\_s*\%$//e]]
+
+    vim.fn.setpos('.', save_cursor)
+  end,
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Disable auto-commenting on all filetypes',
+  pattern = '*',
+  callback = function()
+    vim.opt_local.formatoptions:remove { 'r', 'o' }
   end,
 })
 
@@ -132,6 +145,3 @@ require('lazy').setup(plugins, {
 })
 
 require 'custom.keybinds'
-
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et

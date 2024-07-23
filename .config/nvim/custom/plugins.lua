@@ -34,30 +34,31 @@ return {
       -- The below settings make Leap's highlighting closer to what you've been
       -- used to in Lightspeed.
 
+      local normal = vim.api.nvim_get_hl(0, { name = 'Normal' })
+
       vim.api.nvim_set_hl(0, 'LeapBackdrop', { link = 'Comment' }) -- or some grey
       vim.api.nvim_set_hl(0, 'LeapMatch', {
-        -- For light themes, set to 'black' or similar.
         fg = 'white',
         bold = true,
         nocombine = true,
       })
 
       vim.api.nvim_set_hl(0, 'LeapLabelPrimary', {
-        -- fg = 'white',
+        bg = normal.bg,
         fg = '#ff2f87',
         bold = false,
         nocombine = true,
       })
 
       vim.api.nvim_set_hl(0, 'LeapLabelSecondary', {
-        -- fg = 'black',
+        bg = normal.bg,
         fg = '#99ddff',
         bold = false,
         nocombine = true,
       })
 
       require('leap').setup {
-        safe_labels = 'sfnut/',
+        safe_labels = '', -- Disable the default labels so keypresses are always 3
         labels = 'sfnjklhodweimbuyvrgtaqpcxz',
       }
     end,
@@ -278,5 +279,21 @@ return {
       },
     },
     -- See Commands section for default commands if you want to lazy load on them
+  },
+  {
+    'anurag3301/nvim-platformio.lua',
+    dependencies = {
+      { 'akinsho/nvim-toggleterm.lua' },
+      { 'nvim-telescope/telescope.nvim' },
+      { 'nvim-lua/plenary.nvim' },
+    },
+    cmd = {
+      'Pioinit',
+      'Piorun',
+      'Piocmd',
+      'Piolib',
+      'Piomon',
+      'Piodebug',
+    },
   },
 }

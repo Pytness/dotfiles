@@ -41,6 +41,23 @@ vim.keymap.set('n', '<leader>sc', '<cmd>Telescope colorscheme<cr>', { desc = 'Se
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
+local wk = require 'which-key'
+
+wk.add {
+  { '<leader>b', group = '[b]uffer' },
+  { '<leader>d', group = '[d]ocument' },
+  { '<leader>r', group = '[r]ename' },
+  { '<leader>s', group = '[s]earch' },
+  { '<leader>h', group = '[h]arpoon' },
+  { '<leader>n', group = '[n]eovim' },
+  { '<leader>l', group = '[l]sp' },
+  { '<leader>C', group = '[C]argo' },
+  { '<leader>g', group = '[g]it' },
+  { '<leader>m', group = '[m]isc' },
+  { '<leader>a', group = 'Copilot Ch[a]t' },
+  { '<leader>z', group = '[Z]en mode' },
+}
+
 require 'custom.keybinds.git'
 require 'custom.keybinds.movement'
 require 'custom.keybinds.harpoon'

@@ -231,11 +231,12 @@ function zle-keymap-select {
 zle -N zle-keymap-select
 
 zle-line-init() {
-    zle -K vicmd 
+    zle -K vicmd
     echo -ne '\e[1 q'
 }
-
 zle -N zle-line-init
+
+bindkey -M vicmd ^V edit-command-line
 
 # execute functions before the prompt is called
 
@@ -259,6 +260,8 @@ export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.local/scripts:$PATH
 export PATH=$PATH:/usr/local/go/bin
 export PATH=${PATH}:`go env GOPATH`/bin
+export PATH=${PATH}:~/.platformio/penv/bin
+
 
 # Keep this export at the end cause it gets overriden somewhere and I am too lazy to find out where
 # Removes p10k indentation, which is annoying
@@ -286,4 +289,4 @@ export GPG_TTY=$TTY
 
 # ensure Ctrl-D works
 # stty eof ^D
-zplug load 
+zplug load
