@@ -14,6 +14,7 @@ keybinds clear-defaults=true {
         bind "c" { NewTab; SwitchToMode "Normal"; }
         bind "," { SwitchToMode "RenameTab"; }
         bind "p" { GoToPreviousTab; SwitchToMode "Normal"; }
+        bind "b" { GoToPreviousTab; SwitchToMode "Normal"; }
         bind "n" { GoToNextTab; SwitchToMode "Normal"; }
         bind "Left" { MoveFocus "Left"; SwitchToMode "Normal"; }
         bind "Right" { MoveFocus "Right"; SwitchToMode "Normal"; }
@@ -36,7 +37,7 @@ keybinds clear-defaults=true {
         bind "Alt [" { PreviousSwapLayout; }
         bind "Alt ]" { NextSwapLayout; }
 
-        bind "/" { 
+        bind "/" {
             NewTab {
                 name "Tmux Bindings Help"
                 layout "help"
@@ -45,7 +46,7 @@ keybinds clear-defaults=true {
             SwitchToMode "Normal";
         }
 
-        bind "?" { 
+        bind "?" {
             Run "zellij" "run" "--floating" "--close-on-exit" "--" "bash" "-c" "bash ~/.config/zellij/tmux-bindings-help.sh" {
                 name  "Tmux Bindings"
                 close_on_exit true
@@ -53,7 +54,7 @@ keybinds clear-defaults=true {
             };
             SwitchToMode "Normal";
         }
-        
+
     }
 
     scroll {
@@ -301,7 +302,7 @@ plugins clear-defaults=true {
 //   - true (default)
 //   - false
 //
-    pane_frames false 
+    pane_frames false
 
 // Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
 // Options:
