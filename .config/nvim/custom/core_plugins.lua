@@ -685,7 +685,6 @@ return {
     dependencies = { 'MunifTanjim/nui.nvim', 'nvim-lua/plenary.nvim' },
     opts = {
       disabled_keys = {
-        ['<Esc>'] = { 'i' },
         -- Enable scrolling
         ['<Up>'] = { 'i' },
         ['<Down>'] = { 'i' },
