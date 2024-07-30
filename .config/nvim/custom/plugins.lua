@@ -296,4 +296,16 @@ return {
       'Piodebug',
     },
   },
+  {
+    'sindrets/diffview.nvim',
+    config = function()
+      require('diffview').setup {
+        keymaps = {
+          view = {
+            ['<leader>q'] = '<cmd>DiffviewClose<cr>',
+          },
+        },
+      }
+    end,
+  },
 }
