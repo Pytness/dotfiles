@@ -343,6 +343,7 @@ return {
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format lua code
       })
+
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
@@ -680,15 +681,15 @@ return {
       require('alpha').setup(dash.opts)
     end,
   },
-  {
-    'm4xshen/hardtime.nvim',
-    dependencies = { 'MunifTanjim/nui.nvim', 'nvim-lua/plenary.nvim' },
-    opts = {
-      disabled_keys = {
-        -- Enable scrolling
-        ['<Up>'] = { 'i' },
-        ['<Down>'] = { 'i' },
-      },
-    },
-  },
+  -- {
+  --   'm4xshen/hardtime.nvim',
+  --   dependencies = { 'MunifTanjim/nui.nvim', 'nvim-lua/plenary.nvim' },
+  --   opts = {
+  --     disabled_keys = {
+  --       -- Enable scrolling
+  --       ['<Up>'] = { 'i' },
+  --       ['<Down>'] = { 'i' },
+  --     },
+  --   },
+  -- },
 }
