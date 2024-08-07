@@ -80,21 +80,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
-  pattern = { '*' },
-  callback = function()
-    local save_cursor = vim.fn.getpos '.'
-
-    -- Remove trailing whitespace
-    vim.cmd [[%s/\s\+$//e]]
-
-    -- Remove trailing empty lines
-    vim.cmd [[%s/\_s*\%$//e]]
-
-    vim.fn.setpos('.', save_cursor)
-  end,
-})
-
 vim.api.nvim_create_autocmd('FileType', {
   desc = 'Disable auto-commenting on all filetypes',
   pattern = '*',
