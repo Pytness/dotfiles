@@ -1,6 +1,7 @@
 local telescope_builtin = require 'telescope.builtin'
 
 -- Diagnostic keymaps
+vim.keymap.set('n', '<leader>f', 'za', { desc = 'Toggle Fold' })
 vim.keymap.set('n', '<leader>lk', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', '<leader>lK', vim.diagnostic.reset, { desc = 'Clear all diagnostics' })
 vim.keymap.set('n', '<leader>lj', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
