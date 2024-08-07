@@ -308,4 +308,18 @@ return {
       }
     end,
   },
+  {
+    'jsongerber/thanks.nvim',
+    config = true,
+  },
+  {
+    'rhysd/git-messenger.vim',
+    config = function()
+      -- require('git-messenger').setup()
+    end,
+  },
+  {
+    'cappyzawa/trim.nvim',
+    opts = {},
+  },
 }
