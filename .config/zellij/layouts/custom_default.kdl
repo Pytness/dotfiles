@@ -2,11 +2,11 @@
 //     //pane size=1 borderless=true {
 //     //    plugin location="zellij:tab-bar"
 //     //}
-// 
-// 
-// 
+//
+//
+//
 //     pane command="zsh" close_on_exit=true
-// 
+//
 // }
 
 layout {
@@ -40,14 +40,14 @@ layout {
                 datetime_timezone "Europe/Madrid"
 
                 // tab_normal             #F78C6C #8a8a8a "#[fg=#6C7086]  {index} :: {name} "
-                tab_normal              "#[bg=#8a8a8a,fg=#181A1F] {name}{floating_indicator} "
-                tab_normal_fullscreen   "#[bg=#8a8a8a,fg=#181A1F] {name}{fullscreen_indicator} "
-                tab_normal_sync         "#[bg=#8a8a8a,fg=#181A1F] {name}{sync_indicator} "
+                tab_normal              "#[bg=#8a8a8a,fg=#181A1F]{index} {name}{floating_indicator} "
+                tab_normal_fullscreen   "#[bg=#8a8a8a,fg=#181A1F]{index} {name}{fullscreen_indicator} "
+                tab_normal_sync         "#[bg=#8a8a8a,fg=#181A1F]{index} {name}{sync_indicator} "
 
                 // formatting for the current active tab
-                tab_active              "#[bg=#ffcb6b,fg=#181A1F,bold,italic] {name}{floating_indicator} "
-                tab_active_fullscreen   "#[bg=#ffcb6b,fg=#181A1F,bold,italic] {name}{fullscreen_indicator} "
-                tab_active_sync         "#[bg=#ffcb6b,fg=#181A1F,bold,italic] {name}{sync_indicator} "
+                tab_active              "#[bg=#ffcb6b,fg=#181A1F,bold,italic]{index} {name}{floating_indicator} "
+                tab_active_fullscreen   "#[bg=#ffcb6b,fg=#181A1F,bold,italic]{index} {name}{fullscreen_indicator} "
+                tab_active_sync         "#[bg=#ffcb6b,fg=#181A1F,bold,italic]{index} {name}{sync_indicator} "
 
                 // separator between the tabs
                 tab_separator           "#[fg=#6C7086,bg=#181825] | "
@@ -72,7 +72,7 @@ layout {
                 mode_prompt        "#[bg=#89B4FA,fg=#181A1F] {name} "
             }
         }
-        children 
+        children
         // pane size=1 borderless=true {
         //     plugin location="tab-bar"
         // }
