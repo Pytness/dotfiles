@@ -466,18 +466,16 @@ return {
           comparators = {
             compare.offset,
             compare.exact,
-            -- compare.scopes,
             compare.score,
+            -- compare.scopes,
             compare.recently_used,
-            compare.locality,
             compare.kind,
-            -- compare.sort_text,
+            compare.sort_text,
             compare.length,
             compare.order,
             --
             -- compare.locality,
             -- compare.recently_used,
-            -- compare.score,
             -- compare.offset,
             -- compare.order,
           },
@@ -501,9 +499,17 @@ return {
 
         sources = cmp.config.sources {
           { name = 'crates' },
-          { name = 'nvim_lsp' },
+          {
+            name = 'nvim_lsp',
+            entry_filter = function(entry, ctx)
+              local item_kind = require('cmp').lsp.CompletionItemKind
+              local entry_kind = entry:get_kind()
+
+              return entry_kind ~= item_kind.Text and entry_kind ~= item_kind.Keyword and entry_kind ~= item_kind.Snippet
+            end,
+          },
           { name = 'path' },
-          { name = 'buffer' },
+          -- { name = 'buffer' },
         },
       }
 
