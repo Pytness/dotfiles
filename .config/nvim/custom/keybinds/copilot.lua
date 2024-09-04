@@ -16,7 +16,7 @@ vim.api.nvim_create_user_command('CopilotChatExplainAdvanced', function()
   )
 end, { nargs = '*', range = true })
 
-vim.api.nvim_create_user_command('CopilotChatImplementate', function()
+vim.api.nvim_create_user_command('CopilotChatImplement', function()
   chat.ask(
     [[
     @buffers
@@ -42,7 +42,7 @@ local mappings = {
   { '<leader>ae', '<cmd>CopilotChatExplain<cr>', { desc = 'CopilotChat: Explain' } },
   { '<leader>aE', '<cmd>CopilotChatExplainAdvanced<cr>', { desc = 'CopilotChat: Advanced Explain' } },
   { '<leader>aR', '<cmd>CopilotChatRefactor<cr>', { desc = 'CopilotChat: Refactor' } },
-  { '<leader>ai', '<cmd>CopilotChatImplementate<cr>', { desc = 'CopilotChat: Implementate' } },
+  { '<leader>ai', '<cmd>CopilotChatImplement<cr>', { desc = 'CopilotChat: Implement' } },
 }
 
 for _, keymap in ipairs(mappings) do
