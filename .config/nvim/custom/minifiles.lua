@@ -1,7 +1,7 @@
 local files = require 'mini.files'
 
 local function is_open()
-  return files.get_target_window() ~= nil
+  return files.get_explorer_state() ~= nil
 end
 
 local function close_without_sync()
