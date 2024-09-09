@@ -31,7 +31,7 @@ vim.keymap.set('n', '<leader>e', require('custom.minifiles').toggle, { desc = 'T
 
 vim.keymap.set('v', '<leader>/', '<Plug>(comment_toggle_linewise_visual)', { desc = 'Comment line (visual)' })
 vim.keymap.set('n', '<leader>/', '<Plug>(comment_toggle_linewise_current)', { desc = 'Comment line' })
-vim.keymap.set('n', '<leader>sc', '<cmd>Telescope colorscheme<cr>', { desc = 'Select coloscheme' })
+vim.keymap.set('n', '<leader>sc', '<cmd>Telescope neoclip<cr>', { desc = 'Search clipboard' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
