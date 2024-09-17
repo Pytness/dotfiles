@@ -130,4 +130,4 @@ require('lazy').setup(plugins, {
   },
 })
 
-require 'custom.keybinds'
+require 'custom.keymaps'
