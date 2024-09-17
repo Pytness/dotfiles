@@ -16,6 +16,7 @@ vim.keymap.set('n', '<leader>sg', telescope_builtin.live_grep, { desc = '[S]earc
 vim.keymap.set('n', '<leader>sd', telescope_builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>s.', telescope_builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 vim.keymap.set('n', '<leader>sb', telescope_builtin.buffers, { desc = '[ ] Find existing buffers' })
+vim.keymap.set('n', '<leader>sy', '/*<cr>', { desc = 'Find yanked' })
 
 local todo_keywords = 'FIX,BUG,ISSUE,TODO,HACK,WARN,WARNING,XXX,NOTE,INFO,PERF,OPTIM,PERFORMANCE,OPTIMIZE,TEST'
 vim.keymap.set('n', '<leader>st', '<cmd>TodoTelescope keywords=' .. todo_keywords .. '<cr>', { desc = '[T]odo' })
