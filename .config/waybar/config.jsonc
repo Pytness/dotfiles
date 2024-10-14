@@ -4,7 +4,7 @@
 // sourced from header module //
 
     "layer": "top",
-    "position": "top",
+    "position": "bottom",
     "mod": "dock",
     "height": 31,
     "exclusive": true,
@@ -17,7 +17,7 @@
 
 	"modules-left": ["custom/padd","custom/l_end","custom/power","custom/cliphist","custom/wbar","custom/theme","custom/wallchange","custom/r_end","custom/l_end","wlr/taskbar","custom/spotify","custom/r_end","","custom/padd"],
 	"modules-center": ["custom/padd","custom/l_end","idle_inhibitor","clock","custom/r_end","custom/padd"],
-	"modules-right": ["custom/padd","custom/l_end","tray","battery","custom/r_end","custom/l_end","backlight","network","pulseaudio","pulseaudio#microphone","custom/keybindhint","custom/r_end","custom/padd"],
+	"modules-right": ["custom/padd","custom/l_end","tray","battery","custom/r_end","custom/l_end","backlight","network","pulseaudio","pulseaudio#microphone","custom/notifications","custom/keybindhint","custom/r_end","custom/padd"],
 
 
 // sourced from modules based on config.ctl //
@@ -185,40 +185,67 @@
         "interval": 2,
     },
 
-"pulseaudio": {
-    "format": "{icon} {volume}",
-    "rotate": 0,
-    "format-muted": "婢",
-    "on-click": "pavucontrol -t 3",
-    "on-click-right": "volumecontrol.sh -s ''",
-    "on-click-middle": "volumecontrol.sh -o m",
-    "on-scroll-up": "volumecontrol.sh -o i",
-    "on-scroll-down": "volumecontrol.sh -o d",
-    "tooltip-format": "{icon} {desc} // {volume}%",
-    "scroll-step": 5,
-    "format-icons": {
-        "headphone": "",
-        "hands-free": "",
-        "headset": "",
-        "phone": "",
-        "portable": "",
-        "car": "",
-        "default": ["", "", ""]
-    }
-},
+    "pulseaudio": {
+        "format": "{icon} {volume}",
+        "rotate": 0,
+        "format-muted": "婢",
+        "on-click": "pavucontrol -t 3",
+        "on-click-middle": "volumecontrol.sh -o m",
+        "on-scroll-up": "volumecontrol.sh -o i",
+        "on-scroll-down": "volumecontrol.sh -o d",
+        "tooltip-format": "{icon} {desc} // {volume}%",
+        "scroll-step": 5,
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        }
+    },
 
-"pulseaudio#microphone": {
-    "format": "{format_source}",
-    "rotate": 0,
-    "format-source": "",
-    "format-source-muted": "",
-    "on-click": "pavucontrol -t 4",
-    "on-click-middle": "volumecontrol.sh -i m",
-    "on-scroll-up": "volumecontrol.sh -i i",
-    "on-scroll-down": "volumecontrol.sh -i d",
-    "tooltip-format": "{format_source} {source_desc} // {source_volume}%",
-    "scroll-step": 5
-},
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "rotate": 0,
+        "format-source": "",
+        "format-source-muted": "",
+        "on-click": "pavucontrol -t 4",
+        "on-click-middle": "volumecontrol.sh -i m",
+        "on-scroll-up": "volumecontrol.sh -i i",
+        "on-scroll-down": "volumecontrol.sh -i d",
+        "tooltip-format": "{format_source} {source_desc} // {source_volume}%",
+        "scroll-step": 5
+    },
+
+    "custom/notifications": {
+        "tooltip": false,
+        "format": "{icon} {}",
+        "rotate": 0,
+        "format-icons": {
+            "email-notification": "<span foreground='white'><sup></sup></span>",
+            "chat-notification": "󱋊<span foreground='white'><sup></sup></span>",
+            "warning-notification": "󱨪<span foreground='yellow'><sup></sup></span>",
+            "error-notification": "󱨪<span foreground='red'><sup></sup></span>",
+            "network-notification": "󱂇<span foreground='white'><sup></sup></span>",
+            "battery-notification": "󰁺<span foreground='white'><sup></sup></span>",
+            "update-notification": "󰚰<span foreground='white'><sup></sup></span>",
+            "music-notification": "󰝚<span foreground='white'><sup></sup></span>",
+            "volume-notification": "󰕿<span foreground='white'><sup></sup></span>",
+            "notification": "<span foreground='white'><sup></sup></span>",
+            "none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which dunstctl",
+        "exec": "notifications.py",
+        "on-click": "sleep 0.1 && dunstctl history-pop",
+        "on-click-middle": "dunstctl history-clear",
+        "on-click-right": "dunstctl close-all",
+        "interval": 1,
+        "tooltip": true,
+        "escape": true
+    },
 
     "custom/keybindhint": {
         "format": " ",
