@@ -6,7 +6,6 @@ package.path = nvim_dir .. '?/?.lua;' .. package.path
 package.path = nvim_dir .. '?/init.lua;' .. package.path
 
 require 'utils'
-local libs = require 'libs'
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
