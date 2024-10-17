@@ -3,7 +3,6 @@
 --
 -- See the kickstart.nvim README for more information
 return {
-  { 'rktjmp/lush.nvim' },
   {
     -- Add tabs for buffers
     'akinsho/bufferline.nvim',
@@ -90,7 +89,10 @@ return {
     end,
   },
   {
+    -- Improve the built-in UI
     'stevearc/dressing.nvim',
+    event = 'VeryLazy',
+
     opts = {
       input = {
         insert_only = false,
@@ -100,6 +102,8 @@ return {
   },
   { -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
+    -- NOTE: check if works
+    event = 'BufRead',
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help ibl`
     main = 'ibl',
@@ -107,6 +111,7 @@ return {
   },
   {
     'norcalli/nvim-colorizer.lua',
+    event = 'BufRead',
     config = function()
       require('colorizer').setup({ '*' }, {
         RGB = true,
@@ -121,6 +126,7 @@ return {
   },
   {
     'kdheepak/lazygit.nvim',
+    lazy = true,
     cmd = {
       'LazyGit',
       'LazyGitConfig',
@@ -132,20 +138,6 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
-  },
-  {
-    'tamton-aquib/duck.nvim',
-    config = function()
-      vim.keymap.set('n', '<leader>dd', function()
-        require('duck').hatch()
-      end, {})
-      vim.keymap.set('n', '<leader>dk', function()
-        require('duck').cook()
-      end, {})
-      vim.keymap.set('n', '<leader>da', function()
-        require('duck').cook_all()
-      end, {})
-    end,
   },
   {
     'Pocco81/true-zen.nvim',
@@ -202,6 +194,7 @@ return {
     'ThePrimeagen/harpoon',
     branch = 'harpoon2',
     dependencies = { 'nvim-lua/plenary.nvim' },
+    event = 'VeryLazy',
     config = function()
       local harpoon = require 'harpoon'
       harpoon:setup {
@@ -231,6 +224,7 @@ return {
   { 'wakatime/vim-wakatime', lazy = false },
   {
     'CopilotC-Nvim/CopilotChat.nvim',
+    event = 'VeryLazy',
     branch = 'canary',
     dependencies = {
       { 'zbirenbaum/copilot.lua' }, -- or github/copilot.vim
@@ -305,6 +299,7 @@ return {
     },
   },
   {
+    lazy = true,
     'sindrets/diffview.nvim',
     config = function()
       require('diffview').setup {

@@ -1,47 +1,64 @@
-local telescope_builtin = require 'telescope.builtin'
+local function telescope_builtin_factory(name)
+  return function()
+    local telescope_builtin = require 'telescope.builtin'
+    return telescope_builtin[name]()
+  end
+end
 
 local function find_files_glob()
+  local telescope_builtin = require 'telescope.builtin'
+
   telescope_builtin.find_files {
     find_command = { 'fd', '--type', 'file', '--hidden', '--exclude', '.git', '--glob' },
     prompt_title = 'Live Files glob',
   }
 end
 
-vim.keymap.set('n', '<leader>sh', telescope_builtin.help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sk', telescope_builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-vim.keymap.set('n', '<leader>sf', telescope_builtin.find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sF', find_files_glob, { desc = '[S]earch [F]iles glob' })
-vim.keymap.set('n', '<leader>ss', telescope_builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
-vim.keymap.set('n', '<leader>sg', telescope_builtin.live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sd', telescope_builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-vim.keymap.set('n', '<leader>s.', telescope_builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-vim.keymap.set('n', '<leader>sb', telescope_builtin.buffers, { desc = '[ ] Find existing buffers' })
-vim.keymap.set('n', '<leader>sy', '/*<cr>', { desc = 'Find yanked' })
-
-local todo_keywords = 'FIX,BUG,ISSUE,TODO,HACK,WARN,WARNING,XXX,NOTE,INFO,PERF,OPTIM,PERFORMANCE,OPTIMIZE,TEST'
-vim.keymap.set('n', '<leader>st', '<cmd>TodoTelescope keywords=' .. todo_keywords .. '<cr>', { desc = '[T]odo' })
-vim.keymap.set('n', '<leader>sp', '<cmd>Telescope persisted<cr>', { desc = '[P]rojects' })
-
--- Search current word under cursor
--- vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
--- Resume previous search
-vim.keymap.set('n', '<leader>sr', telescope_builtin.resume, { desc = '[S]earch [R]esume' })
-
-vim.keymap.set('n', '<leader>b/', function()
+local function search_current_buffer()
+  local telescope_builtin = require 'telescope.builtin'
   telescope_builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
     winblend = 10,
     previewer = false,
   })
-end, { desc = '[/] Fuzzily search in current buffer' })
+end
 
--- Also possible to pass additional configuration options.
-vim.keymap.set('n', '<leader>s/', function()
+local function search_in_open_files()
+  local telescope_builtin = require 'telescope.builtin'
   telescope_builtin.live_grep {
     grep_open_files = true,
     prompt_title = 'Live Grep in Open Files',
   }
-end, { desc = '[S]earch [/] in Open Files' })
+end
 
-vim.keymap.set('n', '<leader>sn', function()
+local function search_neovim_files()
+  local telescope_builtin = require 'telescope.builtin'
   telescope_builtin.find_files { cwd = vim.fn.stdpath 'config' }
-end, { desc = '[S]earch [N]eovim files' })
+end
+
+local todo_keywords = 'FIX,BUG,ISSUE,TODO,HACK,WARN,WARNING,XXX,NOTE,INFO,PERF,OPTIM,PERFORMANCE,OPTIMIZE,TEST'
+
+return {
+  { 'n', '<leader>sh', telescope_builtin_factory 'help_tags', { desc = '[S]earch [H]elp' } },
+  { 'n', '<leader>sk', telescope_builtin_factory 'keymaps', { desc = '[S]earch [K]eymaps' } },
+  { 'n', '<leader>sf', telescope_builtin_factory 'find_files', { desc = '[S]earch [F]iles' } },
+  { 'n', '<leader>sF', find_files_glob, { desc = '[S]earch [F]iles glob' } },
+  { 'n', '<leader>ss', telescope_builtin_factory 'builtin', { desc = '[S]earch [S]elect Telescope' } },
+  { 'n', '<leader>sg', telescope_builtin_factory 'live_grep', { desc = '[S]earch by [G]rep' } },
+  { 'n', '<leader>sd', telescope_builtin_factory 'diagnostics', { desc = '[S]earch [D]iagnostics' } },
+  { 'n', '<leader>s.', telescope_builtin_factory 'oldfiles', { desc = '[S]earch Recent Files ("." for repeat)' } },
+  { 'n', '<leader>sb', telescope_builtin_factory 'buffers', { desc = '[ ] Find existing buffers' } },
+  { 'n', '<leader>sy', '/*<cr>', { desc = 'Find yanked' } },
+
+  { 'n', '<leader>st', '<cmd>TodoTelescope keywords=' .. todo_keywords .. '<cr>', { desc = '[T]odo' } },
+  { 'n', '<leader>sp', '<cmd>Telescope persisted<cr>', { desc = '[P]rojects' } },
+
+  -- Search current word under cursor
+  -- vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
+  -- Resume previous search
+  { 'n', '<leader>sr', telescope_builtin_factory 'resume', { desc = '[S]earch [R]esume' } },
+  { 'n', '<leader>b/', search_current_buffer, { desc = '[/] Fuzzily search in current buffer' } },
+
+  -- Also possible to pass additional configuration options.
+  { 'n', '<leader>s/', search_in_open_files, { desc = '[S]earch [/] in Open Files' } },
+  -- { 'n', '<leader>sn', search_neovim_files, { desc = '[S]earch [N]eovim files' } },
+}

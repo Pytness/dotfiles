@@ -1,13 +1,12 @@
-local harpoon = require 'harpoon'
 -- local harpoon_ext = require 'harpoon.ext'
 
-local function add()
+local function add_file()
+  local harpoon = require 'harpoon'
   harpoon:list():add()
 end
 
-vim.keymap.set('n', '<leader>ha', add, { desc = 'Add current file to Harpoon' })
-
-vim.keymap.set('n', '<leader>hA', function()
+local function open_all()
+  local harpoon = require 'harpoon'
   local list = harpoon:list()
 
   -- Open the fist 4 files
@@ -18,44 +17,41 @@ vim.keymap.set('n', '<leader>hA', function()
 
   -- Select the first one
   list:select(1)
-end, { desc = 'Open all' })
+end
 
-local function toggle_telescope(harpoon_files)
-  -- local opts = {
-  --   attach_mappings = function(_, map)
-  --     map('i', '<A-j>', 'move_selection_next')
-  --     return true
-  --   end,
-  -- }
-  -- require('telescope').extensions.harpoon.marks()
+local function open_harpoon_list()
+  local harpoon = require 'harpoon'
   harpoon.ui:toggle_quick_menu(harpoon:list())
 end
 
-vim.keymap.set('n', '<leader>he', function()
-  toggle_telescope(harpoon:list())
-end, { desc = 'Toggle Harpoon menu' })
+local function select_factory(n)
+  return function()
+    local harpoon = require 'harpoon'
+    harpoon:list():select(n)
+  end
+end
 
-vim.keymap.set('n', '<leader>hh', function()
-  harpoon:list():select(1)
-end, { desc = 'Select Harpoon 1' })
-
-vim.keymap.set('n', '<leader>hj', function()
-  harpoon:list():select(2)
-end, { desc = 'Select Harpoon 2' })
-
-vim.keymap.set('n', '<leader>hk', function()
-  harpoon:list():select(3)
-end, { desc = 'Select Harpoon 3' })
-
-vim.keymap.set('n', '<leader>hl', function()
-  harpoon:list():select(4)
-end, { desc = 'Select Harpoon 4' })
-
--- Toggle previous & next buffers stored within Harpoon list
-vim.keymap.set('n', '<leader>hp', function()
+local function select_previous()
+  local harpoon = require 'harpoon'
   harpoon:list():prev()
-end, { desc = 'Select previous Harpoon buffer' })
+end
 
-vim.keymap.set('n', '<leader>hn', function()
+local function select_next()
+  local harpoon = require 'harpoon'
   harpoon:list():next()
-end, { desc = 'Select next Harpoon buffer' })
+end
+
+return {
+  { 'n', '<leader>ha', add_file, { desc = 'Add current file to Harpoon' } },
+  { 'n', '<leader>hA', open_all, { desc = 'Open all' } },
+  { 'n', '<leader>he', open_harpoon_list, { desc = 'Toggle Harpoon menu' } },
+
+  { 'n', '<leader>hh', select_factory(1), { desc = 'Select Harpoon 1' } },
+  { 'n', '<leader>hj', select_factory(2), { desc = 'Select Harpoon 2' } },
+  { 'n', '<leader>hk', select_factory(3), { desc = 'Select Harpoon 3' } },
+  { 'n', '<leader>hl', select_factory(4), { desc = 'Select Harpoon 4' } },
+
+  -- Toggle previous & next buffers stored within Harpoon list
+  { 'n', '<leader>hp', select_previous, { desc = 'Select previous Harpoon buffer' } },
+  { 'n', '<leader>hn', select_next, { desc = 'Select next Harpoon buffer' } },
+}

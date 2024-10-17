@@ -18,6 +18,8 @@ local function Toggle_venn()
   end
 end
 
-vim.keymap.set('n', '<leader>mv', Toggle_venn, { desc = 'Toggle venn', noremap = true })
+-- vim.keymap.set('n', '<leader>mv', Toggle_venn, { desc = 'Toggle venn', noremap = true })
 
-vim.keymap.set('n', '<leader>mm', '<cmd>MarkdownPreviewToggle<cr>', { desc = 'Toggle markdown preview' })
+return {
+  { 'n', '<leader>mm', '<cmd>MarkdownPreviewToggle<cr>', { desc = 'Toggle markdown preview' } },
+}

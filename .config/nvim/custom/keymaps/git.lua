@@ -16,5 +16,7 @@ local function git_diff()
   vim.cmd 'DiffviewToggleFiles'
 end
 
-vim.keymap.set('n', '<leader>gr', restore_current_file, { desc = 'Restore current file' })
-vim.keymap.set('n', '<leader>gd', git_diff, { desc = 'Diff current file' })
+return {
+  { 'n', '<leader>gr', restore_current_file, { desc = 'Restore current file' } },
+  { 'n', '<leader>gd', git_diff, { desc = 'Diff current file' } },
+}

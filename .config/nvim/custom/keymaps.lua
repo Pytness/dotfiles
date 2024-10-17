@@ -58,14 +58,26 @@ wk.add {
   { '<leader>z', group = '[Z]en mode' },
 }
 
-require 'custom.keymaps.git'
-require 'custom.keymaps.movement'
-require 'custom.keymaps.harpoon'
-require 'custom.keymaps.misc'
-require 'custom.keymaps.cargo'
-require 'custom.keymaps.copilot'
-require 'custom.keymaps.neovim'
-require 'custom.keymaps.navigation'
-require 'custom.keymaps.lsp'
-require 'custom.keymaps.search'
-require 'custom.keymaps.zen'
+-- @keymaps: {string | table, string, string | function, table?}
+local function set_keymaps(mappings)
+  for _, keymap in ipairs(mappings) do
+    local mode = keymap[1]
+    local key = keymap[2]
+    local action = keymap[3]
+    local options = keymap[4] or {}
+
+    vim.keymap.set(mode, key, action, options)
+  end
+end
+
+set_keymaps(require 'custom.keymaps.git')
+set_keymaps(require 'custom.keymaps.movement')
+set_keymaps(require 'custom.keymaps.harpoon')
+set_keymaps(require 'custom.keymaps.misc')
+set_keymaps(require 'custom.keymaps.cargo')
+set_keymaps(require 'custom.keymaps.copilot')
+set_keymaps(require 'custom.keymaps.neovim')
+set_keymaps(require 'custom.keymaps.navigation')
+set_keymaps(require 'custom.keymaps.lsp')
+set_keymaps(require 'custom.keymaps.search')
+set_keymaps(require 'custom.keymaps.zen')
