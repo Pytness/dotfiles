@@ -6,7 +6,7 @@ return {
 
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
-    event = 'VeryLazy',
+    event = 'VimEnter',
     opts = {
       signs = {
         add = { text = '+' },
@@ -20,15 +20,17 @@ return {
 
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
-    event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+    event = 'VeryLazy', -- Sets the loading event to 'VimEnter'
     opts = {
       preset = 'modern',
+    },
+    keys = {
+      '<leader>',
     },
   },
 
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
-    event = 'VimEnter',
     module = 'telescope',
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -48,7 +50,6 @@ return {
       { 'nvim-telescope/telescope-ui-select.nvim' },
       { 'nvim-tree/nvim-web-devicons' },
     },
-
     config = function()
       -- The easiest way to use telescope, is to start by doing something like:
       --  :Telescope help_tags
@@ -375,6 +376,8 @@ return {
 
   { -- Autoformat
     'stevearc/conform.nvim',
+    event = { 'BufWritePre' },
+    cmd = { 'ConformInfo' },
     dependencies = {
       {
         'stsewd/isort.nvim',
@@ -404,6 +407,7 @@ return {
   },
   {
     'saecki/crates.nvim',
+    event = { 'BufRead Cargo.toml' },
     -- tag = 'stable',
     config = function()
       require('crates').setup {
@@ -690,24 +694,10 @@ return {
     ft = 'hypr',
   },
   {
-    'ThePrimeagen/vim-be-good',
-  },
-  {
     'goolord/alpha-nvim',
     config = function()
       local dash = require 'custom.alpha'
       require('alpha').setup(dash.opts)
     end,
   },
-  -- {
-  --   'm4xshen/hardtime.nvim',
-  --   dependencies = { 'MunifTanjim/nui.nvim', 'nvim-lua/plenary.nvim' },
-  --   opts = {
-  --     disabled_keys = {
-  --       -- Enable scrolling
-  --       ['<Up>'] = { 'i' },
-  --       ['<Down>'] = { 'i' },
-  --     },
-  --   },
-  -- },
 }

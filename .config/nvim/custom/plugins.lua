@@ -140,32 +140,6 @@ return {
     },
   },
   {
-    'Pocco81/true-zen.nvim',
-    config = function()
-      require('true-zen').setup {
-        modes = {
-          narrow = {
-            --- change the style of the fold lines. Set it to:
-            --- `informative`: to get nice pre-baked folds
-            --- `invisible`: hide them
-            --- function() end: pass a custom func with your fold lines. See :h foldtext
-            folds_style = 'invisible',
-            run_ataraxis = true, -- display narrowed text in a Ataraxis session
-            callbacks = { -- run functions when opening/closing Narrow mode
-              open_pre = nil,
-              open_pos = nil,
-              close_pre = nil,
-              close_pos = nil,
-            },
-          },
-        },
-      }
-    end,
-  },
-  { -- Ascii box drawing
-    'jbyuki/venn.nvim',
-  },
-  {
     'iamcco/markdown-preview.nvim',
     cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
     ft = { 'markdown' },
@@ -224,11 +198,28 @@ return {
   { 'wakatime/vim-wakatime', lazy = false },
   {
     'CopilotC-Nvim/CopilotChat.nvim',
-    event = 'VeryLazy',
+    lazy = true,
     branch = 'canary',
     dependencies = {
       { 'zbirenbaum/copilot.lua' }, -- or github/copilot.vim
       { 'nvim-lua/plenary.nvim' }, -- for curl, log wrapper
+    },
+    cmd = {
+      'CopilotChatToggle',
+      'CopilotChatCommit',
+      'CopilotChatCommitStaged',
+      'CopilotChatReview',
+      'CopilotChatFix',
+      'CopilotChatFixDiagnostic',
+      'CopilotChatOptimize',
+      'CopilotChatDocs',
+      'CopilotChatTests',
+      'CopilotChatExplain',
+      'CopilotChatExplainAdvanced',
+      'CopilotChatRefactor',
+      'CopilotChatReadable',
+      'CopilotChatImplement',
+      'CopilotChatLeetTest',
     },
     opts = {
       clear_chat_on_new_prompt = false,
@@ -299,8 +290,8 @@ return {
     },
   },
   {
-    lazy = true,
     'sindrets/diffview.nvim',
+    lazy = true,
     config = function()
       require('diffview').setup {
         keymaps = {
