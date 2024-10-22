@@ -6,7 +6,7 @@ return {
 
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
-    event = 'VimEnter',
+    event = 'VeryLazy',
     opts = {
       signs = {
         add = { text = '+' },
@@ -568,7 +568,6 @@ return {
       --  - ci'  - [C]hange [I]nside [']quote
       require('mini.ai').setup { n_lines = 500 }
 
-      -- DISABLED DUE TO lightspeed CONFLICTS
       -- Add/delete/replace surroundings (brackets, quotes, etc.)
       --
       -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
