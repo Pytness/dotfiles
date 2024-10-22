@@ -147,8 +147,8 @@ local highlights = {
   gitcommitOverflow = { fg = colors.red },
 }
 
-function load_highlights(highlights)
-  for group, settings in pairs(highlights) do
+local function load_highlights(hl_table)
+  for group, settings in pairs(hl_table) do
     vim.api.nvim_set_hl(0, group, settings)
   end
 end
