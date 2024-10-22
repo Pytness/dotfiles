@@ -308,9 +308,8 @@ return {
   },
   {
     'rhysd/git-messenger.vim',
-    config = function()
-      -- require('git-messenger').setup()
-    end,
+    cmd = 'GitMessenger',
+    opts = {},
   },
   {
     'cappyzawa/trim.nvim',
