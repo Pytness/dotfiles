@@ -19,4 +19,5 @@ end
 return {
   { 'n', '<leader>gr', restore_current_file, { desc = 'Restore current file' } },
   { 'n', '<leader>gd', git_diff, { desc = 'Diff current file' } },
+  { 'n', '<leader>gc', '<cmd>GitMessenger<cr>', { desc = 'Display commit' } },
 }
