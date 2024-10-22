@@ -16,7 +16,7 @@ local constant = {
 }
 
 local function_ = {
-  { fg = colors.blue_purple },
+  { fg = colors.blue },
   {
     builtin = { fg = colors.cyan },
     call = { fg = colors.blue },
@@ -101,7 +101,8 @@ local type = {
 local variable = {
   { fg = colors.white },
   {
-    builtin = { fg = colors.yellow },
+    builtin = { fg = colors.dark_yellow },
+    -- member = { fg = colors.light_red },
   },
 }
 
