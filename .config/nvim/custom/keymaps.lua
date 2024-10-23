@@ -21,6 +21,9 @@ local function quit()
   vim.cmd 'silent q'
 end
 
+-- Disable default S key in favour of using it for surround.vim
+vim.keymap.set('n', 'S', '<nop>')
+
 -- For some reason, neovim started spitting out errors
 -- when I tried to use '<cmd>q<cr>' here.
 vim.keymap.set('n', '<leader>q', quit, { desc = ':q' })
