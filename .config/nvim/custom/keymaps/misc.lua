@@ -31,7 +31,9 @@ end
 local function google_search()
   local mode = vim.api.nvim_get_mode().mode
 
-  if mode == 'v' then
+  print('mode', mode)
+
+  if mode == 'v' or mode == 'V' or mode == '' then
     vim.cmd 'normal! "sy'
   elseif mode == 'n' then
     vim.cmd 'normal! "syiW'
