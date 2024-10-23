@@ -14,25 +14,12 @@ local function find_files_glob()
   }
 end
 
-local function search_current_buffer()
-  local telescope_builtin = require 'telescope.builtin'
-  telescope_builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    winblend = 10,
-    previewer = false,
-  })
-end
-
 local function search_in_open_files()
   local telescope_builtin = require 'telescope.builtin'
   telescope_builtin.live_grep {
     grep_open_files = true,
     prompt_title = 'Live Grep in Open Files',
   }
-end
-
-local function search_neovim_files()
-  local telescope_builtin = require 'telescope.builtin'
-  telescope_builtin.find_files { cwd = vim.fn.stdpath 'config' }
 end
 
 local todo_keywords = 'FIX,BUG,ISSUE,TODO,HACK,WARN,WARNING,XXX,NOTE,INFO,PERF,OPTIM,PERFORMANCE,OPTIMIZE,TEST'
@@ -52,13 +39,8 @@ return {
   { 'n', '<leader>st', '<cmd>TodoTelescope keywords=' .. todo_keywords .. '<cr>', { desc = '[T]odo' } },
   { 'n', '<leader>sp', '<cmd>Telescope persisted<cr>', { desc = '[P]rojects' } },
 
-  -- Search current word under cursor
-  -- vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-  -- Resume previous search
   { 'n', '<leader>sr', telescope_builtin_factory 'resume', { desc = '[S]earch [R]esume' } },
-  { 'n', '<leader>b/', search_current_buffer, { desc = '[/] Fuzzily search in current buffer' } },
 
   -- Also possible to pass additional configuration options.
   { 'n', '<leader>s/', search_in_open_files, { desc = '[S]earch [/] in Open Files' } },
-  -- { 'n', '<leader>sn', search_neovim_files, { desc = '[S]earch [N]eovim files' } },
 }
