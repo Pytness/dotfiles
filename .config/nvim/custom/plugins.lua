@@ -291,7 +291,7 @@ return {
   },
   {
     'sindrets/diffview.nvim',
-    lazy = true,
+    cmd = { 'DiffviewOpen', 'DiffviewClose' },
     config = function()
       require('diffview').setup {
         keymaps = {
