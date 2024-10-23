@@ -22,6 +22,8 @@ local colors = {
   white_mask_1 = '#333747',
   white_mask_3 = '#474b59',
   white_mask_11 = '#989aa2',
+  leap_primary_label = '#ff2f87',
+  leap_secondary_label = '#ff2f87',
 }
 
 return colors

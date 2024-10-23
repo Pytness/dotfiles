@@ -154,6 +154,5 @@ local function load_highlights(hl_table)
 end
 
 load_highlights(highlights)
-
-local treesitter = require 'custom.theme.treesitter'
-load_highlights(treesitter)
+load_highlights(require 'custom.theme.treesitter')
+load_highlights(require 'custom.theme.leap')

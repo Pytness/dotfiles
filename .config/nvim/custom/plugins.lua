@@ -30,32 +30,6 @@ return {
   {
     'ggandor/leap.nvim',
     config = function()
-      -- The below settings make Leap's highlighting closer to what you've been
-      -- used to in Lightspeed.
-
-      local normal = vim.api.nvim_get_hl(0, { name = 'Normal' })
-
-      vim.api.nvim_set_hl(0, 'LeapBackdrop', { link = 'Comment' }) -- or some grey
-      vim.api.nvim_set_hl(0, 'LeapMatch', {
-        fg = 'white',
-        bold = true,
-        nocombine = true,
-      })
-
-      vim.api.nvim_set_hl(0, 'LeapLabelPrimary', {
-        bg = normal.bg,
-        fg = '#ff2f87',
-        bold = false,
-        nocombine = true,
-      })
-
-      vim.api.nvim_set_hl(0, 'LeapLabelSecondary', {
-        bg = normal.bg,
-        fg = '#99ddff',
-        bold = false,
-        nocombine = true,
-      })
-
       require('leap').setup {
         safe_labels = '', -- Disable the default labels so keypresses are always 3
         labels = 'sfnjklhodweimbuyvrgtaqpcxz',
@@ -67,11 +41,8 @@ return {
     config = function()
       require('flit').setup {
         keys = { f = 'f', F = 'F', t = 't', T = 'T' },
-        -- A string like "nv", "nvo", "o", etc.
         labeled_modes = 'v',
         multiline = true,
-        -- Like `leap`s similar argument (call-specific overrides).
-        -- E.g.: opts = { equivalence_classes = {} }
         opts = {},
       }
     end,
