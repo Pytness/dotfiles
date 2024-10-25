@@ -6,7 +6,7 @@ local version = vim.version()
 local nvim_version_info = 'v' .. version.major .. '.' .. version.minor .. '.' .. version.patch
 
 dashboard.section.header.val = {
-  'NEOVIM' .. '    ' .. nvim_version_info,
+  'Neovim' .. '    ' .. nvim_version_info,
 }
 
 dashboard.section.buttons.val = {
@@ -19,10 +19,13 @@ dashboard.section.buttons.val = {
 }
 
 local function footer()
-  local datetime = os.date ' %d/%m/%Y   %H:%M:%S'
+  local datetime = os.date ' %d/%m/%Y    %H:%M:%S'
+  local lazy_stats = require('lazy').stats()
 
   local text_table = {
     datetime,
+    'Plugin      ' .. '  󰚥  ' .. lazy_stats.count .. ' / ' .. lazy_stats.loaded,
+    'Startup Time' .. '  󱎫  ' .. lazy_stats.startuptime .. ' ms',
     'Pytness',
   }
 
@@ -31,18 +34,32 @@ local function footer()
     val = text_table,
     opts = {
       position = 'center',
-      hl = 'Number',
+      hl = 'Conditional',
     },
   }
 end
 
-dashboard.config.layout = {
-  { type = 'padding', val = 3 },
-  dashboard.section.header,
-  { type = 'padding', val = 2 },
-  dashboard.section.buttons,
-  { type = 'padding', val = 1 },
-  footer(),
-}
+local function create_layout()
+  return {
+    { type = 'padding', val = 3 },
+    dashboard.section.header,
+    { type = 'padding', val = 2 },
+    dashboard.section.buttons,
+    { type = 'padding', val = 1 },
+    footer(),
+  }
+end
+
+dashboard.config.layout = create_layout()
+
+vim.api.nvim_create_autocmd('User', {
+  once = true,
+  pattern = 'LazyVimStarted',
+
+  callback = function()
+    dashboard.config.layout = create_layout()
+    pcall(vim.cmd.AlphaRedraw)
+  end,
+})
 
 return dashboard
