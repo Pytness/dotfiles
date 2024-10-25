@@ -37,6 +37,16 @@ keybinds clear-defaults=true {
         bind "Alt [" { PreviousSwapLayout; }
         bind "Alt ]" { NextSwapLayout; }
 
+        // -- Apparently, `MovePaneForwards` does not exist
+        // bind "}" { MovePaneForwards; }
+        bind "}" { MovePaneBackwards; SwitchToMode "Normal"; }
+
+        bind "H" { MovePane "Left"; }
+        bind "J" { MovePane "Down"; }
+        bind "K" { MovePane "Up"; }
+        bind "L" { MovePane "Right"; }
+
+
         bind "/" {
             NewTab {
                 name "Tmux Bindings Help"
@@ -58,14 +68,13 @@ keybinds clear-defaults=true {
     }
 
     scroll {
-        bind "Ctrl s" { SwitchToMode "Normal"; }
         bind "e" { EditScrollback; SwitchToMode "Normal"; }
-        bind "s" { SwitchToMode "EnterSearch"; SearchInput 0; }
-        bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
+        bind "/" { SwitchToMode "EnterSearch"; SearchInput 0; }
+        bind "G" { ScrollToBottom; SwitchToMode "Normal"; }
         bind "j" "Down" { ScrollDown; }
         bind "k" "Up" { ScrollUp; }
-        bind "Ctrl f" "PageDown" "Right" "l" { PageScrollDown; }
-        bind "Ctrl b" "PageUp" "Left" "h" { PageScrollUp; }
+        bind "Ctrl d" "PageDown"  { PageScrollDown; }
+        bind "Ctrl u" "PageUp" { PageScrollUp; }
         bind "d" { HalfPageScrollDown; }
         bind "u" { HalfPageScrollUp; }
         // uncomment this and adjust key if using copy_on_select=false
@@ -129,7 +138,7 @@ keybinds clear-defaults=true {
     }
 
     pane clear-defaults=true {
-         bind "Ctrl p" { SwitchToMode "Normal"; }
+         bind "Esc" { SwitchToMode "Normal"; }
          bind "h" "Left" { MoveFocus "Left"; }
          bind "l" "Right" { MoveFocus "Right"; }
          bind "j" "Down" { MoveFocus "Down"; }
