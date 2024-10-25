@@ -4,24 +4,17 @@
 -- See the kickstart.nvim README for more information
 return {
   {
-    -- Add tabs for buffers
-    'akinsho/bufferline.nvim',
-    version = '*',
-    dependencies = 'nvim-tree/nvim-web-devicons',
-    config = function()
-      require('bufferline').setup {
-        options = {
-          offsets = {
-            {
-              filetype = 'NvimTree',
-              text = 'Explorer',
-              text_align = 'center',
-              separator = true,
-            },
-          },
-        },
-      }
-    end,
+    'mistweaverco/bafa.nvim',
+    opts = {
+      width = 60,
+      height = 10,
+      title = 'Bafa',
+      title_pos = 'center',
+      relative = 'editor',
+      border = 'rounded',
+      style = 'minimal',
+      diagnostics = true,
+    },
   },
   {
     -- Improves buffer deletion
@@ -73,7 +66,6 @@ return {
   },
   { -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
-    -- NOTE: check if works
     event = 'BufRead',
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help ibl`
@@ -275,7 +267,12 @@ return {
   },
   {
     'jsongerber/thanks.nvim',
-    config = true,
+    cmd = {
+      'ThanksAll',
+      'ThanksClearCache',
+      'ThanksGithubAuth',
+      'ThanksGithubLogout',
+    },
   },
   {
     'rhysd/git-messenger.vim',
