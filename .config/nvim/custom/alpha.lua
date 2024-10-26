@@ -1,4 +1,3 @@
-local alpha = require 'alpha'
 local dashboard = require 'alpha.themes.dashboard'
 local button = dashboard.button
 
