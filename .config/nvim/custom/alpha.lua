@@ -23,7 +23,7 @@ local function footer()
 
   local text_table = {
     datetime,
-    'Plugin      ' .. '  󰚥  ' .. lazy_stats.count .. ' / ' .. lazy_stats.loaded,
+    'Plugin      ' .. '  󰚥  ' .. lazy_stats.loaded .. ' / ' .. lazy_stats.count,
     'Startup Time' .. '  󱎫  ' .. lazy_stats.startuptime .. ' ms',
     'Pytness',
   }
