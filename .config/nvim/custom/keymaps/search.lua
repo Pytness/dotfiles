@@ -33,7 +33,7 @@ return {
   { 'n', '<leader>sg', telescope_builtin_factory 'live_grep', { desc = '[S]earch by [G]rep' } },
   { 'n', '<leader>sd', telescope_builtin_factory 'diagnostics', { desc = '[S]earch [D]iagnostics' } },
   { 'n', '<leader>s.', telescope_builtin_factory 'oldfiles', { desc = '[S]earch Recent Files ("." for repeat)' } },
-  { 'n', '<leader>sb', telescope_builtin_factory 'buffers', { desc = '[ ] Find existing buffers' } },
+  -- { 'n', '<leader>sb', telescope_builtin_factory 'buffers', { desc = '[ ] Find existing buffers' } },
   { 'n', '<leader>sy', '/*<cr>', { desc = 'Find yanked' } },
 
   { 'n', '<leader>st', '<cmd>TodoTelescope keywords=' .. todo_keywords .. '<cr>', { desc = '[T]odo' } },
