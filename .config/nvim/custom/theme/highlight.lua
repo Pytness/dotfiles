@@ -145,6 +145,14 @@ local highlights = {
   gitcommitFile = {},
   gitcommitSummary = { fg = colors.white },
   gitcommitOverflow = { fg = colors.red },
+
+  MiniTablineHidden = { bg = colors.cursor_grey, fg = colors.white },
+  MiniTablineVisible = { bg = colors.cursor_grey, fg = colors.white },
+  MiniTablineCurrent = { bg = colors.white_mask_3, fg = colors.white },
+
+  MiniTablineModifiedHidden = { bg = colors.cursor_grey, fg = colors.green },
+  MiniTablineModifiedVisible = { bg = colors.cursor_grey, fg = colors.green },
+  MiniTablineModifiedCurrent = { bg = colors.white_mask_3, fg = colors.green },
 }
 
 local function load_highlights(hl_table)
