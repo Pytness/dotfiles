@@ -628,9 +628,9 @@ return {
           label = tabline.default_format(buffer_id, label)
 
           if vim.bo[buffer_id].modified then
-            label = '+ ' .. label
+            label = '+' .. label
           else
-            label = '  ' .. label
+            label = ' ' .. label
           end
 
           return label

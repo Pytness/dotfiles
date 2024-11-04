@@ -4,11 +4,12 @@
 -- See the kickstart.nvim README for more information
 return {
   {
-    'mistweaverco/bafa.nvim',
+    dir = '~/code/pytness/bafa.nvim',
+    branch = 'dev',
     opts = {
       width = 60,
       height = 10,
-      title = 'Bafa',
+      title = ' Bafa ',
       title_pos = 'center',
       relative = 'editor',
       border = 'rounded',
@@ -48,6 +49,7 @@ return {
       require('copilot').setup {
         suggestion = {
           auto_trigger = true,
+          accept = '<M-l>',
         },
       }
     end,
@@ -161,31 +163,38 @@ return {
   { 'wakatime/vim-wakatime', lazy = false },
   {
     'CopilotC-Nvim/CopilotChat.nvim',
-    lazy = true,
+    -- lazy = true,
     branch = 'canary',
+    build = 'make tiktoken',
     dependencies = {
       { 'zbirenbaum/copilot.lua' }, -- or github/copilot.vim
       { 'nvim-lua/plenary.nvim' }, -- for curl, log wrapper
     },
+
+    module = 'CopilotChat',
     cmd = {
-      'CopilotChatToggle',
       'CopilotChatCommit',
       'CopilotChatCommitStaged',
-      'CopilotChatReview',
+      'CopilotChatDocs',
+      'CopilotChatExplain',
+      -- 'CopilotChatExplainAdvanced',
       'CopilotChatFix',
       'CopilotChatFixDiagnostic',
-      'CopilotChatOptimize',
-      'CopilotChatDocs',
-      'CopilotChatTests',
-      'CopilotChatExplain',
-      'CopilotChatExplainAdvanced',
-      'CopilotChatRefactor',
-      'CopilotChatReadable',
-      'CopilotChatImplement',
+      -- 'CopilotChatImplement',
+      -- 'CopilotChatImplementInline',
       'CopilotChatLeetTest',
+      'CopilotChatModel',
+      'CopilotChatModels',
+      'CopilotChatOptimize',
+      'CopilotChatReadable',
+      -- 'CopilotChatRefactor',
+      'CopilotChatReview',
+      'CopilotChatTests',
+      'CopilotChatToggle',
     },
     opts = {
       clear_chat_on_new_prompt = false,
+      -- model = 'claude-3.5-sonnet',
       prompts = {
         Explain = {
           prompt = '/COPILOT_EXPLAIN Write a detailed and technical explanation of the following code.',
@@ -290,6 +299,7 @@ return {
       -- {'nvim-telescope/telescope.nvim'},
       -- {'ibhagwan/fzf-lua'},
     },
+
     config = function()
       require('neoclip').setup {
         default_register = '*',

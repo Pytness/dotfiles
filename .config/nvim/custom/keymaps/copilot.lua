@@ -37,6 +37,60 @@ vim.api.nvim_create_user_command('CopilotChatImplement', function()
   )
 end, { nargs = '*', range = true })
 
+vim.api.nvim_create_user_command('CopilotChatImplementInline', function()
+  local chat = require 'CopilotChat'
+  chat.ask(
+    [[
+    @buffers
+
+    Write the missing implementations of the selected code.
+    The user will use your code and `git patch` it into their codebase.
+    Only write the implementations.
+    ]],
+    {
+      selection = selection,
+      callback = function(response, source)
+        -- get code inside ```<lang>\n<code>\n```
+
+        local code = response:match '```%w+\n(.-)\n```'
+
+        if not code then
+          return
+        end
+
+        -- chat.close()
+
+        -- replace the current selection with the code
+        local bufnr = source.bufnr
+
+        local start_line = vim.api.nvim_buf_get_mark(bufnr, '<')[1]
+        local end_line = vim.api.nvim_buf_get_mark(bufnr, '>')[1]
+
+        local lines = vim.split(code, '\n', { plain = true })
+
+        vim.api.nvim_buf_set_lines(bufnr, start_line - 1, end_line, false, lines)
+
+        chat.close()
+
+        -- focus the buffer
+        vim.api.nvim_set_current_buf(bufnr)
+
+        -- move the cursor to the first line of the code
+        vim.api.nvim_win_set_cursor(0, { start_line, 1 })
+
+        -- enter Visual mode
+        vim.api.nvim_feedkeys('V', 'n', true)
+
+        -- move n lines down
+        vim.api.nvim_feedkeys(tostring(#lines - 1) .. 'j', 'n', true)
+
+        -- auto indent
+        vim.api.nvim_feedkeys('=', 'n', true)
+      end,
+    }
+  )
+end, { nargs = '*', range = true })
+
 vim.api.nvim_create_user_command('CopilotChatReadable', function()
   local chat = require 'CopilotChat'
   chat.ask(
@@ -76,6 +130,8 @@ return {
   { modes, '<leader>aR', '<cmd>CopilotChatRefactor<cr>', { desc = 'CopilotChat: Refactor' } },
   { modes, '<leader>al', '<cmd>CopilotChatReadable<cr>', { desc = 'CopilotChat: Readable' } },
   { modes, '<leader>ai', '<cmd>CopilotChatImplement<cr>', { desc = 'CopilotChat: Implement' } },
+  { modes, '<leader>aI', '<cmd>CopilotChatImplementInline<cr>', { desc = 'CopilotChat: Implement inline' } },
+
   { modes, '<leader>aT', '<cmd>CopilotChatLeetTest<cr>', { desc = 'CopilotChat: Implement leet code test' } },
 }
 
