@@ -11,43 +11,30 @@
 
 layout {
     default_tab_template {
-        pane size=2 borderless=true {
+        pane size=1 borderless=true {
             plugin location="https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm" {
-                format_left   "{mode}"
-                format_center "{tabs}"
-                format_right  "{command_git_branch} {datetime}"
+                format_left   "{mode} {tabs}"
+                format_center ""
+                format_right  "{datetime}"
                 format_space  ""
 
-                border_enabled  "true"
-                // border_char     "─"
+                border_enabled  "false"
                 border_char     "─"
                 border_format   "#[fg=#8a87de]{char}"
                 border_position "bottom"
 
-                //hide_frame_for_single_pane "true"
-
-                tab_normal   "#[bg=#F78C6C,fg=#181A1F] {name} "
-                tab_active   "#[bg=#ffcb6b,fg=#cccce6,bold,italic] {name} "
-
-                command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
-                command_git_branch_format      "#[bg=#8cb8ff,fg=#181A1F] {stdout} "
-                command_git_branch_interval    "10"
-                command_git_branch_rendermode  "static"
-
-                datetime        "#[fg=#cccce6,bold] {format} "
+                datetime        "#[bg=#8cb8ff,fg=#1c1d24] {format} "
                 datetime_format "%A, %d %b %Y %T"
-                //datetime_format "%A, %m/%d/%Y %T"
                 datetime_timezone "Europe/Madrid"
 
-                // tab_normal             #F78C6C #8a8a8a "#[fg=#6C7086]  {index} :: {name} "
-                tab_normal              "#[bg=#8a8a8a,fg=#181A1F]{index} {name}{floating_indicator} "
-                tab_normal_fullscreen   "#[bg=#8a8a8a,fg=#181A1F]{index} {name}{fullscreen_indicator} "
-                tab_normal_sync         "#[bg=#8a8a8a,fg=#181A1F]{index} {name}{sync_indicator} "
+                tab_normal              "#[fg=#8a8a8a,bg=#1c1d24]{index} {name}{floating_indicator} "
+                tab_normal_fullscreen   "#[fg=#8a8a8a,bg=#1c1d24]{index} {name}{fullscreen_indicator} "
+                tab_normal_sync         "#[fg=#8a8a8a,bg=#1c1d24]{index} {name}{sync_indicator} "
 
                 // formatting for the current active tab
-                tab_active              "#[bg=#ffcb6b,fg=#181A1F,bold,italic]{index} {name}{floating_indicator} "
-                tab_active_fullscreen   "#[bg=#ffcb6b,fg=#181A1F,bold,italic]{index} {name}{fullscreen_indicator} "
-                tab_active_sync         "#[bg=#ffcb6b,fg=#181A1F,bold,italic]{index} {name}{sync_indicator} "
+                tab_active              "#[fg=#cccce6,bg=#1c1d24,bold,italic]{index} {name}{floating_indicator} "
+                tab_active_fullscreen   "#[fg=#cccce6,bg=#1c1d24,bold,italic]{index} {name}{fullscreen_indicator} "
+                tab_active_sync         "#[fg=#cccce6,bg=#1c1d24,bold,italic]{index} {name}{sync_indicator} "
 
                 // separator between the tabs
                 tab_separator           "#[fg=#6C7086,bg=#181825] | "
@@ -57,25 +44,25 @@ layout {
                 tab_fullscreen_indicator ""
                 tab_floating_indicator   ""
 
-                mode_normal        "#[bg=#8cb8ff,fg=#181A1F]   NORMAL   "
-                mode_pane          "#[bg=#ffcb6b,fg=#181A1F]    PANE    "
-                mode_tab           "#[bg=#d67cde,fg=#181A1F]    TAB     "
-                mode_tmux          "#[bg=#C3E88D,fg=#181A1F]    TMUX    "
+                mode_normal        "#[fg=#8cb8ff,bg=#1c1d24]█   NORMAL   "
+                mode_pane          "#[fg=#ffcb6b,bg=#1c1d24]█    PANE    "
+                mode_tab           "#[fg=#d67cde,bg=#1c1d24]█    TAB     "
+                mode_tmux          "#[fg=#C3E88D,bg=#1c1d24]█    TMUX    "
 
-                mode_locked        "#[bg=#89B4FA,fg=#181A1F] {name} "
-                mode_resize        "#[bg=#89B4FA,fg=#181A1F] {name} "
-                mode_scroll        "#[bg=#89B4FA,fg=#181A1F] {name} "
-                mode_enter_search  "#[bg=#89B4FA,fg=#181A1F] {name} "
-                mode_search        "#[bg=#89B4FA,fg=#181A1F] {name} "
-                mode_session       "#[bg=#89B4FA,fg=#181A1F] {name} "
-                mode_move          "#[bg=#89B4FA,fg=#181A1F] {name} "
-                mode_prompt        "#[bg=#89B4FA,fg=#181A1F] {name} "
+                mode_locked        "#[bg=#89B4FA,fg=#1c1d24]█ {name} "
+                mode_resize        "#[bg=#89B4FA,fg=#1c1d24]█ {name} "
+                mode_scroll        "#[bg=#89B4FA,fg=#1c1d24]█ {name} "
+                mode_enter_search  "#[bg=#89B4FA,fg=#1c1d24]█ {name} "
+                mode_search        "#[bg=#89B4FA,fg=#1c1d24]█ {name} "
+                mode_session       "#[bg=#89B4FA,fg=#1c1d24]█ {name} "
+                mode_move          "#[bg=#89B4FA,fg=#1c1d24]█ {name} "
+                mode_prompt        "#[bg=#89B4FA,fg=#1c1d24]█ {name} "
             }
         }
-        children
         // pane size=1 borderless=true {
         //     plugin location="tab-bar"
         // }
+        children
     }
     //pane size=2 borderless=true {
     //    plugin location="status-bar"
