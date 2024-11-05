@@ -193,6 +193,7 @@ return {
       'CopilotChatToggle',
     },
     opts = {
+      debug = false,
       clear_chat_on_new_prompt = false,
       -- model = 'claude-3.5-sonnet',
       prompts = {
