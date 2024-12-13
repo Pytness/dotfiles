@@ -4,7 +4,7 @@
 -- See the kickstart.nvim README for more information
 return {
   {
-    dir = '~/code/pytness/bafa.nvim',
+    dir = '~/code/bafa.nvim',
     branch = 'dev',
     opts = {
       width = 60,
@@ -14,7 +14,23 @@ return {
       relative = 'editor',
       border = 'rounded',
       style = 'minimal',
-      diagnostics = true,
+      diagnostics = false,
+      keymaps = require 'custom.keymaps.bafa',
+      noop_keys = {
+        'i',
+        'I',
+        'a',
+        'A',
+        'o',
+        'O',
+        's',
+        'S',
+        'c',
+        'C',
+        'r',
+        'u',
+        'U',
+      },
     },
   },
   {
