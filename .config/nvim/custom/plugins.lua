@@ -15,6 +15,7 @@ return {
       border = 'rounded',
       style = 'minimal',
       diagnostics = false,
+      icons = false,
       keymaps = require 'custom.keymaps.bafa',
       noop_keys = {
         'i',
