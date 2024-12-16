@@ -35,6 +35,15 @@ return {
     },
   },
   {
+    'aaronik/treewalker.nvim',
+    opts = {
+      highlight = true,
+    },
+    cmd = {
+      'Treewalker',
+    },
+  },
+  {
     -- Improves buffer deletion
     'ojroques/nvim-bufdel',
   },
