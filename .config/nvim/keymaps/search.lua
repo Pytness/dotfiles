@@ -25,6 +25,7 @@ end
 local todo_keywords = 'FIX,BUG,ISSUE,TODO,HACK,WARN,WARNING,XXX,NOTE,INFO,PERF,OPTIM,PERFORMANCE,OPTIMIZE,TEST'
 
 return {
+  { 'n', '<leader>sc', '<cmd>Telescope neoclip<cr>', { desc = 'Search clipboard' } },
   { 'n', '<leader>sh', telescope_builtin_factory 'help_tags', { desc = '[S]earch [H]elp' } },
   { 'n', '<leader>sk', telescope_builtin_factory 'keymaps', { desc = '[S]earch [K]eymaps' } },
   { 'n', '<leader>sf', telescope_builtin_factory 'find_files', { desc = '[S]earch [F]iles' } },
