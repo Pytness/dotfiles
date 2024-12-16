@@ -105,105 +105,25 @@ return {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
+      'saghen/blink.cmp',
 
       -- Useful status updates for LSP.
       { 'j-hui/fidget.nvim', opts = {} },
     },
-    config = function()
-      vim.api.nvim_create_autocmd('LspAttach', {
-        group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
-        callback = function(event)
-          local border = {
-            -- ╭─╮
-            -- │ │
-            -- ╰─╯
-            { '╭', 'FloatBorder' },
-            { '─', 'FloatBorder' },
-            { '╮', 'FloatBorder' },
-            { '│', 'FloatBorder' },
-            { '╯', 'FloatBorder' },
-            { '─', 'FloatBorder' },
-            { '╰', 'FloatBorder' },
-            { '│', 'FloatBorder' },
-          }
 
-          local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-          function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-            opts = opts or {}
-            opts.border = opts.border or border
-            return orig_util_open_floating_preview(contents, syntax, opts, ...)
-          end
+    opts = {
 
-          -- Function that lets us more easily define mappings specific
-          -- for LSP related items. It sets the mode, buffer and description for us each time.
-          local map = function(keys, func, desc)
-            vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
-          end
-
-          -- Jump to the definition of the word under your cursor.
-          --  This is where a variable was first declared, or where a function is defined, etc.
-          --  To jump back, press <C-T>.
-          -- map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-
-          -- Find references for the word under your cursor.
-          -- map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-
-          -- Jump to the implementation of the word under your cursor.
-          --  Useful when your language has ways of declaring types without an actual implementation.
-          map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-
-          -- Jump to the type of the word under your cursor.
-          --  Useful when you're not sure what type a variable is and you want to see
-          --  the definition of its *type*, not where it was *defined*.
-          map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-
-          -- Fuzzy find all the symbols in your current document.
-          --  Symbols are things like variables, functions, types, etc.
-          map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-
-          -- Fuzzy find all the symbols in your current workspace
-          --  Similar to document symbols, except searches over your whole project.
-          map('<leader>sW', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-
-          -- The following two autocommands are used to highlight references of the
-          -- word under your cursor when your cursor rests there for a little while.
-          --    See `:help CursorHold` for information about when this is executed
-          --
-          -- When you move your cursor, the highlights will be cleared (the second autocommand).
-          local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client and client.server_capabilities.documentHighlightProvider then
-            vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-              buffer = event.buf,
-              callback = vim.lsp.buf.document_highlight,
-            })
-
-            vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-              buffer = event.buf,
-              callback = vim.lsp.buf.clear_references,
-            })
-          end
-        end,
-      })
-
-      -- LSP servers and clients are able to communicate to each other what features they support.
-      --  By default, Neovim doesn't support everything that is in the LSP Specification.
-      --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
-      --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
-
-      -- Enable the following language servers
-      --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-      --
-      --  Add any additional override configuration in the following tables. Available keys are:
-      --  - cmd (table): Override the default command used to start the server
-      --  - filetypes (table): Override the default list of associated filetypes for the server
-      --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-      --  - settings (table): Override the default settings passed when initializing the server.
-      --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-
-      local home_dir = os.getenv 'HOME'
-      local servers = {
+      border = {
+        { '╭', 'FloatBorder' },
+        { '─', 'FloatBorder' },
+        { '╮', 'FloatBorder' },
+        { '│', 'FloatBorder' },
+        { '╯', 'FloatBorder' },
+        { '─', 'FloatBorder' },
+        { '╰', 'FloatBorder' },
+        { '│', 'FloatBorder' },
+      },
+      servers = {
         -- clangd = {},
         -- gopls = {},
         pyright = {},
@@ -277,46 +197,7 @@ return {
           },
         },
 
-        -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-        --
-        -- Some languages (like typescript) have entire language plugins that can be useful:
-        --    https://github.com/pmizio/typescript-tools.nvim
-        --
-        -- But for many setups, the LSP (`tsserver`) will work just fine
-        -- tsserver = {
-        --   settings = {
-        --     typescript = {
-        --       inlayHints = {
-        --         includeInlayParameterNameHints = 'all',
-        --         includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-        --         includeInlayFunctionParameterTypeHints = true,
-        --         includeInlayVariableTypeHints = true,
-        --         includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-        --         includeInlayPropertyDeclarationTypeHints = true,
-        --         includeInlayFunctionLikeReturnTypeHints = true,
-        --         includeInlayEnumMemberValueHints = true,
-        --       },
-        --     },
-        --     javascript = {
-        --       inlayHints = {
-        --         includeInlayParameterNameHints = 'all',
-        --         includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-        --         includeInlayFunctionParameterTypeHints = true,
-        --         includeInlayVariableTypeHints = true,
-        --         includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-        --         includeInlayPropertyDeclarationTypeHints = true,
-        --         includeInlayFunctionLikeReturnTypeHints = true,
-        --         includeInlayEnumMemberValueHints = true,
-        --       },
-        --     },
-        --   },
-        -- },
-        --
-
         lua_ls = {
-          -- cmd = {...},
-          -- filetypes { ...},
-          -- capabilities = {},
           settings = {
             Lua = {
               runtime = { version = 'LuaJIT' },
@@ -340,19 +221,61 @@ return {
             },
           },
         },
-      }
+      },
+    },
 
-      -- Ensure the servers and tools above are installed
-      --  To check the current status of installed tools and/or manually install
-      --  other tools, you can run
-      --    :Mason
-      --
-      --  You can press `g?` for help in this menu
+    config = function(_, opts)
+      vim.api.nvim_create_autocmd('LspAttach', {
+        group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
+        callback = function(event)
+          local border = {
+            -- ╭─╮
+            -- │ │
+            -- ╰─╯
+            { '╭', 'FloatBorder' },
+            { '─', 'FloatBorder' },
+            { '╮', 'FloatBorder' },
+            { '│', 'FloatBorder' },
+            { '╯', 'FloatBorder' },
+            { '─', 'FloatBorder' },
+            { '╰', 'FloatBorder' },
+            { '│', 'FloatBorder' },
+          }
+
+          local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+
+          ---@diagnostic disable-next-line: duplicate-set-field
+          vim.lsp.util.open_floating_preview = function(contents, syntax, _opts, ...)
+            _opts = _opts or {}
+            _opts.border = _opts.border or border
+            return orig_util_open_floating_preview(contents, syntax, opts, ...)
+          end
+
+          -- The following two autocommands are used to highlight references of the
+          -- word under your cursor when your cursor rests there for a little while.
+          --    See `:help CursorHold` for information about when this is executed
+          --
+          -- When you move your cursor, the highlights will be cleared (the second autocommand).
+          local client = vim.lsp.get_client_by_id(event.data.client_id)
+          if client and client.server_capabilities.documentHighlightProvider then
+            vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+              buffer = event.buf,
+              callback = vim.lsp.buf.document_highlight,
+            })
+
+            vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+              buffer = event.buf,
+              callback = vim.lsp.buf.clear_references,
+            })
+          end
+        end,
+      })
+
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+
       require('mason').setup()
 
-      -- You can add other tools here that you want Mason to install
-      -- for you, so that they are available from within Neovim.
-      local ensure_installed = vim.tbl_keys(servers or {})
+      local ensure_installed = vim.tbl_keys(opts.servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format lua code
       })
@@ -360,13 +283,16 @@ return {
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
+        ensure_installed = {},
+        automatic_installation = true,
+
         handlers = {
           function(server_name)
-            local server = servers[server_name] or {}
-            -- This handles overriding only values explicitly passed
-            -- by the server configuration above. Useful when disabling
-            -- certain features of an LSP (for example, turning off formatting for tsserver)
+            local server = opts.servers[server_name] or {}
+
+            server.capabilities = require('blink.cmp').get_lsp_capabilities(server.capabilities)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+
             require('lspconfig')[server_name].setup(server)
           end,
         },
@@ -408,136 +334,112 @@ return {
   {
     'saecki/crates.nvim',
     event = { 'BufRead Cargo.toml' },
-    -- tag = 'stable',
+    tag = 'stable',
     config = function()
       require('crates').setup {
-        completion = {
-          cmp = {
-            enabled = true,
-          },
-          crates = {
-            enabled = true,
-            max_results = 16,
-            min_chars = 2,
-          },
+        lsp = {
+          enabled = true,
+          actions = true,
+          completion = true,
+          hover = true,
         },
       }
     end,
   },
-  { -- Autocompletion
-    'hrsh7th/nvim-cmp',
-    event = 'InsertEnter',
-    dependencies = {
-      -- Snippet Engine & its associated nvim-cmp source
-      {
-        'L3MON4D3/LuaSnip',
-        build = (function()
-          -- Build Step is needed for regex support in snippets
-          -- This step is not supported in many windows environments
-          -- Remove the below condition to re-enable on windows
-          if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
-            return
-          end
-          return 'make install_jsregexp'
-        end)(),
-      },
-      'saadparwaiz1/cmp_luasnip',
-
-      -- Adds other completion capabilities.
-      --  nvim-cmp does not ship with all sources by default. They are split
-      --  into multiple repos for maintenance purposes.
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-buffer',
-      'saecki/crates.nvim',
-
-      -- If you want to add a bunch of pre-configured snippets,
-      --    you can use this plugin to help you. It even has snippets
-      --    for various frameworks/libraries/etc. but you will have to
-      --    set up the ones that are useful for you.
-      -- 'rafamadriz/friendly-snippets',
+  {
+    'saghen/blink.compat',
+    version = '*',
+    lazy = true,
+    opts = {
+      impersonate_nvim_cmp = true,
+      debug = true,
     },
-    config = function()
-      -- See `:help cmp`
-      local cmp = require 'cmp'
-      local luasnip = require 'luasnip'
-      local compare = cmp.config.compare
+  },
+  {
+    'saghen/blink.cmp',
+    lazy = false, -- lazy loading handled internally
+    version = 'v0.*',
+    dependencies = {
+      -- FIX: crates.nvim currently not working with blink.cmp
+      'saecki/crates.nvim',
+    },
+    opts = {
+      completion = {
+        enabled_providers = {
+          'crates',
+          'lsp',
+          'path',
+          'snippets',
+          'buffer',
+        },
+        trigger = {
+          show_on_keyword = false,
+          show_on_trigger_character = false,
+          show_on_insert_on_trigger_character = false,
+          show_on_accept_on_trigger_character = false,
+        },
+        menu = {
+          min_width = 15,
+        },
 
-      luasnip.config.setup {}
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 0,
+          update_delay_ms = 0,
+        },
+      },
 
-      cmp.setup {
-        snippet = {
-          expand = function(args)
-            luasnip.lsp_expand(args.body)
+      signature = { enabled = true },
+
+      sources = {
+        default = {
+          'crates',
+          'lsp',
+          'path',
+          'snippets',
+          'buffer',
+        },
+      },
+
+      keymap = {
+        preset = 'default',
+
+        ['<C-j>'] = {
+          function(cmp)
+            cmp.select_next()
           end,
         },
-
-        completion = {
-          autcomplete = false,
-          -- completeopt = 'menu,menuone,noinsert',
+        ['<C-k>'] = {
+          function(cmp)
+            cmp.select_prev()
+          end,
         },
-
-        sorting = {
-          priority_wight = 1.0,
-          comparators = {
-            compare.offset,
-            compare.exact,
-            compare.score,
-            -- compare.scopes,
-            compare.recently_used,
-            compare.kind,
-            compare.sort_text,
-            compare.length,
-            compare.order,
-            --
-            -- compare.locality,
-            -- compare.recently_used,
-            -- compare.offset,
-            -- compare.order,
-          },
+        ['<C-l>'] = {
+          function(cmp)
+            cmp.accept()
+          end,
         },
-
-        -- Please read `:help ins-completion`, it is really good!
-        mapping = cmp.mapping.preset.insert {
-
-          ['<C-j>'] = cmp.mapping.select_next_item(),
-          ['<C-k>'] = cmp.mapping.select_prev_item(),
-          -- Accept the completion.
-          --  This will auto-import if your LSP supports it.
-          --  This will expand snippets if the LSP sent a snippet.
-          ['<C-l>'] = cmp.mapping.confirm { select = true },
-
-          -- Manually trigger a completion from nvim-cmp.
-          --  Generally you don't need this, because nvim-cmp will display
-          --  completions whenever it has completion options available.
-          ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-Space>'] = {
+          function(cmp)
+            cmp.show()
+          end,
         },
+      },
 
-        sources = cmp.config.sources {
-          { name = 'crates' },
-          {
-            name = 'nvim_lsp',
-            entry_filter = function(entry, ctx)
-              local item_kind = require('cmp').lsp.CompletionItemKind
-              local entry_kind = entry:get_kind()
-
-              return entry_kind ~= item_kind.Text and entry_kind ~= item_kind.Keyword and entry_kind ~= item_kind.Snippet
-            end,
-          },
-          { name = 'path' },
-          -- { name = 'buffer' },
-        },
-      }
-
-      cmp.setup.filetype({ 'sql' }, {
-        sources = {
-          { name = 'vim-dadbod-completion' },
-          { name = 'buffer' },
-        },
-      })
-    end,
+      appearance = {
+        -- Sets the fallback highlight groups to nvim-cmp's highlight groups
+        -- Useful for when your theme doesn't support blink.cmp
+        -- will be removed in a future release
+        use_nvim_cmp_as_default = true,
+        -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+        -- Adjusts spacing to ensure icons are aligned
+        nerd_font_variant = 'mono',
+      },
+    },
+    -- allows extending the providers array elsewhere in your config
+    -- without having to redefine it
+    opts_extend = { 'sources.default' },
   },
-  -- Highlight todo, notes, etc in comments
   {
     'folke/todo-comments.nvim',
     event = 'VimEnter',
