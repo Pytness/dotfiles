@@ -401,6 +401,10 @@ return {
         },
       },
 
+      fuzzy = {
+        sorts = { 'score', 'kind', 'label' },
+      },
+
       keymap = {
         preset = 'default',
 
