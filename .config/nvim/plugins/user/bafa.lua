@@ -12,7 +12,7 @@ return {
     style = 'minimal',
     diagnostics = false,
     icons = false,
-    keymaps = require 'custom.keymaps.bafa',
+    keymaps = require 'keymaps.bafa',
     noop_keys = {
       'i',
       'I',

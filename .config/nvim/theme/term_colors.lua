@@ -1,4 +1,4 @@
-local colors = require 'custom.theme.colors'
+local colors = require 'theme.colors'
 
 --
 vim.g.terminal_color_0 = colors.black

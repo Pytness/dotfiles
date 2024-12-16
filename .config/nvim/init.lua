@@ -98,12 +98,12 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 local utils = require 'utils'
-require 'custom.theme'
+require 'theme'
 
 local plugins = utils.merge_arrays {
-  utils.load_plugins 'custom.plugins.core',
-  utils.load_plugins 'custom.plugins.user',
-  utils.load_plugins 'custom.plugins.custom',
+  utils.load_plugins 'plugins.core',
+  utils.load_plugins 'plugins.user',
+  utils.load_plugins 'plugins.custom',
 }
 
 require('lazy').setup(plugins, {
@@ -151,4 +151,4 @@ require('lazy').setup(plugins, {
   },
 })
 
-require 'custom.keymaps'
+require 'keymaps'
