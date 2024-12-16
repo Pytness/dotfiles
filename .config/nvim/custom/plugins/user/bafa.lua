@@ -1,0 +1,32 @@
+-- Buffer list preview and navigation/editing
+return {
+  dir = '~/code/bafa.nvim',
+  branch = 'dev',
+  opts = {
+    width = 60,
+    height = 10,
+    title = ' Bafa ',
+    title_pos = 'center',
+    relative = 'editor',
+    border = 'rounded',
+    style = 'minimal',
+    diagnostics = false,
+    icons = false,
+    keymaps = require 'custom.keymaps.bafa',
+    noop_keys = {
+      'i',
+      'I',
+      'a',
+      'A',
+      'o',
+      'O',
+      's',
+      'S',
+      'c',
+      'C',
+      'r',
+      'u',
+      'U',
+    },
+  },
+}

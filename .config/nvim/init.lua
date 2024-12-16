@@ -5,7 +5,6 @@ package.path = nvim_dir .. '?.lua;' .. package.path
 package.path = nvim_dir .. '?/?.lua;' .. package.path
 package.path = nvim_dir .. '?/init.lua;' .. package.path
 
-require 'utils'
 require 'libs'
 
 vim.g.mapleader = ' '
@@ -98,12 +97,13 @@ if not vim.loop.fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
-require 'utils'
+local utils = require 'utils'
 require 'custom.theme'
 
-local plugins = merge_arrays {
-  require 'custom.core_plugins',
-  require 'custom.plugins',
+local plugins = utils.merge_arrays {
+  utils.load_plugins 'custom.plugins.core',
+  utils.load_plugins 'custom.plugins.user',
+  utils.load_plugins 'custom.plugins.custom',
 }
 
 require('lazy').setup(plugins, {

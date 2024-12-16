@@ -30,7 +30,6 @@ vim.keymap.set('n', '<leader>q', quit, { desc = ':q' })
 
 vim.keymap.set('n', '<leader>Q', '<cmd>q!<cr>', { desc = ':q!' })
 vim.keymap.set('n', '<leader>w', '<cmd>w<cr>', { desc = ':w' })
-vim.keymap.set('n', '<leader>e', require('custom.minifiles').toggle, { desc = 'Toggle file tree' })
 
 vim.keymap.set('v', '<leader>/', '<Plug>(comment_toggle_linewise_visual)', { desc = 'Comment line (visual)' })
 vim.keymap.set('n', '<leader>/', '<Plug>(comment_toggle_linewise_current)', { desc = 'Comment line' })

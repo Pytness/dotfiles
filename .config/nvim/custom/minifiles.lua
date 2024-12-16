@@ -1,4 +1,5 @@
 local files = require 'mini.files'
+local utils = require 'utils'
 
 local function is_open()
   return files.get_explorer_state() ~= nil
@@ -6,7 +7,7 @@ end
 
 local function close_without_sync()
   -- Synchronize the files without acceping changes
-  no_confirm_execute(0, files.synchronize)
+  utils.no_confirm_execute(0, files.synchronize)
   files.close()
 end
 
@@ -67,7 +68,7 @@ end
 
 local function synchronize()
   -- Synchronize the files acceping changes
-  no_confirm_execute(1, files.synchronize)
+  utils.no_confirm_execute(1, files.synchronize)
   force_refresh()
 
   print 'Files synchronized!'
