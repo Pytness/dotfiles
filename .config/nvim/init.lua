@@ -4,7 +4,6 @@ local nvim_dir = home_dir .. '/.config/nvim/'
 package.path = nvim_dir .. '?.lua;' .. package.path
 package.path = nvim_dir .. '?/?.lua;' .. package.path
 package.path = nvim_dir .. '?/init.lua;' .. package.path
-package.path = vim.fn.stdpath 'data' .. '/lazy-rocks;' .. package.path
 
 require 'libs'
 
