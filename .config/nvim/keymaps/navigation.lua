@@ -19,6 +19,5 @@ return {
   { 'n', '<leader>bn', '<cmd>bnext<cr>', { desc = 'Next buffer' } },
   { 'n', '<leader>bb', '<cmd>bprev<cr>', { desc = 'Previous buffer' } },
 
-  -- NOTE: maybe delete this later
   { 'n', '<leader>c', '<cmd>BufDel<cr>', { desc = 'Close Buffer' } },
 }

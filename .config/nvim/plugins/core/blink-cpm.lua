@@ -4,7 +4,6 @@ return {
   lazy = false, -- lazy loading handled internally
   version = 'v0.*',
   dependencies = {
-    -- FIX: crates.nvim currently not working with blink.cmp
     'saecki/crates.nvim',
   },
   opts = {

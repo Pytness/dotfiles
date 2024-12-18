@@ -1,4 +1,4 @@
-local telescope_builtin = require 'telescope.builtin'
+local fzf = require 'fzf-lua'
 
 local function toggle_hints()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
@@ -13,7 +13,8 @@ return {
 
   { 'n', '<leader>le', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' } },
   { 'n', '<leader>lq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' } },
-  { 'n', '<leader>lR', telescope_builtin.lsp_references, { desc = '[R]eferences' } },
+  { 'n', '<leader>lR', fzf.lsp_references, { desc = 'Show references' } },
+  { 'n', '<leader>gi', fzf.lsp_implementations, { desc = 'Show implementations' } },
 
   { 'n', '<leader>lC', '<cmd>Copilot toggle<cr>', { desc = '[R]eferences' } },
 
@@ -27,9 +28,6 @@ return {
 
   -- Opens a popup that displays documentation about the word under your cursor
   { 'n', 'K', vim.lsp.buf.hover, { desc = 'Hover Documentation' } },
-
-  -- WARN: This is not Goto Definition, this is Goto Declaration.
-  --  For example, in C this would take you to the header
 
   { 'n', '<leader>ld', vim.lsp.buf.declaration, { desc = '[G]oto [D]eclaration' } },
   { 'n', '<leader>lD', vim.lsp.buf.definition, { desc = '[G]oto [D]eclaration' } },
