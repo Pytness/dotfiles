@@ -4,7 +4,7 @@ return {
     'nvim-tree/nvim-web-devicons',
   },
   opts = {
-    fzf_opts = { ['--layout'] = 'default', ['--marker'] = '+' },
+    fzf_opts = { ['--cycle'] = true, ['--layout'] = 'default', ['--marker'] = '+' },
     winopts = {
       width = 0.8,
       height = 0.9,
