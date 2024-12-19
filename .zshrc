@@ -1,3 +1,9 @@
+if [[ $(grep -i microsoft /proc/version) ]]; then
+    export WSL=true
+else
+    export WSL=false
+fi
+
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
@@ -256,6 +262,17 @@ bindkey -M vicmd ^V edit-command-line
 _reset_cursor() {
    echo -ne '\e[1 q'
 }
+
+
+if [[ $WSL == true ]]; then
+    clipcopy () {
+            cat "${1:-/dev/stdin}" | win32yank-wsl -i --crlf
+    }
+
+    clippaste () {
+            win32yank-wsl -o --lf
+    }
+fi
 
 precmd_functions+=( _reset_cursor )
 

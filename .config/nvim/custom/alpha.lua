@@ -10,10 +10,6 @@ dashboard.section.header.val = {
 
 dashboard.section.buttons.val = {
   button('e', '  New File', ':ene <BAR> startinsert<CR>'),
-  -- button('s', '  Search Files', ':Telescope find_files<CR>'),
-  -- button('b', '  Recents', ':Telescope oldfiles<CR>'),
-  -- button('h', '  History', ':Telescope git_commits<CR>'),
-  -- button('c', '  Find Word', ':Telescope live_grep<CR>'),
   button('q', '  Quit', ':qa<CR>'),
 }
 

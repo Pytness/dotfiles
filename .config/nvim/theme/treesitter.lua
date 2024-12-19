@@ -1,4 +1,4 @@
-local colors = require 'custom.theme.colors'
+local colors = require 'theme.colors'
 
 local character = {
   { fg = colors.green },

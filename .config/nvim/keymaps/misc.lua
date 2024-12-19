@@ -54,8 +54,8 @@ local function google_search()
   end
 end
 
-vim.keymap.set({ 'n', 'v' }, 'gs', google_search, { desc = 'Search on google' })
-
 return {
+  { { 'n', 'v' }, 'gs', google_search, { desc = 'Search on google' } },
   { 'n', '<leader>mm', '<cmd>MarkdownPreviewToggle<cr>', { desc = 'Toggle markdown preview' } },
+  { { 'n', 'v' }, '<leader>ms', '<cmd>!sort<cr>', { desc = 'Sort lines' } },
 }

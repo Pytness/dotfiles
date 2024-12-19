@@ -1,4 +1,4 @@
-local colors = require 'custom.theme.colors'
+local colors = require 'theme.colors'
 
 local highlights = {
   Comment = { fg = colors.comment_grey, italic = true, cterm = { italic = true } }, -- any comment
@@ -162,5 +162,5 @@ local function load_highlights(hl_table)
 end
 
 load_highlights(highlights)
-load_highlights(require 'custom.theme.treesitter')
-load_highlights(require 'custom.theme.leap')
+load_highlights(require 'theme.treesitter')
+load_highlights(require 'theme.leap')

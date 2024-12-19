@@ -37,7 +37,7 @@ layout {
                 tab_active_sync         "#[fg=#cccce6,bg=#1c1d24,bold,italic]{index} {name}{sync_indicator} "
 
                 // separator between the tabs
-                tab_separator           "#[fg=#6C7086,bg=#181825] | "
+                tab_separator           "#[fg=#6C7086,bg=#1c1d24] | "
 
                 // indicators
                 tab_sync_indicator       " <s>"
