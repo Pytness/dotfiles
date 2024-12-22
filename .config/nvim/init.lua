@@ -11,9 +11,11 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.opt.termguicolors = true
 
+vim.opt.foldenable = false
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
--- vim.opt.foldtext = 'v:lua.vim.treesitter.foldtext()'
+vim.opt.foldtext = ''
+vim.opt.fillchars = 'fold:.'
 vim.opt.foldlevel = 99
 
 vim.opt.number = true
