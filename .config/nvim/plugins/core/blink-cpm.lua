@@ -3,18 +3,8 @@ return {
   'saghen/blink.cmp',
   lazy = false, -- lazy loading handled internally
   version = 'v0.*',
-  dependencies = {
-    'saecki/crates.nvim',
-  },
   opts = {
     completion = {
-      enabled_providers = {
-        'crates',
-        'lsp',
-        'path',
-        'snippets',
-        'buffer',
-      },
       trigger = {
         show_on_keyword = false,
         show_on_trigger_character = false,
@@ -36,7 +26,6 @@ return {
 
     sources = {
       default = {
-        'crates',
         'lsp',
         'path',
         'snippets',
