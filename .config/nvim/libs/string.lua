@@ -48,6 +48,8 @@ function mt:__mul(n)
   return self:rep(n)
 end
 
+local original_index = mt.__index
+
 --- Overloads `[]` operator. It's possible to access individual chars with this operator. Index could be negative. In
 --- that case the counting will start from the end.
 --- @param i number Index at which retrieve a char.
@@ -56,7 +58,13 @@ function mt:__index(i)
   if string[i] then
     return string[i]
   end
+
+  if type(i) ~= 'number' then
+    return original_index[i]
+  end
+
   i = i < 0 and #self + i + 1 or i
+
   local rs = self:sub(i, i)
   return #rs > 0 and rs or nil
 end
