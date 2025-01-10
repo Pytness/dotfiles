@@ -28,7 +28,7 @@ return {
     colors = {
       normal = colors.blue,
       insert = colors.white,
-      visual = colors.purple,
+      visual = colors.white,
       replace = colors.green,
       -- command = '#EB788B',
       -- operator = '#FF8F40',

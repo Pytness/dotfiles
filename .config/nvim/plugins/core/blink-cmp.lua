@@ -40,26 +40,19 @@ return {
     keymap = {
       preset = 'default',
 
-      ['<C-j>'] = {
-        function(cmp)
-          cmp.select_next()
-        end,
+      cmdline = {
+        preset = 'default',
+        ['<Tab>'] = { 'show', 'fallback' },
+        ['<C-j>'] = { 'select_next' },
+        ['<C-k>'] = { 'select_prev' },
+        ['<C-l>'] = { 'accept' },
+        ['<C-Space>'] = { 'show' },
       },
-      ['<C-k>'] = {
-        function(cmp)
-          cmp.select_prev()
-        end,
-      },
-      ['<C-l>'] = {
-        function(cmp)
-          cmp.accept()
-        end,
-      },
-      ['<C-Space>'] = {
-        function(cmp)
-          cmp.show()
-        end,
-      },
+
+      ['<C-j>'] = { 'select_next' },
+      ['<C-k>'] = { 'select_prev' },
+      ['<C-l>'] = { 'accept' },
+      ['<C-Space>'] = { 'show' },
     },
 
     appearance = {
