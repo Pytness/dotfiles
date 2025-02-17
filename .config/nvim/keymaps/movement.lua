@@ -18,7 +18,7 @@ return {
 
   { 'n', '<leader>Q', '<cmd>q!<cr>', { desc = ':q!' } },
   { 'n', '<leader>w', '<cmd>w<cr>', { desc = ':w' } },
-  { 'n', '<leader>W', '<cmd>w !sudo tee %', { desc = 'Write with root privileges' } },
+  { 'n', '<leader>W', '<cmd>SudaWrite<cr>', { desc = 'Write with root privileges' } },
 
   { 'v', '<leader>/', '<Plug>(comment_toggle_linewise_visual)', { desc = 'Comment line (visual)' } },
   { 'n', '<leader>/', '<Plug>(comment_toggle_linewise_current)', { desc = 'Comment line' } },
