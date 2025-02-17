@@ -1,8 +1,8 @@
--- copilot chat
 return {
+  -- copilot chat
   'CopilotC-Nvim/CopilotChat.nvim',
   -- lazy = true,
-  branch = 'canary',
+  branch = 'main',
   build = 'make tiktoken',
   dependencies = {
     { 'zbirenbaum/copilot.lua' }, -- or github/copilot.vim
