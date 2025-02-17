@@ -12,7 +12,7 @@
 layout {
     default_tab_template {
         pane size=1 borderless=true {
-            plugin location="https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm" {
+            plugin location="file:~/.config/zellij/plugins/zjstatus.wasm" {
                 format_left   "{mode} {tabs}"
                 format_center ""
                 format_right  "{datetime}"
@@ -26,6 +26,7 @@ layout {
                 datetime        "#[bg=#8cb8ff,fg=#1c1d24] {format} "
                 datetime_format "%A, %d %b %Y %T"
                 datetime_timezone "Europe/Madrid"
+                hide_frame_for_single_pane "false"
 
                 tab_normal              "#[fg=#8a8a8a,bg=#1c1d24]{index} {name}{floating_indicator} "
                 tab_normal_fullscreen   "#[fg=#8a8a8a,bg=#1c1d24]{index} {name}{fullscreen_indicator} "
