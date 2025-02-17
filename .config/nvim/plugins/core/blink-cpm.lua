@@ -40,6 +40,35 @@ return {
     keymap = {
       preset = 'default',
 
+      cmdline = {
+        preset = 'default',
+        ['<C-j>'] = {
+          function(cmp)
+            cmp.select_next()
+          end,
+        },
+        ['<C-k>'] = {
+          function(cmp)
+            cmp.select_prev()
+          end,
+        },
+        ['<C-l>'] = {
+          function(cmp)
+            cmp.accept()
+          end,
+        },
+        ['<C-Space>'] = {
+          function(cmp)
+            cmp.show()
+          end,
+        },
+        ['<Tab>'] = {
+          function(cmp)
+            cmp.show()
+          end,
+        },
+      },
+
       ['<C-j>'] = {
         function(cmp)
           cmp.select_next()
