@@ -1,5 +1,0 @@
-{
-    "globPatterns": [
-        "**/*.{js,css,html,png,jpg,gif,svg,eot,ttf,woff,woff2}"
-    ],
-}
