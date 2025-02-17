@@ -40,7 +40,30 @@ return {
     keymap = {
       preset = 'default',
 
-      cmdline = {
+      ['<C-j>'] = {
+        function(cmp)
+          cmp.select_next()
+        end,
+      },
+      ['<C-k>'] = {
+        function(cmp)
+          cmp.select_prev()
+        end,
+      },
+      ['<C-l>'] = {
+        function(cmp)
+          cmp.accept()
+        end,
+      },
+      ['<C-Space>'] = {
+        function(cmp)
+          cmp.show()
+        end,
+      },
+    },
+
+    cmdline = {
+      keymap = {
         preset = 'default',
         ['<C-j>'] = {
           function(cmp)
@@ -67,27 +90,6 @@ return {
             cmp.show()
           end,
         },
-      },
-
-      ['<C-j>'] = {
-        function(cmp)
-          cmp.select_next()
-        end,
-      },
-      ['<C-k>'] = {
-        function(cmp)
-          cmp.select_prev()
-        end,
-      },
-      ['<C-l>'] = {
-        function(cmp)
-          cmp.accept()
-        end,
-      },
-      ['<C-Space>'] = {
-        function(cmp)
-          cmp.show()
-        end,
       },
     },
 
