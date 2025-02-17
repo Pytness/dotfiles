@@ -30,7 +30,7 @@ return {
     servers = {
       -- clangd = {},
       -- gopls = {},
-      pyright = {},
+      pylsp = {},
       rust_analyzer = {
         -- cmd = { home_dir .. '/.cargo/bin/ra-multiplex' },
         settings = {
