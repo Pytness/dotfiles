@@ -91,4 +91,14 @@ M.load_plugins = function(module_path)
   return plugins
 end
 
+-- Check if the current OS is linux
+M.is_linux = function()
+  return vim.fn.has 'linux' == 1
+end
+
+-- Check if the current OS is linux under WSL
+M.is_wsl = function()
+  return vim.fn.has 'wsl' == 1
+end
+
 return M
