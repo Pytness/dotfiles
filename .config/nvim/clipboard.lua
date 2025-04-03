@@ -1,3 +1,5 @@
+local utils = require 'utils'
+
 local function yank_to_clipboard(lines)
   local text = table.concat(lines, '\r\n')
   vim.fn.system('win32yank-wsl -i --crlf', text)
@@ -8,7 +10,23 @@ local function paste_to_clipboard()
   return text:split '\n'
 end
 
-if vim.fn.has 'wsl' == 1 then
+if utils.is_linux() then
+  vim.g.clipboard = {
+    name = 'wl-clipboard',
+
+    copy = {
+      ['+'] = { 'wl-copy' },
+      ['*'] = { 'wl-copy' },
+    },
+
+    paste = {
+      ['+'] = { 'wl-paste', '-n' },
+      ['*'] = { 'wl-paste', '-n' },
+    },
+
+    cache_enabled = false,
+  }
+elseif utils.is_wsl() then
   vim.g.clipboard = {
     name = 'win32yank-wsl',
 

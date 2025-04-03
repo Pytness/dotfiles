@@ -1,3 +1,5 @@
+local utils = require 'utils'
+
 local escape_target = function(target)
   local escapes = {
     [' '] = '%20',
@@ -46,11 +48,12 @@ local function google_search()
   local search_query = 'https://www.google.com/search?q=' .. selected_text
 
   -- wsl
-  if vim.fn.has 'wsl' then
+  if utils.is_linux() then
+    print('xdg-open ' .. search_query)
+    vim.fn.jobstart('xdg-open "' .. search_query .. '"')
+  elseif utils.is_wsl() then
     print('wsl-open ' .. search_query)
     vim.fn.jobstart('wsl-open "' .. search_query .. '"')
-  else
-    vim.fn.jobstart('xdg-open "' .. search_query .. '"')
   end
 end
 
