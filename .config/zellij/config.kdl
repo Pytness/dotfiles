@@ -134,7 +134,7 @@ keybinds clear-defaults=true {
         bind "b" { GoToPreviousTab; SwitchToMode "normal"; }
         bind "Ctrl b" { Write 2; SwitchToMode "normal"; }
         bind "c" { NewTab; SwitchToMode "normal"; }
-        bind "e" { EditScrollback; }
+        bind "e" { EditScrollback; SwitchToMode "normal";  }
         bind "f" { ToggleFloatingPanes; SwitchToMode "normal"; }
         bind "h" { MoveFocus "left"; SwitchToMode "normal"; }
         bind "j" { MoveFocus "down"; SwitchToMode "normal"; }
