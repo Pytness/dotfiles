@@ -3,6 +3,9 @@
 
 !.local
 !.local/scripts/rscript
+!.local/share/
+!.local/share/bin
+!.local/share/bin/**/*
 
 !.config/
 !.config/alacritty
