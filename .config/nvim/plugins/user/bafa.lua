@@ -1,6 +1,7 @@
 -- Buffer list preview and navigation/editing
 return {
-  dir = '~/code/bafa.nvim',
+  -- dir = '~/code/bafa.nvim',
+  'pytness/bafa.nvim',
   branch = 'dev',
   opts = {
     width = 60,
