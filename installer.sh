@@ -6,7 +6,8 @@ sudo apt update
 sudo apt upgrade
 
 # Install dependencies:
-sudo apt install ninja-build gettext cmake unzip curl python3 python3-pip clangd golang
+sudo apt install ninja-build gettext cmake unzip curl python3 python3-pip clangd golang \
+	liblua5.1-dev lua5.1 lua5.1-dev libmagickwand-dev imagemagick ueberzug
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
@@ -66,4 +67,3 @@ git submodule update --init --recursive
 
 
 sudo chsh $USER -s /bin/zsh
-
