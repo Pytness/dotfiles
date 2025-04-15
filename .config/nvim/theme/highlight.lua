@@ -90,7 +90,7 @@ local highlights = {
   LspInlayHint = { fg = colors.comment_grey }, -- Inlay Hint
   FloatTitle = { fg = colors.white, bg = colors.black }, -- Float title
   FloatBorder = { fg = colors.white, bg = colors.black }, -- Float border
-  NormalFloat = { fg = colors.white, bg = colors.cursor_grey }, -- Normal floating window
+  NormalFloat = { fg = colors.white, bg = colors.black }, -- Normal floating window
 
   dockerfileKeyword = { fg = colors.purple }, -- Dockerfile keywords
   shSet = { fg = colors.cyan }, -- Shell Set

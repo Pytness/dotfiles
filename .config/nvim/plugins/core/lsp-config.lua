@@ -30,7 +30,16 @@ return {
     servers = {
       -- clangd = {},
       -- gopls = {},
-      pylsp = {},
+      pylsp = {
+        settings = {
+          pylsp = {
+            plugins = {
+              pyls_black = { enabled = true },
+              isort = { enabled = true },
+            },
+          },
+        },
+      },
       rust_analyzer = {
         -- cmd = { home_dir .. '/.cargo/bin/ra-multiplex' },
         settings = {
