@@ -2,3 +2,7 @@
 	path = .config/nvim
 	url = git@github.com:pytness/nvim-config
 	branch = master
+[submodule ".config/hypr"]
+	path = .config/hypr
+	url = git@github.com:pytness/hypr-config
+	branch = master
