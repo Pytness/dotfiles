@@ -5,4 +5,4 @@
 [submodule ".config/hypr"]
 	path = .config/hypr
 	url = git@github.com:pytness/hypr-config
-	branch = master
+	branch = isid
