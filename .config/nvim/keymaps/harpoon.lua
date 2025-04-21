@@ -3,6 +3,16 @@
 local function add_file()
   local harpoon = require 'harpoon'
   harpoon:list():add()
+
+  local list = harpoon:list()
+
+  -- Remove empty buffer
+
+  local item = list:get_by_value ''
+
+  if item ~= nil then
+    list:remove(item)
+  end
 end
 
 local function open_all()
