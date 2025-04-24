@@ -22,6 +22,8 @@
 !.config/waybar/**/*
 !.config/zellij
 !.config/zellij/**/*
+!.config/swaylock
+!.config/swaylock/**/*
 
 !.gitaliases
 !.gitconfig
