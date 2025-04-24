@@ -1,11 +1,14 @@
 [include]
     path = .gitconfig_default
 
+[includeIf "gitdir:~/.git"]
+    path = .gitconfig_pytness
+
+[includeIf "gitdir:~/dotfiles/"]
+    path = .gitconfig_pytness
+
 [includeIf "gitdir:~/code/pytness/"]
     path = .gitconfig_pytness
 
 [includeIf "gitdir:~/.config/"]
-    path = .gitconfig_pytness
-
-[includeIf "gitdir:~/.git"]
     path = .gitconfig_pytness
