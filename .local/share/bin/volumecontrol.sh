@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # Source global control script
 scrDir=$(dirname "$(realpath "$0")")
@@ -34,18 +34,11 @@ Optional:
 Examples:
     $(basename "$0") -o i 5     # Increase output volume by 5
     $(basename "$0") -i m       # Toggle input mute
-    $(basename "$0") -p spotify d 10  # Decrease Spotify volume by 10 
-    $(basename "$0") -p '' d 10  # Decrease volume by 10 for all players 
+    $(basename "$0") -p spotify d 10  # Decrease Spotify volume by 10
+    $(basename "$0") -p '' d 10  # Decrease volume by 10 for all players
 
 EOF
     exit 1
-}
-
-notify_vol() {
-    angle=$(( (($vol + 2) / 5) * 5 ))
-    ico="${icodir}/vol-${angle}.svg"
-    bar=$(seq -s "." $(($vol / 15)) | sed 's/[0-9]//g')
-    notify-send -a "t2" -r 91190 -t 800 -i "${ico}" "${vol}${bar}" "${nsink}"
 }
 
 notify_mute() {
@@ -68,7 +61,7 @@ change_volume() {
     [ "${action}" = "i" ] && delta="+"
     [ "${srce}" = "--default-source" ] && mode="--input-volume"
     case $device in
-        "pamixer")            
+        "pamixer")
             $use_swayosd && swayosd-client ${mode} "${delta}${step}"  && exit 0
             pamixer $srce -"$action" "$step"
             vol=$(pamixer $srce --get-volume)
@@ -78,8 +71,6 @@ change_volume() {
             vol=$(playerctl --player="$srce" volume | awk '{ printf "%.0f\n", $0 * 100 }')
             ;;
     esac
-    
-    notify_vol
 }
 
 toggle_mute() {
@@ -87,7 +78,7 @@ toggle_mute() {
     local mode="--output-volume"
     [ "${srce}" = "--default-source" ] && mode="--input-volume"
     case $device in
-        "pamixer") 
+        "pamixer")
             $use_swayosd && swayosd-client "${mode}" mute-toggle && exit 0
             pamixer $srce -t
             notify_mute
