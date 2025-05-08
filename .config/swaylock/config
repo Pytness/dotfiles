@@ -1,7 +1,13 @@
 daemonize
 show-failed-attempts
+clock
+screenshot
+effect-pixelate=16
+effect-blur=8x8
+effect-vignette=1:1
 color=1f1d2e80
-indicator-idle
+font="Inter"
+indicator
 indicator-radius=200
 indicator-thickness=20
 line-color=1f1d2e
@@ -24,3 +30,6 @@ ring-clear-color=9ccfd8
 line-clear-color=1f1d2e
 line-wrong-color=1f1d2e
 bs-hl-color=31748f
+datestr=%a, %B %e
+timestr=%I:%M %p
+fade-in=0.3
