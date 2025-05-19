@@ -4,7 +4,7 @@ else
     export WSL=false
 fi
 
-export LANGUAGE=en_US.UTF-8
+    export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -295,6 +295,7 @@ export ZLE_RPROMPT_INDENT=0
 # fi
 
 export PATH=/usr/lib/cuda/bin:$HOME/.local/bin:$PATH
+export PATH=/usr/local/cuda/bin:$PATH
 
 
 # # fnm

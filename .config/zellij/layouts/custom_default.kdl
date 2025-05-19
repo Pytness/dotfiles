@@ -19,53 +19,54 @@ layout {
                 format_space  ""
 
                 border_enabled  "false"
-                border_char     "─"
-                border_format   "#[fg=#8a87de]{char}"
-                border_position "bottom"
 
-                datetime        "#[bg=#8cb8ff,fg=#1c1d24] {format} "
-                datetime_format "%A, %d %b %Y %T"
+                color_bg          "#1c1d24"
+                color_fg_disabled "#8a8a8a"
+                color_fg          "#cccce6"
+
+                color_blue        "#8cb8ff"
+                color_orange      "#ffcb6b"
+                color_purple      "#d67cde"
+                color_green       "#C3E88D"
+
+
+                datetime        "#[fg=$blue]#[bg=$blue,fg=$bg] {format} #[fg=$blue]"
+                datetime_format "%a %D %T"
                 datetime_timezone "Europe/Madrid"
                 hide_frame_for_single_pane "false"
 
-                tab_normal              "#[fg=#8a8a8a,bg=#1c1d24]{index} {name}{floating_indicator} "
-                tab_normal_fullscreen   "#[fg=#8a8a8a,bg=#1c1d24]{index} {name}{fullscreen_indicator} "
-                tab_normal_sync         "#[fg=#8a8a8a,bg=#1c1d24]{index} {name}{sync_indicator} "
+                tab_normal              "#[fg=$bg]#[fg=$fg_disabled,bg=$bg]{index} {name}{floating_indicator}#[fg=$bg]"
+                tab_normal_fullscreen   "#[fg=$bg]#[fg=$fg_disabled,bg=$bg]{index} {name}{fullscreen_indicator}#[fg=$bg]"
+                tab_normal_sync         "#[fg=$bg]#[fg=$fg_disabled,bg=$bg]{index} {name}{sync_indicator}#[fg=$bg]"
 
                 // formatting for the current active tab
-                tab_active              "#[fg=#cccce6,bg=#1c1d24,bold,italic]{index} {name}{floating_indicator} "
-                tab_active_fullscreen   "#[fg=#cccce6,bg=#1c1d24,bold,italic]{index} {name}{fullscreen_indicator} "
-                tab_active_sync         "#[fg=#cccce6,bg=#1c1d24,bold,italic]{index} {name}{sync_indicator} "
+                tab_active              "#[fg=$fg]#[bg=$fg,fg=$bg,bold,italic]{index} {name}{floating_indicator}#[fg=$fg]"
+                tab_active_fullscreen   "#[fg=$fg]#[bg=$fg,fg=$bg,bold,italic]{index} {name}{fullscreen_indicator}#[fg=$fg]"
+                tab_active_sync         "#[fg=$fg]#[bg=$fg,fg=$bg,bold,italic]{index} {name}{sync_indicator}#[fg=$fg]"
 
                 // separator between the tabs
-                tab_separator           "#[fg=#6C7086,bg=#1c1d24] | "
+                tab_separator           " "
 
                 // indicators
                 tab_sync_indicator       " <s>"
                 tab_fullscreen_indicator ""
                 tab_floating_indicator   ""
 
-                mode_normal        "#[fg=#8cb8ff,bg=#1c1d24]█   NORMAL   "
-                mode_pane          "#[fg=#ffcb6b,bg=#1c1d24]█    PANE    "
-                mode_tab           "#[fg=#d67cde,bg=#1c1d24]█    TAB     "
-                mode_tmux          "#[fg=#C3E88D,bg=#1c1d24]█    TMUX    "
+                mode_normal        "#[fg=$blue,   ]#[bg=$blue,fg=$bg,  ]  NORMAL  #[fg=$blue,  ]"
+                mode_pane          "#[fg=$orange, ]#[bg=$orange,fg=$bg,]   PANE   #[fg=$orange,]"
+                mode_tab           "#[fg=$purple, ]#[bg=$purple,fg=$bg,]   TAB    #[fg=$purple,]"
+                mode_tmux          "#[fg=$green,  ]#[bg=$green,fg=$bg, ]   TMUX   #[fg=$green, ]"
 
-                mode_locked        "#[bg=#89B4FA,fg=#1c1d24]█ {name} "
-                mode_resize        "#[bg=#89B4FA,fg=#1c1d24]█ {name} "
-                mode_scroll        "#[bg=#89B4FA,fg=#1c1d24]█ {name} "
-                mode_enter_search  "#[bg=#89B4FA,fg=#1c1d24]█ {name} "
-                mode_search        "#[bg=#89B4FA,fg=#1c1d24]█ {name} "
-                mode_session       "#[bg=#89B4FA,fg=#1c1d24]█ {name} "
-                mode_move          "#[bg=#89B4FA,fg=#1c1d24]█ {name} "
-                mode_prompt        "#[bg=#89B4FA,fg=#1c1d24]█ {name} "
+                mode_locked        "#[fg=$blue,   ]#[bg=$blue,fg=$bg,  ]  LOCKED  #[fg=$blue,  ]"
+                mode_resize        "#[fg=$blue,   ]#[bg=$blue,fg=$bg,  ]  RESIZE  #[fg=$blue,  ]"
+                mode_scroll        "#[fg=$blue,   ]#[bg=$blue,fg=$bg,  ]  SCROLL  #[fg=$blue,  ]"
+                mode_enter_search  "#[fg=$blue,   ]#[bg=$blue,fg=$bg,  ]  ESEARCH #[fg=$blue,  ]"
+                mode_search        "#[fg=$blue,   ]#[bg=$blue,fg=$bg,  ]  SEARCH  #[fg=$blue,  ]"
+                mode_session       "#[fg=$blue,   ]#[bg=$blue,fg=$bg,  ]  SESSION #[fg=$blue,  ]"
+                mode_move          "#[fg=$blue,   ]#[bg=$blue,fg=$bg,  ]   MOVE   #[fg=$blue,  ]"
+                mode_prompt        "#[fg=$blue,   ]#[bg=$blue,fg=$bg,  ]  PROMPT  #[fg=$blue,  ]"
             }
         }
-        // pane size=1 borderless=true {
-        //     plugin location="tab-bar"
-        // }
         children
     }
-    //pane size=2 borderless=true {
-    //    plugin location="status-bar"
-   // }
 }
