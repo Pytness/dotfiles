@@ -1,3 +1,8 @@
-[submodule ".config/nvim/libs/utf8"]
-	path = .config/nvim/libs/utf8
-	url = https://github.com/Stepets/utf8.lua.git
+[submodule ".config/nvim"]
+	path = .config/nvim
+	url = git@github.com:pytness/nvim-config
+	branch = master
+[submodule ".config/hypr"]
+	path = .config/hypr
+	url = git@github.com:pytness/hypr-config
+	branch = master
