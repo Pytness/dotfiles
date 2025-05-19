@@ -40,4 +40,4 @@ function git() {
 }
 
 alias wezconf='nvim /mnt/c/Users/ffvc/.wezterm.lua'
-
+alias activate='source .venv/bin/activate'
