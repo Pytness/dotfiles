@@ -31,4 +31,4 @@ line-wrong-color=1f1d2e
 bs-hl-color=31748f
 datestr=%a, %B %e
 timestr=%I:%M %p
-fade-in=0.3
+fade-in=0.1
