@@ -18,8 +18,14 @@
 !.config/nvim/**/*
 !.config/qutebrowser
 !.config/qutebrowser/**/*
+!.config/rofi
+!.config/rofi/**/*
 !.config/waybar
 !.config/waybar/**/*
+!.config/waylock
+!.config/waylock/**/*
+!.config/wlogout
+!.config/wlogout/**/*
 !.config/zellij
 !.config/zellij/**/*
 !.config/swaylock
