@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 map_floor() {
 
@@ -24,7 +24,7 @@ if [[ $NO_EMOJI -eq 1 ]]; then
 else
     temp_lv="85:🌋, 65:🔥, 45:☁️, ❄️"
 fi
-util_lv="90:, 60:󰓅, 30:󰾅, 󰾆" 
+util_lv="90:, 60:󰓅, 30:󰾅, 󰾆"
 
 # Get static CPU information
 model=$(lscpu | awk -F': ' '/Model name/ {gsub(/^ *| *$| CPU.*/,"",$2); print $2}')

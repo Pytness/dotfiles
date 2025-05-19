@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # Set variables
 scrDir=$(dirname "$(realpath "$0")")
@@ -66,7 +66,7 @@ case "${main_action}" in
     if [ -f "$favoritesFile" ] && [ -s "$favoritesFile" ]; then
         # Read each Base64 encoded favorite as a separate line
         mapfile -t favorites < "$favoritesFile"
-        
+
         # Prepare a list of decoded single-line representations for rofi
         decoded_lines=()
         for favorite in "${favorites[@]}"; do
@@ -75,7 +75,7 @@ case "${main_action}" in
             single_line_favorite=$(echo "$decoded_favorite" | tr '\n' ' ')
             decoded_lines+=("$single_line_favorite")
         done
-        
+
         selected_favorite=$(printf "%s\n" "${decoded_lines[@]}" | rofi -dmenu -theme-str "entry { placeholder: \"View Favorites\";}" -theme-str "${r_scale}" -theme-str "${r_override}" -config "${roconf}")
         if [ -n "$selected_favorite" ]; then
             # Find the index of the selected favorite
@@ -105,7 +105,7 @@ case "${main_action}" in
             # Decode the item from clipboard history
             full_item=$(echo "$item" | cliphist decode)
             encoded_item=$(echo "$full_item" | base64 -w 0)
-            
+
             # Check if the item is already in the favorites file
             if grep -Fxq "$encoded_item" "$favoritesFile"; then
                 notify-send "Item is already in favorites."
@@ -120,7 +120,7 @@ case "${main_action}" in
         if [ -f "$favoritesFile" ] && [ -s "$favoritesFile" ]; then
             # Read each Base64 encoded favorite as a separate line
             mapfile -t favorites < "$favoritesFile"
-            
+
             # Prepare a list of decoded single-line representations for rofi
             decoded_lines=()
             for favorite in "${favorites[@]}"; do
@@ -129,13 +129,13 @@ case "${main_action}" in
                 single_line_favorite=$(echo "$decoded_favorite" | tr '\n' ' ')
                 decoded_lines+=("$single_line_favorite")
             done
-            
+
             selected_favorite=$(printf "%s\n" "${decoded_lines[@]}" | rofi -dmenu -theme-str "entry { placeholder: \"Remove from Favorites...\";}" -theme-str "${r_scale}" -theme-str "${r_override}" -config "${roconf}")
             if [ -n "$selected_favorite" ]; then
                 index=$(printf "%s\n" "${decoded_lines[@]}" | grep -nxF "$selected_favorite" | cut -d: -f1)
                 if [ -n "$index" ]; then
                     selected_encoded_favorite="${favorites[$((index - 1))]}"
-                    
+
                     # Handle case where only one item is present
                     if [ "$(wc -l < "$favoritesFile")" -eq 1 ]; then
                         # Remove the single encoded item from the file

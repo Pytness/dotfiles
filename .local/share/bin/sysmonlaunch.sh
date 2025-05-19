@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 scrDir="$(dirname "$(realpath "$0")")"
 source "${scrDir}/globalcontrol.sh"
@@ -11,4 +11,3 @@ for sysMon in "${!pkgChk[@]}"; do
         break
     fi
 done
-

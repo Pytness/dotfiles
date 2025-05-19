@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # Check if the script is already running
 pgrep -cf "${0##*/}" | grep -qv 1 && echo "An instance of the script is already running..." && exit 1
@@ -33,31 +33,31 @@ step=5        # Default step value
 # Parse all arguments
 for arg in "$@"; do
     case $arg in
-        i|-i)   
-            [ -n "$action" ] && 
-                { 
-                    echo -e "\033[38;2;255;0;0mOne or more actions are provided\033[0m"; 
-                    print_error; 
-                    exit 1; 
+        i|-i)
+            [ -n "$action" ] &&
+                {
+                    echo -e "\033[38;2;255;0;0mOne or more actions are provided\033[0m";
+                    print_error;
+                    exit 1;
                 }                       # Prevent multiple actions
             action="increase" ;;        # Increase brightness
-        d|-d)  
-            [ -n "$action" ] && 
-                { 
-                    echo -e "\033[38;2;255;0;0mOne or more actions are provided\033[0m"; 
-                    print_error; 
-                    exit 1; 
+        d|-d)
+            [ -n "$action" ] &&
+                {
+                    echo -e "\033[38;2;255;0;0mOne or more actions are provided\033[0m";
+                    print_error;
+                    exit 1;
                 }                       # Prevent multiple actions
             action="decrease" ;;        # Decrease brightness
-        q|-q)  
+        q|-q)
             notify=false ;;             # Disabling notification
-        [0-9]*)  
+        [0-9]*)
             if ! echo "$arg" | grep -Eq '^[0-9]+$'; then
                 print_error
                 exit 1
             fi
             step=$arg ;;                # Step value
-        *)      
+        *)
             print_error && exit 1 ;;    # Invalid input
     esac
 done

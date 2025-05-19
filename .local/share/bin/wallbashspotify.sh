@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 
 # set variables
@@ -39,4 +39,3 @@ if pkg_installed spotify && pkg_installed spicetify-cli ; then
     fi
 
 fi
-

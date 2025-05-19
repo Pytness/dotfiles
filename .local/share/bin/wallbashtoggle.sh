@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 
 #// set variables
@@ -58,4 +58,3 @@ export reload_flag=1
 set_conf "enableWallDcol" "${setMode}"
 "${scrDir}/themeswitch.sh"
 notify-send -a "t1" -i "$HOME/.config/dunst/icons/hyprdots.png" " ${wallbashModes[setMode]} mode"
-

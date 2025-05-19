@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 #* jq to parse and create a metadata.
 #* Users are advised to use bindd to explicitly add the description
@@ -41,19 +41,19 @@ Users can also add a global overrides inside ${hydeConfDir}/hyde.conf
 
     kb_hint_delim=">"                         ﯦ add a custom custom delimiter
     kb_hint_conf=("file1.conf" "file2.conf")  ﯦ add a custom keybinds.conf path (add it like an array)
-    kb_hint_width="30em"                      ﯦ custom width supports [ 'em' '%' 'px' ] 
+    kb_hint_width="30em"                      ﯦ custom width supports [ 'em' '%' 'px' ]
     kb_hint_height="35em"                     ﯦ custom height supports [ 'em' '%' 'px' ]
     kb_hint_line=13                           ﯦ adjust how many lines are listed
 
 Users can also add a key overrides inside ${hydeConfDir}
 List of file override:
-${keycodeFile} => keycode 
-${modmaskFile} => modmask   
+${keycodeFile} => keycode
+${modmaskFile} => modmask
 ${keyFile} => keys
 ${categoryFile} => category
 ${dispatcherFile} => dispatcher
 
-Example for keycode override 
+Example for keycode override
 create a file named $keycodeFile and use the following format:
 
     "number": "display name/symbol",
@@ -172,15 +172,15 @@ $comments
 
 };
 
-def keycode_mapping: { #? Fetches keycode from a file 
+def keycode_mapping: { #? Fetches keycode from a file
  "0": "",
  $([ -f "${keycodeFile}" ] && cat "${keycodeFile}")
 };
 
   def modmask_mapping: { #? Define mapping for modmask numbers represents bitmask
     "64": " ",  #? SUPER  󰻀 Also added 2 En space ' ' <<<
-    "8": "ALT", 
-    "4": "CTRL", 
+    "8": "ALT",
+    "4": "CTRL",
     "1": "SHIFT",
     "0": " ",
  $([ -f "${modmaskFile}" ] && cat "${modmaskFile}")
@@ -206,7 +206,7 @@ def keycode_mapping: { #? Fetches keycode from a file
     "XF86MonBrightnessDown" : "󰃜",
     "XF86MonBrightnessUp" : "󰃠",
     "switch:on:Lid Switch" : "󰛧",
-    "backspace" : "󰁮 ",  
+    "backspace" : "󰁮 ",
     $([ -f "${keyFile}" ] && cat "${keyFile}")
   };
   def category_mapping: { #? Define Category Names, derive from Dispatcher #? This will serve as the Group header
@@ -293,15 +293,15 @@ def get_keycode:
 .keycode |= (get_keycode // .) |  #? Apply the get_keycode transformation
 .key |= (key_mapping[.] // .) | #? Apply the get_key
 # .keybind = (.modmask | tostring // "") + (.key // "") | #! Same as below but without the keycode
-.keybind = (.modmask | tostring // "") + (.key // "") + ((.keycode // 0) | tostring) | #? Show the keybindings 
+.keybind = (.modmask | tostring // "") + (.key // "") + ((.keycode // 0) | tostring) | #? Show the keybindings
 .flags = " locked=" + (.locked | tostring) + " mouse=" + (.mouse | tostring) + " release=" + (.release | tostring) + " repeat=" + (.repeat | tostring) + " non_consuming=" + (.non_consuming | tostring) | #? This are the flags repeat,lock etc
 .category |= (category_mapping[.] // .) | #? Group by Categories will be use for headers
 #!if .modmask and .modmask != " " and .modmask != "" then .modmask |= (split(" ") | map(select(length > 0)) | if length > 1 then join("  + ") else .[0] end) else .modmask = "" end |
 if .keybind and .keybind != " " and .keybind != "" then .keybind |= (split(" ") | map(select(length > 0)) | if length > 1 then join("  + ") else .[0] end) else .keybind = "" end |  #? Clean up
   .arg |= (arg_mapping[.] // .) | #? See above for how arg is converted
- #!    .desc_executable |= gsub(".sh"; "") | #? Maybe Useful soon removes ".sh" to file  
+ #!    .desc_executable |= gsub(".sh"; "") | #? Maybe Useful soon removes ".sh" to file
   #? Creates a key desc... for fallback if  "has description" is false
-  .desc_executable |= (executables_mapping[.] // .) | #? exclusive for "exec" dispatchers 
+  .desc_executable |= (executables_mapping[.] // .) | #? exclusive for "exec" dispatchers
   .desc_dispatcher |= (description_mapping[.] // .)  |  #? for all other dispatchers
   .description = if .has_description == false then "\(.desc_dispatcher) \(.desc_executable)" else.description end
 ' #* <---- There is a '   do not delete this'
@@ -361,7 +361,7 @@ if ! command -v rofi &>/dev/null; then
   exit 0
 fi
 
-#? Put rofi configuration here 
+#? Put rofi configuration here
 # Read hypr theme border
 wind_border=$((hypr_border * 3 / 2))
 elem_border=$([ "$hypr_border" -eq 0 ] && echo "5" || echo "$hypr_border")

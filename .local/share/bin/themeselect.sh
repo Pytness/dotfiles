@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 
 #// set variables
@@ -56,4 +56,3 @@ if [ ! -z "${rofiSel}" ] ; then
     "${scrDir}/themeswitch.sh" -s "${rofiSel}"
     notify-send -a "t1" -i "$HOME/.config/dunst/icons/hyprdots.png" " ${rofiSel}"
 fi
-

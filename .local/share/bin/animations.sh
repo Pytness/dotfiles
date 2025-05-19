@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # Define paths
 scrDir=$(dirname "$(realpath "$0")")

@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # set variables
 
@@ -13,4 +13,3 @@ envsubst < "${dstDir}/dunst.conf" > "${dstDir}/dunstrc"
 envsubst < "${dstDir}/wallbash.conf" >> "${dstDir}/dunstrc"
 killall dunst
 dunst &
-

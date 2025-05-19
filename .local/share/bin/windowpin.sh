@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # enable float
 WinFloat=$(hyprctl -j clients | jq '.[] | select(.focusHistoryID == 0) | .floating')
@@ -18,4 +18,3 @@ WinPinned=$(hyprctl -j clients | jq '.[] | select(.focusHistoryID == 0) | .pinne
 if [ "${WinFloat}" == "true" ] && [ "${WinPinned}" == "false" ] ; then
     hyprctl dispatch togglefloating active
 fi
-

@@ -1,13 +1,15 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 import subprocess
 import json
 import sys
 
+
 def get_dunst_history():
     result = subprocess.run(['dunstctl', 'history'], stdout=subprocess.PIPE)
     history = json.loads(result.stdout.decode('utf-8'))
     return history
+
 
 def format_history(history):
     count = len(history['data'][0])
@@ -22,7 +24,8 @@ def format_history(history):
     tooltip = []
 
     if count > 0:
-        notifications = history['data'][0][:10]  # Get the first 10 notifications
+        # Get the first 10 notifications
+        notifications = history['data'][0][:10]
         for notification in notifications:
             body = notification.get('body', {}).get('data', '')
             category = notification.get('category', {}).get('data', '')
@@ -33,7 +36,8 @@ def format_history(history):
                 alt = 'notification'
                 tooltip.append(f" {body}\n")
 
-    isDND = subprocess.run(['dunstctl', 'get-pause-level'], stdout=subprocess.PIPE)
+    isDND = subprocess.run(
+        ['dunstctl', 'get-pause-level'], stdout=subprocess.PIPE)
     isDND = isDND.stdout.decode('utf-8').strip()
     if isDND != '0':
         alt = "dnd"
@@ -45,11 +49,13 @@ def format_history(history):
     }
     return formatted_history
 
+
 def main():
     history = get_dunst_history()
     formatted_history = format_history(history)
     sys.stdout.write(json.dumps(formatted_history) + '\n')
     sys.stdout.flush()
+
 
 if __name__ == "__main__":
     main()

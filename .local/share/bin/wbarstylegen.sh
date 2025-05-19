@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 
 # detect hypr theme and initialize variables
@@ -73,7 +73,7 @@ case ${w_position} in
         export x4lc_radius=${c_radius}
         export x1="top"
         export x2="bottom"
-        export x3="left" 
+        export x3="left"
         export x4="right" ;;
     left|right)
         export x1g_margin=0
@@ -98,7 +98,7 @@ case ${w_position} in
         export x4lc_radius=${c_radius}
         export x1="left"
         export x2="right"
-        export x3="top" 
+        export x3="top"
         export x4="bottom" ;;
 esac
 
@@ -115,4 +115,3 @@ hypr_border=`awk -F '=' '{if($1~" rounding ") print $2}' $src_file | sed 's/ //g
 if [ "$hypr_border" == "0" ] ; then
     sed -i "/border-radius: /c\    border-radius: 0px;" $out_file
 fi
-

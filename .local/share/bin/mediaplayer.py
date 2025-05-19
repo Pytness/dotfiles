@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
+from typing import List
+import os
+import json
+import signal
+import sys
+import logging
+import argparse
+from gi.repository.Playerctl import Player
+from gi.repository import Playerctl, GLib
 import gi
 gi.require_version("Playerctl", "2.0")
-from gi.repository import Playerctl, GLib
-from gi.repository.Playerctl import Player
-import argparse
-import logging
-import sys
-import signal
-import gi
-import json
-import os
-from typing import List
 
 logger = logging.getLogger(__name__)
+
 
 def signal_handler(sig, frame):
     logger.info("Received signal to stop, exiting")
@@ -41,7 +41,8 @@ class PlayerManager:
     def init_players(self):
         for player in self.manager.props.player_names:
             if self.selected_player is not None and self.selected_player != player.name:
-                logger.debug(f"{player.name} is not the filtered player, skipping it")
+                logger.debug(
+                    f"{player.name} is not the filtered player, skipping it")
                 continue
             self.init_player(player)
 
@@ -77,12 +78,14 @@ class PlayerManager:
         sys.stdout.flush()
 
     def on_playback_status_changed(self, player, status, _=None):
-        logger.debug(f"Playback status changed for player {player.props.player_name}: {status}")
+        logger.debug(f"Playback status changed for player {
+                     player.props.player_name}: {status}")
         self.on_metadata_changed(player, player.props.metadata)
 
     def get_first_playing_player(self):
         players = self.get_players()
-        logger.debug(f"Getting first playing player from {len(players)} players")
+        logger.debug(f"Getting first playing player from {
+                     len(players)} players")
         if len(players) > 0:
             # if any are playing, show the first one that is playing
             # reverse order, so that the most recently added ones are preferred
@@ -102,8 +105,9 @@ class PlayerManager:
         # or else show nothing
         current_player = self.get_first_playing_player()
         if current_player is not None:
-            self.on_metadata_changed(current_player, current_player.props.metadata)
-        else:    
+            self.on_metadata_changed(
+                current_player, current_player.props.metadata)
+        else:
             self.clear_output()
 
     def on_metadata_changed(self, player, metadata, _=None):
@@ -130,7 +134,8 @@ class PlayerManager:
         if current_playing is None or current_playing.props.player_name == player.props.player_name:
             self.write_output(track_info, player, tooltip)
         else:
-            logger.debug(f"Other player {current_playing.props.player_name} is playing, skipping")
+            logger.debug(f"Other player {
+                         current_playing.props.player_name} is playing, skipping")
 
     def on_player_appeared(self, _, player):
         logger.info(f"Player has appeared: {player.name}")
@@ -143,6 +148,7 @@ class PlayerManager:
     def on_player_vanished(self, _, player):
         logger.info(f"Player {player.props.player_name} has vanished")
         self.show_most_important_player()
+
 
 def parse_arguments():
     parser = argparse.ArgumentParser()

@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 #// set variables
 scrDir="$(dirname "$(realpath "$0")")"
@@ -26,7 +26,7 @@ col_count=$(( max_avail / elm_width ))
 [[ "${col_count}" -gt 5 ]] && col_count=5
 r_override="window{width:100%;} listview{columns:${col_count};} element{orientation:vertical;border-radius:${elem_border}px;} element-icon{border-radius:${icon_border}px;size:20em;} element-text{enabled:false;}"
 
-#// launch rofi menu 
+#// launch rofi menu
 RofiSel=$(echo -e "$options" | rofi -dmenu -theme-str "${r_override}" -config "${rofiConf}")
 
 #// apply selected theme

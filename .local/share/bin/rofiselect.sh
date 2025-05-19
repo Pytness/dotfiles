@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 
 #// set variables
@@ -46,6 +46,5 @@ done | sort -n | rofi -dmenu -theme-str "${r_override}" -config "${rofiConf}" -s
 
 if [ ! -z "${RofiSel}" ] ; then
     set_conf "rofiStyle" "${RofiSel}"
-    notify-send -a "t1" -r 91190 -t 2200 -i "${rofiAssetDir}/style_${RofiSel}.png" " style ${RofiSel} applied..." 
+    notify-send -a "t1" -r 91190 -t 2200 -i "${rofiAssetDir}/style_${RofiSel}.png" " style ${RofiSel} applied..."
 fi
-

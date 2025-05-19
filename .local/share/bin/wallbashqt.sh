@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 
 # set variables
@@ -20,4 +20,3 @@ if [ ! -z ${dpid} ] ; then
     hyprctl dispatch closewindow pid:${dpid}
     hyprctl dispatch exec dolphin &
 fi
-
