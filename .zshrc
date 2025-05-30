@@ -164,6 +164,18 @@ update_code() {
     rm /tmp/code.deb
 }
 
+update_nvim() {
+    NVIM_URL='https://github.com/neovim/neovim'
+
+    temp_dir=$(mktemp -d)
+    git clone --depth 1 $NVIM_URL $temp_dir
+    cd $temp_dir
+    CLFLAGS="-march=native" make CMAKE_BUILD_TYPE=Release
+    sudo make install
+    cd -
+    rm -rf $temp_dir
+}
+
 # Recursevely run a sed command
 recsed() {
     if [ $# -eq 2 ]; then
