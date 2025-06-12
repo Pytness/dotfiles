@@ -107,7 +107,7 @@ export SUDO_EDITOR=nvim
 export VISUAL=nvim
 
 # disable less behaviour of git related output
-export LESS=-FRX
+export LESS="-FRX --mouse"
 
 export TERM=screen-256color
 export XDG_CONFIG_HOME=$HOME/.config
