@@ -109,7 +109,7 @@ export VISUAL=nvim
 # disable less behaviour of git related output
 export LESS="-FRX --mouse"
 
-export TERM=screen-256color
+export TERM=xterm-kitty
 export XDG_CONFIG_HOME=$HOME/.config
 export GPG_TTY=$(tty)
 
