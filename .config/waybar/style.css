@@ -1,9 +1,10 @@
 * {
     border: none;
     border-radius: 0px;
-    font-family: "JetBrainsMono Nerd Font";
+    font-family:  "Symbols Nerd Font Mono", "CaskaydiaCove Nerd Font Mono";
+
     font-weight: bold;
-    font-size: 10px;
+    font-size: 12px;
     min-height: 10px;
 }
 
