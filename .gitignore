@@ -30,6 +30,8 @@
 !.config/zellij/**/*
 !.config/swaylock
 !.config/swaylock/**/*
+!.config/lazygit
+!.config/lazygit/**/*
 
 !.gitaliases
 !.gitconfig
