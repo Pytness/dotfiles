@@ -11,6 +11,7 @@
 [core]
 	autocrlf = input
 	safecrlf = false
+	pager = less -FRX --mouse
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
