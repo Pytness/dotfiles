@@ -1,0 +1,78 @@
+layout {
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="file:~/.config/zellij/plugins/zjstatus.wasm" {
+                format_left   "{mode} {tabs}"
+                format_center ""
+                format_right  "{datetime}"
+                format_space  ""
+
+                border_enabled  "false"
+
+                color_bg          "#1c1d24"
+                color_fg_disabled "#8a8a8a"
+                color_fg          "#cccce6"
+
+                color_blue        "#8cb8ff"
+                color_orange      "#ffcb6b"
+                color_purple      "#d67cde"
+                color_green       "#C3E88D"
+
+
+                datetime        "#[fg=$blue]#[bg=$blue,fg=$bg] {format} #[fg=$blue]"
+                datetime_format "%a %D %T"
+                datetime_timezone "Europe/Madrid"
+                hide_frame_for_single_pane "false"
+
+                tab_normal              "#[fg=$bg]#[fg=$fg_disabled,bg=$bg]{index} {name}{floating_indicator}#[fg=$bg]"
+                tab_normal_fullscreen   "#[fg=$bg]#[fg=$fg_disabled,bg=$bg]{index} {name}{fullscreen_indicator}#[fg=$bg]"
+                tab_normal_sync         "#[fg=$bg]#[fg=$fg_disabled,bg=$bg]{index} {name}{sync_indicator}#[fg=$bg]"
+
+                // formatting for the current active tab
+                tab_active              "#[fg=$fg]#[bg=$fg,fg=$bg,bold,italic]{index} {name}{floating_indicator}#[fg=$fg]"
+                tab_active_fullscreen   "#[fg=$fg]#[bg=$fg,fg=$bg,bold,italic]{index} {name}{fullscreen_indicator}#[fg=$fg]"
+                tab_active_sync         "#[fg=$fg]#[bg=$fg,fg=$bg,bold,italic]{index} {name}{sync_indicator}#[fg=$fg]"
+
+                // separator between the tabs
+                tab_separator           " "
+
+                // indicators
+                tab_sync_indicator       " <s>"
+                tab_fullscreen_indicator ""
+                tab_floating_indicator   ""
+
+                mode_normal        "#[fg=$blue,   ]#[bg=$blue,fg=$bg,  ]  NORMAL  #[fg=$blue,  ]"
+                mode_pane          "#[fg=$orange, ]#[bg=$orange,fg=$bg,]   PANE   #[fg=$orange,]"
+                mode_tab           "#[fg=$purple, ]#[bg=$purple,fg=$bg,]   TAB    #[fg=$purple,]"
+                mode_tmux          "#[fg=$green,  ]#[bg=$green,fg=$bg, ]   TMUX   #[fg=$green, ]"
+
+                mode_locked        "#[fg=$blue,   ]#[bg=$blue,fg=$bg,  ]  LOCKED  #[fg=$blue,  ]"
+                mode_resize        "#[fg=$blue,   ]#[bg=$blue,fg=$bg,  ]  RESIZE  #[fg=$blue,  ]"
+                mode_scroll        "#[fg=$blue,   ]#[bg=$blue,fg=$bg,  ]  SCROLL  #[fg=$blue,  ]"
+                mode_enter_search  "#[fg=$blue,   ]#[bg=$blue,fg=$bg,  ]  ESEARCH #[fg=$blue,  ]"
+                mode_search        "#[fg=$blue,   ]#[bg=$blue,fg=$bg,  ]  SEARCH  #[fg=$blue,  ]"
+                mode_session       "#[fg=$blue,   ]#[bg=$blue,fg=$bg,  ]  SESSION #[fg=$blue,  ]"
+                mode_move          "#[fg=$blue,   ]#[bg=$blue,fg=$bg,  ]   MOVE   #[fg=$blue,  ]"
+                mode_prompt        "#[fg=$blue,   ]#[bg=$blue,fg=$bg,  ]  PROMPT  #[fg=$blue,  ]"
+            }
+        }
+
+        children
+    }
+
+    tab name="home" {
+        pane cwd="~"
+    }
+
+    tab name="nvim" {
+        pane cwd="~/.config/nvim"
+    }
+
+    tab name="hypr" {
+        pane cwd="~/.config/hypr"
+    }
+
+    tab name="zellij" {
+        pane cwd="~/.config/zellij"
+    }
+}

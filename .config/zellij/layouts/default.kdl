@@ -1,14 +1,3 @@
-// layout {
-//     //pane size=1 borderless=true {
-//     //    plugin location="zellij:tab-bar"
-//     //}
-//
-//
-//
-//     pane command="zsh" close_on_exit=true
-//
-// }
-
 layout {
     default_tab_template {
         pane size=1 borderless=true {
@@ -67,6 +56,7 @@ layout {
                 mode_prompt        "#[fg=$blue,   ]#[bg=$blue,fg=$bg,  ]  PROMPT  #[fg=$blue,  ]"
             }
         }
+
         children
     }
 }
