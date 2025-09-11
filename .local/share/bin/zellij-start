@@ -1,0 +1,26 @@
+#!/bin/sh
+# ~/.local/bin/zellij-start
+
+list_sessions() {
+    zellij list-sessions -n --short 2> /dev/null
+}
+sessions="$(list_sessions)"
+
+if ! echo $sessions | grep -qx config; then
+    nohup zellij -n config --session config >/dev/null 2>&1 < /dev/null &
+fi
+
+if ! echo $sessions | grep -qx default; then
+    nohup zellij -n default --session default >/dev/null 2>&1 < /dev/null &
+fi
+
+
+while true; do
+    if  list_sessions | grep -qx "default" ; then
+        break
+    fi
+
+    sleep 0.1
+done
+
+zellij attach "default"
