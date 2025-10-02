@@ -1,5 +1,11 @@
 #!/bin/sh
-# ~/.local/bin/zellij-start
+
+# handle parameters
+if [ $# -gt 0 ]; then
+    exec zellij "$@"
+    exit $?
+fi
+
 
 list_sessions() {
     zellij list-sessions -n --short 2> /dev/null
