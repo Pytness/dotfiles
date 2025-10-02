@@ -9,4 +9,4 @@
 		--format=format:'%C(bold cyan)%h%C(reset) %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)%an%C(reset) %C(bold yellow)%d%C(reset)' \
 		--branches --remotes --tags
 
-	lignore = "!wget https://raw.githubusercontent.com/github/gitignore/master/$1.gitignore -O .gitignore #"
+	lignore = "!curl -sL https://www.toptal.com/developers/gitignore/api/$@ #"
