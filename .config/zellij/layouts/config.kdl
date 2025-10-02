@@ -60,19 +60,23 @@ layout {
         children
     }
 
-    tab name="home" {
+    tab name="home" split_direction="vertical" {
+        pane cwd="~" command="nvim" focus=true start_suspended=true
         pane cwd="~"
     }
 
-    tab name="nvim" {
+    tab name="nvim" split_direction="vertical" {
+        pane cwd="~/.config/nvim" command="nvim" focus=true start_suspended=true
         pane cwd="~/.config/nvim"
     }
 
-    tab name="hypr" {
+    tab name="hypr" split_direction="vertical" {
+        pane cwd="~/.config/hypr" command="nvim" focus=true start_suspended=true
         pane cwd="~/.config/hypr"
     }
 
-    tab name="zellij" {
+    tab name="zellij" split_direction="vertical" {
+        pane cwd="~/.config/zellij" command="nvim" focus=true start_suspended=true
         pane cwd="~/.config/zellij"
     }
 }
