@@ -315,6 +315,7 @@ export ZLE_RPROMPT_INDENT=0
 
 export PATH=/usr/lib/cuda/bin:$HOME/.local/bin:$PATH
 export PATH=/usr/local/cuda/bin:$PATH
+export XLA_FLAGS=--xla_gpu_cuda_data_dir=$CUDA_PATH
 
 
 # # fnm
