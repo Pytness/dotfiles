@@ -1,8 +1,14 @@
 #!/bin/sh
 
+
+
 # handle parameters
 if [ $# -gt 0 ]; then
-    exec zellij "$@"
+    if [ "$1" = "new" ]; then
+        exec zellij
+    else
+        exec zellij "$@"
+    fi
     exit $?
 fi
 
