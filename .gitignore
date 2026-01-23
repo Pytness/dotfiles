@@ -12,6 +12,8 @@
 !.config/alacritty/**/*
 !.config/hypr
 !.config/hypr/**/*
+!.config/hyprpanel
+!.config/hyprpanel/**/*
 !.config/kitty
 !.config/kitty/**/*
 !.config/nvim

@@ -1,0 +1,126 @@
+$primary:        #3498db;
+$success:        #27ae60; // Success/ok
+/* $error:          #e74c3c; // Error/danger */
+/* $warning:        #f39c12; // Warning */
+/* $info:           #2980b9; // Info/hint */
+
+
+/* local red = hsl(350, 80, 65) */
+/* local orange = hsl(39, 80, 65) */
+/* local yellow = hsl(65, 80, 65) */
+/* local green = hsl(120, 80, 65) */
+/* local cyan = hsl(180, 80, 65) */
+/* local blue = hsl(220, 80, 65) */
+/* local purple = hsl(300, 80, 65) */
+/* local leap_primary_label = hsl(335, 100, 59) */
+
+$clock: white;
+$cpu: #E45B72;
+$ram: #E4B45C;
+$netstat: #DDE962;
+$audio: #61EB65;
+$bluetooth: #5BE4E5;
+$network: #5B88E4;
+
+@mixin bar-style2-variant($iconSel, $labelSel, $name, $primary, $secondary: black) {
+
+    .bar-button-label.#{labelSel} {
+        color: if($bar-buttons-monochrome, $bar-buttons-text, $bar-buttons-clock-text);
+        margin-left: $bar-buttons-clock-spacing;
+    }
+
+    .bar-button-icon.#{$iconSel} {
+        font-size: 1.15em;
+        color: if($bar-buttons-monochrome, $bar-buttons-icon, $bar-buttons-clock-icon);
+    }
+
+    .style2 {
+        .bar-button-icon.#{$iconSel} {
+            color: $secondary;
+            background-color: $primary;
+
+            padding: $bar-buttons-padding_y 0em;
+            padding-left: $bar-buttons-padding_x;
+            padding-right: $bar-buttons-network-spacing;
+
+            border-top-left-radius: if(
+                $bar-buttons-network-enableBorder or $bar-buttons-enableBorders,
+                $bar-buttons-radius * $bar-buttons-innerRadiusMultiplier,
+                $bar-buttons-radius
+            );
+
+            border-bottom-left-radius: if(
+                $bar-buttons-network-enableBorder or $bar-buttons-enableBorders,
+                $bar-buttons-radius * $bar-buttons-innerRadiusMultiplier,
+                $bar-buttons-radius
+            );
+        }
+
+        .bar-button-label.#{$labelSel} {
+            color: $primary;
+            background-color: $secondary;
+
+            border-top-right-radius: $bar-buttons-radius;
+            border-bottom-right-radius: $bar-buttons-radius;
+            padding: $bar-buttons-padding_y 0em;
+            padding-right: $bar-buttons-padding_x;
+            padding-left: $bar-buttons-clock-spacing;
+            margin-left: 0em;
+        }
+
+        .bar-button-label.#{$labelSel} {
+            padding: $bar-buttons-padding_y 0em;
+            padding-right: $bar-buttons-padding_x;
+            padding-left: $bar-buttons-clock-spacing;
+            margin-left: 0em;
+        }
+
+        &.no-label.#{$name}-container {
+            .bar-button-icon.#{$iconSel} {
+                border-top-right-radius: if(
+                    $bar-buttons-clock-enableBorder or $bar-buttons-enableBorders,
+                    $bar-buttons-radius * $bar-buttons-innerRadiusMultiplier,
+                    $bar-buttons-radius
+                );
+                border-bottom-right-radius: if(
+                    $bar-buttons-clock-enableBorder or $bar-buttons-enableBorders,
+                    $bar-buttons-radius * $bar-buttons-innerRadiusMultiplier,
+                    $bar-buttons-radius
+                );
+            }
+        }
+    };
+
+    .bar_item_box_visible.#{$name} {
+        border: $bar-buttons-borderSize solid $primary;
+    };
+}
+
+@mixin style-module-variant($name, $primary, $secondary: black) {
+  @include styleModule (
+    $name,
+    (
+      'icon-color': $secondary,
+      'icon-background': $primary,
+      'label-color': $primary,
+      'label-background': black,
+      'border-color': $primary,
+    )
+  );
+};
+
+@include bar-style2-variant('clock', 'clock', 'clock', $clock);
+@include style-module-variant('cpu', $cpu);
+@include style-module-variant('ram', $ram);
+@include style-module-variant('netstat', $netstat);
+@include bar-style2-variant('volume', 'volume', 'volume', $audio);
+@include bar-style2-variant('bluetooth', 'bluetooth', 'bluetooth', $bluetooth);
+@include bar-style2-variant('network-icon', 'network-label', 'network', $network);
+
+
+.bluetooth-disabled-menu {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: $surface2;
+    margin: 6rem 0rem;
+}

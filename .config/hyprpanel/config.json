@@ -1,0 +1,57 @@
+{
+  "bar.customModules.storage.paths": [
+    "/"
+  ],
+  "theme.font.name": "CaskaydiaCove Nerd Font",
+  "theme.font.label": "CaskaydiaCove Nerd Font",
+  "theme.bar.floating": false,
+  "theme.bar.enableShadow": false,
+  "theme.bar.opacity": 100,
+  "theme.bar.buttons.style": "split",
+  "theme.bar.transparent": true,
+  "bar.layouts": {
+    "0": {
+      "left": [
+        "dashboard",
+        "workspaces"
+      ],
+      "middle": [
+        "clock"
+      ],
+      "right": [
+        "cpu",
+        "ram",
+        "netstat",
+        "volume",
+        "bluetooth",
+        "network",
+        "notifications"
+      ]
+    },
+    "1": {
+      "left": [],
+      "middle": [],
+      "right": []
+    }
+  },
+  "bar.clock.format": "%H:%M:%S %d/%m/%Y",
+  "theme.font.size": "1rem",
+  "scalingPriority": "hyprland",
+  "bar.workspaces.numbered_active_indicator": "color",
+  "bar.workspaces.show_numbered": true,
+  "bar.workspaces.workspaceMask": true,
+  "bar.workspaces.showAllActive": false,
+  "bar.workspaces.monitorSpecific": false,
+  "bar.workspaces.showWsIcons": false,
+  "bar.workspaces.showApplicationIcons": false,
+  "wallpaper.enable": false,
+  "bar.customModules.netstat.networkInterface": "enp6s0f0",
+  "bar.customModules.netstat.dynamicIcon": false,
+  "bar.customModules.netstat.label": true,
+  "bar.customModules.netstat.pollingInterval": 1000,
+  "bar.customModules.netstat.rateUnit": "MiB",
+  "bar.customModules.netstat.labelType": "full",
+  "theme.bar.buttons.modules.netstat.spacing": "0.5em",
+  "theme.bar.buttons.enableBorders": true,
+  "theme.bar.buttons.borderSize": "0.2em"
+}
