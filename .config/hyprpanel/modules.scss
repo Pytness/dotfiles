@@ -1,12 +1,8 @@
 $primary:        #3498db;
-$success:        #27ae60; // Success/ok
-/* $error:          #e74c3c; // Error/danger */
-/* $warning:        #f39c12; // Warning */
-/* $info:           #2980b9; // Info/hint */
 
 
 /* local red = hsl(350, 80, 65) */
-/* local orange = hsl(39, 80, 65) */
+/* local orange = hsl(30, 80, 65) */
 /* local yellow = hsl(65, 80, 65) */
 /* local green = hsl(120, 80, 65) */
 /* local cyan = hsl(180, 80, 65) */
@@ -14,13 +10,17 @@ $success:        #27ae60; // Success/ok
 /* local purple = hsl(300, 80, 65) */
 /* local leap_primary_label = hsl(335, 100, 59) */
 
-$clock: white;
+$clock: magenta;
 $cpu: #E45B72;
-$ram: #E4B45C;
+$ram: #E39E5B;
 $netstat: #DDE962;
 $audio: #61EB65;
 $bluetooth: #5BE4E5;
 $network: #5B88E4;
+
+
+$workspaces: #FE2D85;
+
 
 @mixin bar-style2-variant($iconSel, $labelSel, $name, $primary, $secondary: black) {
 
@@ -124,3 +124,29 @@ $network: #5B88E4;
     color: $surface2;
     margin: 6rem 0rem;
 }
+
+.workspaces {
+    label {
+        background-color: transparent;
+        color: white;
+
+        &.occupied {
+            background-color: transparent;
+            color: white;
+        }
+
+        &.active {
+            background-color: transparent;
+            color: $workspaces;
+        }
+
+        &.highlight {
+            background-color: transparent;
+            color: white;
+        }
+    }
+}
+
+.bar_item_box_visible.workspaces {
+    border: $bar-buttons-borderSize solid $workspaces;
+};
