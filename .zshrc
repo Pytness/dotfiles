@@ -175,7 +175,7 @@ update_nvim() {
         branch=$1
     fi
 
-    git clone --depth 1 --branch $1 $NVIM_URL $temp_dir
+    git clone --depth 1 --branch $branch $NVIM_URL $temp_dir
     cd $temp_dir
     CLFLAGS="-march=native" make CMAKE_BUILD_TYPE=Release
     sudo make install
