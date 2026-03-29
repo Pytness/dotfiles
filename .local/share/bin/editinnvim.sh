@@ -10,4 +10,4 @@ sleep 0.1
 
 wl-paste > $tempfile
 
-hyprctl dispatch exec "[float; center]" "bash -c \"st -e nvim $tempfile && cat $tempfile | wl-copy -n && hyprctl dispatch sendshortcut \\\"CTRL,V,\\\"\""
+hyprctl dispatch exec "[float; center]" "bash -c \"st -e nvim $tempfile && cat $tempfile | wl-copy -n && hyprctl dispatch sendshortcut \\\"CTRL,V,\\\" && rm $tempfile\""
